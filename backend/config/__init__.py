@@ -1,10 +1,20 @@
 """
-Configuration package for Medicinal Plant Detection & RAG Assistant.
+Configuration package.
 
-Exports:
-    - Settings: Application settings loaded from environment / .env file.
-    - engine: SQLAlchemy async engine instance.
-    - async_session_maker: Async session factory.
-    - Base: Declarative base class for ORM models.
-    - get_db: FastAPI dependency that yields a database session.
+Exports the core configuration objects used throughout the application.
 """
+from config.settings import settings
+from config.logging import setup_logging, get_logger
+from config.database import engine, async_session_maker, Base, get_db, init_db, close_db
+
+__all__ = [
+    "settings",
+    "setup_logging",
+    "get_logger",
+    "engine",
+    "async_session_maker",
+    "Base",
+    "get_db",
+    "init_db",
+    "close_db",
+]

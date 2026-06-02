@@ -1,11 +1,9 @@
 """
 Chat Schemas
 ============
-
 Pydantic models for chat requests, responses, session listings, and
 individual message serialisation.
 """
-
 from __future__ import annotations
 
 from datetime import datetime
@@ -15,64 +13,63 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class ChatRequest(BaseModel):
-    """Incoming chat message from the client.
+    """Incoming chat message from the client."""
 
-    Attributes:
-        session_id: Existing session to continue (``None`` to start a new one).
-        message: The user's natural-language question.
-    """
+    session_id: Optional[int] = Field(
+        None, description="Existing session to continue (null to start new)"
+    )
+    message: str = Field(
+        ...,
+        min_length=1,
+        max_length=4096,
+        description="The user's natural-language question",
+    )
 
-    session_id: Optional[int] = None
-    message: str = Field(..., min_length=1, max_length=4096)
 
+class SourceReference(BaseModel):
+    """A single RAG source reference."""
 
-class ChatResponse(BaseModel):
-    """Response returned after processing a chat message.
-
-    Attributes:
-        session_id: The session this message belongs to.
-        answer: The assistant's generated answer.
-        sources: Optional list of source references used by the RAG pipeline.
-    """
-
-    session_id: int
-    answer: str
-    sources: Optional[list[dict[str, Any]]] = None
+    document: str = Field(description="Source document name")
+    page: Optional[int] = Field(None, description="Page number if applicable")
+    relevance_score: float = Field(description="Retrieval relevance score")
+    snippet: str = Field(description="Relevant text snippet")
 
 
 class ChatMessageResponse(BaseModel):
-    """Schema for an individual stored chat message.
-
-    Attributes:
-        id: Message primary key.
-        role: ``user``, ``assistant``, or ``system``.
-        content: Message body.
-        sources: RAG source metadata (if any).
-        created_at: Timestamp.
-    """
+    """Schema for an individual stored chat message."""
 
     model_config = ConfigDict(from_attributes=True)
 
     id: int
     role: str
     content: str
-    sources: Optional[dict[str, Any]] = None
+    sources: Optional[list[dict[str, Any]]] = None
+    token_count: Optional[int] = None
     created_at: datetime
 
 
-class ChatSessionResponse(BaseModel):
-    """Schema for a chat session summary (list view).
+class ChatResponse(BaseModel):
+    """Response returned after processing a chat message."""
 
-    Attributes:
-        id: Session primary key.
-        title: Session title.
-        created_at: When the session was created.
-        message_count: Number of messages in the session.
-    """
+    session_id: int
+    message: ChatMessageResponse
+
+
+class ChatSessionResponse(BaseModel):
+    """Schema for a chat session summary (list view)."""
 
     model_config = ConfigDict(from_attributes=True)
 
     id: int
-    title: Optional[str] = None
+    title: str
+    is_active: bool
     created_at: datetime
+    updated_at: datetime
     message_count: int = 0
+
+
+class ChatSessionDetailResponse(BaseModel):
+    """Full chat session with all messages."""
+
+    session: ChatSessionResponse
+    messages: list[ChatMessageResponse]

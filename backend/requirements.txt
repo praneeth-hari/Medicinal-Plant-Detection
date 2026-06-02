@@ -6,41 +6,41 @@
 # ============================================================
 
 # --- Web Framework ---
-fastapi
-uvicorn[standard]
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
 
 # --- Database / ORM ---
-sqlalchemy[asyncio]
-aiosqlite
-alembic
+sqlalchemy[asyncio]>=2.0.0
+aiosqlite>=0.20.0
+alembic>=1.14.0
 
 # --- Validation / Settings ---
-pydantic
-pydantic-settings
-python-dotenv
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.0
 
 # --- Authentication ---
-python-jose[cryptography]
-passlib[bcrypt]
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
 
 # --- File Handling ---
-python-multipart
-Pillow
+python-multipart>=0.0.9
+Pillow>=10.0.0
 
-# --- ML / Deep Learning ---
-torch
-torchvision
-transformers
-sentence-transformers
+# --- ML / Deep Learning (Phase 3 — uncomment when needed) ---
+# torch
+# torchvision
+# transformers
+# sentence-transformers
 
-# --- RAG / Vector Store ---
-chromadb
-langchain
-langchain-community
+# --- RAG / Vector Store (Phase 4 — uncomment when needed) ---
+# chromadb
+# langchain
+# langchain-community
 
 # --- HTTP Client ---
-httpx
+httpx>=0.27.0
 
 # --- Testing ---
-pytest
-pytest-asyncio
+pytest>=8.0.0
+pytest-asyncio>=0.24.0

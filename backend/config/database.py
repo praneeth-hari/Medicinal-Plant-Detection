@@ -1,10 +1,9 @@
 """
 Database Configuration
 ======================
-
-Sets up the SQLAlchemy **async** engine, session factory, and declarative
-base class.  Also exposes a FastAPI dependency (``get_db``) that yields an
-``AsyncSession`` per request.
+Sets up the SQLAlchemy async engine, session factory, and declarative
+base.  Exposes a FastAPI dependency ``get_db`` that yields an
+``AsyncSession`` per request, plus ``init_db`` / ``close_db`` helpers.
 
 Usage in endpoints::
 
@@ -14,9 +13,9 @@ Usage in endpoints::
     async def list_items(db: AsyncSession = Depends(get_db)):
         ...
 """
-
 from __future__ import annotations
 
+import logging
 from typing import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import (
@@ -28,13 +27,20 @@ from sqlalchemy.orm import DeclarativeBase
 
 from config.settings import settings
 
+logger = logging.getLogger(__name__)
+
 # ------------------------------------------------------------------
-# Engine
+# Engine — connection arguments differ for SQLite vs other DBs
 # ------------------------------------------------------------------
+_connect_args: dict = {}
+if settings.is_sqlite:
+    _connect_args["check_same_thread"] = False
+
 engine = create_async_engine(
     settings.DATABASE_URL,
     echo=settings.DEBUG,
     future=True,
+    connect_args=_connect_args,
 )
 
 # ------------------------------------------------------------------
@@ -64,18 +70,42 @@ class Base(DeclarativeBase):
 # FastAPI dependency
 # ------------------------------------------------------------------
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
-    """Yield an async database session and ensure it is closed afterwards.
+    """Yield an async database session per request.
 
-    This is the canonical FastAPI dependency for database access.  It
-    opens a session at the start of a request and commits / rolls back
-    automatically when the request finishes.
+    Opens a session, yields it, then commits on success or rolls back
+    on exception.  Always closes the session in the finally block.
     """
-    async with async_session_maker() as session:
-        try:
-            yield session
-            await session.commit()
-        except Exception:
-            await session.rollback()
-            raise
-        finally:
-            await session.close()
+    session = async_session_maker()
+    try:
+        yield session
+        await session.commit()
+    except Exception:
+        await session.rollback()
+        logger.exception("Database session rollback due to exception")
+        raise
+    finally:
+        await session.close()
+
+
+# ------------------------------------------------------------------
+# Lifecycle helpers
+# ------------------------------------------------------------------
+async def init_db() -> None:
+    """Create all database tables.
+
+    For development convenience.  In production, use Alembic migrations.
+    Must import all models *before* calling this so that
+    ``Base.metadata`` is fully populated.
+    """
+    # Force-import the models package to populate Base.metadata
+    import models  # noqa: F401
+
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    logger.info("Database tables created / verified successfully")
+
+
+async def close_db() -> None:
+    """Dispose the database engine connection pool."""
+    await engine.dispose()
+    logger.info("Database engine disposed")

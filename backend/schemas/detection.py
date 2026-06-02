@@ -1,10 +1,8 @@
 """
 Detection Schemas
 =================
-
 Pydantic models for plant image detection requests and responses.
 """
-
 from __future__ import annotations
 
 from datetime import datetime
@@ -13,33 +11,16 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class DetectionRequest(BaseModel):
-    """Schema representing the metadata sent alongside an uploaded image.
+class PredictionItem(BaseModel):
+    """A single prediction in the top-K results."""
 
-    The actual image binary is received via ``UploadFile``; this schema
-    captures any extra form fields.
-
-    Attributes:
-        model_version: Optional model checkpoint identifier the client
-                       wants to use.  Defaults to the latest available.
-    """
-
-    model_version: Optional[str] = Field(None, max_length=100)
+    plant_id: int
+    name: str
+    confidence: float = Field(ge=0.0, le=1.0)
 
 
 class DetectionResponse(BaseModel):
-    """Schema returned after a successful plant detection.
-
-    Attributes:
-        id: Detection result primary key.
-        plant_id: Predicted plant's ID (``None`` if unknown).
-        plant_name: Predicted plant's common name.
-        scientific_name: Predicted plant's scientific name.
-        confidence: Model confidence score (0.0–1.0).
-        image_path: Server-side path to the stored image.
-        model_version: Model checkpoint used for this prediction.
-        created_at: Detection timestamp.
-    """
+    """Schema returned after a successful plant detection."""
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -47,7 +28,17 @@ class DetectionResponse(BaseModel):
     plant_id: Optional[int] = None
     plant_name: Optional[str] = None
     scientific_name: Optional[str] = None
-    confidence: Optional[float] = Field(None, ge=0.0, le=1.0)
+    confidence: float = Field(ge=0.0, le=1.0)
+    top_predictions: Optional[list[PredictionItem]] = None
     image_path: str
-    model_version: Optional[str] = None
+    model_version: str
     created_at: datetime
+
+
+class DetectionHistoryResponse(BaseModel):
+    """Paginated detection history."""
+
+    items: list[DetectionResponse]
+    total: int
+    skip: int
+    limit: int

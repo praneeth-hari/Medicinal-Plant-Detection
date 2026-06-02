@@ -1,6 +1,5 @@
 """
 API package.
 
-Contains all HTTP-layer concerns: routers, endpoint definitions, and
-FastAPI dependency-injection helpers.
+Contains endpoint routers, dependency injection, and exception handling.
 """
