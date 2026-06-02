@@ -1,0 +1,89 @@
+# ============================================================
+# 🌿 Medicinal Plant Detection & RAG Assistant - .gitignore
+# ============================================================
+
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# ----- Testing & Coverage -----
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.tox/
+.nox/
+nosetests.xml
+coverage.xml
+
+# ----- Node.js / Frontend -----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+
+# Frontend build output
+dist/
+build/
+.next/
+out/
+
+# ----- Environment Variables -----
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# ----- Database Files -----
+*.db
+*.sqlite3
+
+# ----- ML Models & Data -----
+models/*.pt
+models/*.pth
+models/*.onnx
+models/*.h5
+data/raw/
+*.hdf5
+
+# ----- Uploaded Images -----
+data/uploads/*
+!data/uploads/.gitkeep
+
+# ----- IDE & Editor Files -----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ----- Logs -----
+*.log
+logs/
+
+# ----- Misc -----
+*.bak
+*.tmp
+*.temp
+.cache/

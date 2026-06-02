@@ -1,0 +1,46 @@
+# ============================================================
+# Medicinal Plant Detection & RAG Assistant — Backend Dependencies
+# ============================================================
+# Install with: pip install -r requirements.txt
+# Python 3.11+ required
+# ============================================================
+
+# --- Web Framework ---
+fastapi
+uvicorn[standard]
+
+# --- Database / ORM ---
+sqlalchemy[asyncio]
+aiosqlite
+alembic
+
+# --- Validation / Settings ---
+pydantic
+pydantic-settings
+python-dotenv
+
+# --- Authentication ---
+python-jose[cryptography]
+passlib[bcrypt]
+
+# --- File Handling ---
+python-multipart
+Pillow
+
+# --- ML / Deep Learning ---
+torch
+torchvision
+transformers
+sentence-transformers
+
+# --- RAG / Vector Store ---
+chromadb
+langchain
+langchain-community
+
+# --- HTTP Client ---
+httpx
+
+# --- Testing ---
+pytest
+pytest-asyncio
