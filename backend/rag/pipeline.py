@@ -6,13 +6,15 @@ End-to-end orchestrator that wires together the ``DocumentRetriever``
 and ``ResponseGenerator`` to answer user questions about medicinal
 plants using retrieval-augmented generation.
 """
-
 from __future__ import annotations
 
+import logging
 from typing import Any, Optional
 
 from rag.retriever import DocumentRetriever
 from rag.generator import ResponseGenerator
+
+logger = logging.getLogger(__name__)
 
 
 class RAGPipeline:
@@ -61,7 +63,25 @@ class RAGPipeline:
             Dictionary with keys ``answer`` (str) and ``sources``
             (list of source metadata dicts).
         """
-        raise NotImplementedError("Not yet implemented")
+        # 1. Retrieve
+        documents = self.retriever.retrieve(query, top_k=top_k)
+
+        # 2. Format context
+        context = self.retriever.format_context(documents)
+
+        # 3. Generate
+        answer_text = await self.generator.generate(
+            query, context, max_tokens=max_tokens,
+        )
+
+        # 4. Build sources
+        sources = self.retriever.to_source_references(documents)
+
+        logger.info(
+            "RAG pipeline: query='%s...' docs=%d answer_len=%d",
+            query[:40], len(documents), len(answer_text),
+        )
+        return {"answer": answer_text, "sources": sources}
 
     async def answer_with_history(
         self,
@@ -86,4 +106,57 @@ class RAGPipeline:
         Returns:
             Dictionary with ``answer`` and ``sources``.
         """
-        raise NotImplementedError("Not yet implemented")
+        # 1. Retrieve (based on current query only)
+        documents = self.retriever.retrieve(query, top_k=top_k)
+
+        # 2. Format context
+        context = self.retriever.format_context(documents)
+
+        # 3. Generate with history
+        answer_text = await self.generator.generate(
+            query, context,
+            max_tokens=max_tokens,
+            chat_history=chat_history,
+        )
+
+        # 4. Build sources
+        sources = self.retriever.to_source_references(documents)
+
+        logger.info(
+            "RAG pipeline (with history): query='%s...' docs=%d history=%d",
+            query[:40], len(documents), len(chat_history),
+        )
+        return {"answer": answer_text, "sources": sources}
+
+
+# ── Module-level singleton ──────────────────────────────────────
+
+_pipeline: RAGPipeline | None = None
+
+
+def get_rag_pipeline() -> RAGPipeline:
+    """Return a singleton ``RAGPipeline`` wired with default components.
+
+    Lazy-initialises the embedding service, vector store, retriever,
+    and generator on first call.
+
+    Returns:
+        Shared ``RAGPipeline`` instance.
+    """
+    global _pipeline
+    if _pipeline is None:
+        from config.settings import settings
+        from rag.embeddings import get_embedding_service
+        from rag.vector_store import get_vector_store
+
+        embedding_service = get_embedding_service()
+        vector_store = get_vector_store()
+        retriever = DocumentRetriever(vector_store, embedding_service)
+        generator = ResponseGenerator(
+            model_name=settings.GROQ_MODEL,
+            api_key=settings.GROQ_API_KEY,
+        )
+
+        _pipeline = RAGPipeline(retriever, generator)
+        logger.info("RAG pipeline initialised with Groq model %s", settings.GROQ_MODEL)
+    return _pipeline

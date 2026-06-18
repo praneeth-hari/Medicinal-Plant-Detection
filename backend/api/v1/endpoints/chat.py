@@ -2,22 +2,30 @@
 Chat Endpoints
 ==============
 
-API endpoints for the RAG-powered chat assistant.
+API endpoints for the chat assistant.
 
 Routes:
-    POST  /                  — Send a message and get an AI response.
+    POST  /                  — Send a message and get a response.
     GET   /sessions          — List the user's chat sessions.
     GET   /sessions/{id}     — Retrieve messages for a specific session.
 """
-
 from __future__ import annotations
+
+import logging
 
 from fastapi import APIRouter, Depends, Query, status
 
 from api.deps import get_chat_service, get_current_user
-from schemas.chat import ChatMessageResponse, ChatRequest, ChatResponse, ChatSessionResponse
+from schemas.chat import (
+    ChatMessageResponse,
+    ChatRequest,
+    ChatResponse,
+    ChatSessionResponse,
+)
 from schemas.user import TokenData
 from services.chat_service import ChatService
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -27,24 +35,38 @@ router = APIRouter()
     response_model=ChatResponse,
     status_code=status.HTTP_200_OK,
     summary="Send message",
-    description="Send a message to the RAG assistant and receive an answer.",
+    description="Send a message to the assistant and receive an answer.",
 )
 async def send_message(
     body: ChatRequest,
     current_user: TokenData = Depends(get_current_user),
     service: ChatService = Depends(get_chat_service),
 ) -> ChatResponse:
-    """Process a user message through the RAG pipeline.
+    """Process a user message through the chat service.
+
+    If ``session_id`` is ``null``, a new session is created
+    automatically.
 
     Args:
-        body: Chat request with session_id and message text.
+        body: Chat request with optional session_id and message text.
         current_user: Authenticated user's token data.
         service: Injected ``ChatService``.
 
     Returns:
         ``ChatResponse`` with the assistant's answer and sources.
     """
-    raise NotImplementedError("Not yet implemented")
+    # Auto-create session if none provided
+    session_id = body.session_id
+    if session_id is None:
+        session = await service.create_session(current_user.user_id)
+        session_id = session.id
+
+    response = await service.send_message(
+        session_id=session_id,
+        user_message=body.message,
+        user_id=current_user.user_id,
+    )
+    return response
 
 
 @router.get(
@@ -70,7 +92,9 @@ async def list_sessions(
     Returns:
         List of ``ChatSessionResponse`` objects.
     """
-    raise NotImplementedError("Not yet implemented")
+    return await service.get_user_sessions(
+        current_user.user_id, skip=skip, limit=limit,
+    )
 
 
 @router.get(
@@ -88,6 +112,8 @@ async def get_session_messages(
 ) -> list[ChatMessageResponse]:
     """Retrieve all messages in a chat session.
 
+    Verifies that the session belongs to the authenticated user.
+
     Args:
         session_id: Chat session primary key.
         skip: Pagination offset.
@@ -97,5 +123,12 @@ async def get_session_messages(
 
     Returns:
         List of ``ChatMessageResponse`` objects.
+
+    Raises:
+        NotFoundException: 404 if the session does not exist.
+        ForbiddenException: 403 if the session belongs to another user.
     """
-    raise NotImplementedError("Not yet implemented")
+    messages = await service.get_history(
+        session_id, current_user.user_id, skip=skip, limit=limit,
+    )
+    return [ChatMessageResponse.model_validate(m) for m in messages]

@@ -1,37 +1,42 @@
 /**
- * Chat API module.
+ * Chat API Module
+ * ================
  *
- * Provides functions for the RAG-powered chat assistant —
- * sending messages, listing sessions, and fetching session history.
+ * Exposes methods for RAG-powered chat assistant.
  */
 import client from './client';
+import { API_ROUTES } from '../utils/api';
 
 /**
- * Send a message to the RAG assistant.
- * @param {string} sessionId - Chat session ID
- * @param {string} message   - User message text
- * @returns {Promise<import('axios').AxiosResponse>}
+ * Sends a message to the RAG chat assistant.
+ * If sessionId is null, a new session is auto-created.
+ * @param {number|null} sessionId
+ * @param {string} message
+ * @returns {Promise<object>} ChatResponse { session_id, message: ChatMessageResponse }
  */
 export async function sendMessage(sessionId, message) {
-  // TODO: implement
-  return client.post('/chat/message', { session_id: sessionId, message });
+  const response = await client.post(API_ROUTES.CHAT, {
+    session_id: sessionId ? parseInt(sessionId, 10) : null,
+    message,
+  });
+  return response.data;
 }
 
 /**
- * Get all chat sessions for the current user.
- * @returns {Promise<import('axios').AxiosResponse>}
+ * Lists the authenticated user's chat sessions.
+ * @returns {Promise<Array>} List of ChatSessionResponse
  */
 export async function getSessions() {
-  // TODO: implement
-  return client.get('/chat/sessions');
+  const response = await client.get(API_ROUTES.CHAT_SESSIONS);
+  return response.data;
 }
 
 /**
- * Get all messages in a specific chat session.
- * @param {string} sessionId
- * @returns {Promise<import('axios').AxiosResponse>}
+ * Fetches message history for a specific chat session.
+ * @param {number|string} sessionId
+ * @returns {Promise<Array>} List of ChatMessageResponse
  */
 export async function getSessionMessages(sessionId) {
-  // TODO: implement
-  return client.get(`/chat/sessions/${sessionId}/messages`);
+  const response = await client.get(`${API_ROUTES.CHAT_SESSIONS}/${sessionId}`);
+  return response.data;
 }

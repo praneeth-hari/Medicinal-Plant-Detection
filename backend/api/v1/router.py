@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from api.v1.endpoints import auth, chat, detection, plants, health
+from api.v1.endpoints import auth, chat, detection, plants, health, control_tower, system_info, cmdb
 
 api_v1_router = APIRouter()
 
@@ -41,3 +41,19 @@ api_v1_router.include_router(
     prefix="/chat",
     tags=["Chat"],
 )
+api_v1_router.include_router(
+    control_tower.router,
+    prefix="/control-tower",
+    tags=["Control Tower"],
+)
+api_v1_router.include_router(
+    system_info.router,
+    prefix="/system-info",
+    tags=["System"],
+)
+api_v1_router.include_router(
+    cmdb.router,
+    prefix="/cmdb",
+    tags=["CMDB"],
+)
+

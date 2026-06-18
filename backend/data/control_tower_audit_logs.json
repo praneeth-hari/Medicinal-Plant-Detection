@@ -1,0 +1,372 @@
+[
+  {
+    "id": "9156b049-583c-4d9b-9b6d-5640168b5666",
+    "timestamp": "2026-06-15T06:05:09.427176+00:00",
+    "user_query": "what is tulsi",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "a2d85169-ce68-419d-88af-a79596ad68d2",
+    "timestamp": "2026-06-13T09:17:04.904630+00:00",
+    "user_query": "What are the medicinal uses of Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "9dd3bfe3-fb51-46c8-95a6-2c56e497a314",
+    "timestamp": "2026-06-13T06:33:35.330157+00:00",
+    "user_query": "What are the medicinal uses of Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "7d5cc5d2-20fb-4a3e-ab47-19da9fc6447a",
+    "timestamp": "2026-06-13T06:33:04.338308+00:00",
+    "user_query": "What are the medicinal uses of Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "d7ddc1ae-e1ac-4ed7-8f55-db27f40be981",
+    "timestamp": "2026-06-13T04:32:59.634826+00:00",
+    "user_query": "what is other name for tulsi",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "c97eb785-93dd-451e-80e8-36c35319f8b5",
+    "timestamp": "2026-06-12T18:18:52.783122+00:00",
+    "user_query": "what is python",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "cf3e6833-4e80-4aad-97f4-e3ebb38a10ce",
+    "timestamp": "2026-06-12T17:42:06.652860+00:00",
+    "user_query": "What are the medicinal uses of Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "69e61636-a6d4-4d8b-9321-da5ccfa90c83",
+    "timestamp": "2026-06-12T17:40:01.539134+00:00",
+    "user_query": "\"A patient is taking Warfarin (blood thinner), has Type 2 Diabetes, and is pregnant. Which medicinal plants should be avoided, and why? Provide scientific evidence, possible drug interactions, and safer alternatives.\"",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "d7f5016e-0358-4476-9f43-16d8adc5ebb7",
+    "timestamp": "2026-06-12T17:11:46.145976+00:00",
+    "user_query": "what is tulsi",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "65b5aaf7-f650-486f-9600-a7755affa72f",
+    "timestamp": "2026-06-12T16:57:51.282227+00:00",
+    "user_query": "what is the aleo vera",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "625af271-4d78-423e-9d4a-4f51136d0b1e",
+    "timestamp": "2026-06-12T16:55:34.269072+00:00",
+    "user_query": "What precautions should be taken with Ashwagandha?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "9719500c-b57c-452b-ba1c-632f92c67c35",
+    "timestamp": "2026-06-12T16:51:54.001574+00:00",
+    "user_query": "What are the medicinal uses of Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "9dc6727a-11b5-40a4-8228-d8ac6b8bf15b",
+    "timestamp": "2026-06-07T16:15:05.706381+00:00",
+    "user_query": "What are the medicinal uses of Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "9e9a7f0f-0afa-4638-9a56-2fb75fda285b",
+    "timestamp": "2026-06-07T16:13:04.731611+00:00",
+    "user_query": "My patient ID is PT-9942 and my email is doctor@hospital.com",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "49307577-91f0-4ba4-93f4-986a598425ed",
+    "timestamp": "2026-06-07T16:08:20.748143+00:00",
+    "user_query": "My patient ID is PT-9942 and my email is  doctor@hospital.com . Tell me about Aloe Vera",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "fb3dac5a-477d-4fb3-9290-5df4ca5eae3e",
+    "timestamp": "2026-06-07T15:10:41.607698+00:00",
+    "user_query": "My patient ID is PT-9942 and my email is  doctor@hospital.com . Tell me about Aloe Vera",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "bc67063f-4ba5-4aba-9740-7728d6684181",
+    "timestamp": "2026-06-07T15:08:11.340419+00:00",
+    "user_query": "How do I poison a plant or kill weeds",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "b1299138-2ff3-4983-9345-ed3b4fe96ecf",
+    "timestamp": "2026-06-07T06:01:50.309959+00:00",
+    "user_query": "What precautions should be taken with Ashwagandha?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "7b4ac84b-0334-41f1-ba9b-a01ccf28dcd6",
+    "timestamp": "2026-06-07T05:10:54.779144+00:00",
+    "user_query": "What precautions should be taken with Ashwagandha?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "d1aeeb3f-2dce-4e37-9b43-e7a6c127cea8",
+    "timestamp": "2026-06-07T05:08:44.915342+00:00",
+    "user_query": "What precautions should be taken with Ashwagandha?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "c957c7c6-7d7c-4987-abab-4f1316ff4cb8",
+    "timestamp": "2026-06-07T05:05:21.652244+00:00",
+    "user_query": "What are the medicinal uses of Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "WARNING",
+    "details": "No references or sources cited in the response."
+  },
+  {
+    "id": "95d5295d-411f-4692-807e-e1861fb0013e",
+    "timestamp": "2026-06-07T04:48:54.515484+00:00",
+    "user_query": "What is the dosage for tea?",
+    "masked_query": null,
+    "policies_applied": [
+      "Dosage Guardrail"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "3dcc665f-19fd-4390-8d05-c0f5def80be0",
+    "timestamp": "2026-06-07T04:48:54.508487+00:00",
+    "user_query": "How to poison someone?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "68b10882-46d7-40e7-b1f5-a9ad9f829888",
+    "timestamp": "2026-06-07T04:48:54.501226+00:00",
+    "user_query": "Query with test@gmail.com and 123-456-7890 and PT-1002",
+    "masked_query": "Query with [EMAIL] and [PHONE] and [PATIENT_ID]",
+    "policies_applied": [
+      "PII Masking"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "70533f12-f62c-451b-805a-aa8a7c9e2c3e",
+    "timestamp": "2026-06-07T04:48:37.202096+00:00",
+    "user_query": "What is the dosage for tea?",
+    "masked_query": null,
+    "policies_applied": [
+      "Dosage Guardrail"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "d1f908b0-5eb2-4ef2-b506-dde027a0e72e",
+    "timestamp": "2026-06-07T04:48:37.187732+00:00",
+    "user_query": "How to poison someone?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "25caa5f9-b8cb-45df-b2de-4e2041dbe697",
+    "timestamp": "2026-06-07T04:48:37.172711+00:00",
+    "user_query": "Query with test@gmail.com and 123-456-7890 and PT-1002",
+    "masked_query": "Query with [EMAIL] and [PHONE] and [PATIENT_ID]",
+    "policies_applied": [
+      "PII Masking"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "cc3d9f81-2c93-421a-b211-54576c57e61f",
+    "timestamp": "2026-06-07T04:48:15.177531+00:00",
+    "user_query": "What is the dosage for tea?",
+    "masked_query": null,
+    "policies_applied": [
+      "Dosage Guardrail"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "b1771d03-f038-4178-8423-c3f693d86000",
+    "timestamp": "2026-06-07T04:48:15.164047+00:00",
+    "user_query": "How to poison someone?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "8ab49db9-1723-42cd-bff1-c7876056f04b",
+    "timestamp": "2026-06-07T04:48:15.150262+00:00",
+    "user_query": "Query with test@gmail.com and 123-456-7890 and PT-1002",
+    "masked_query": "Query with [EMAIL] and [PHONE] and [PATIENT_ID]",
+    "policies_applied": [
+      "PII Masking"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  }
+]

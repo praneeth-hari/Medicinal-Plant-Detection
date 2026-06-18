@@ -3,21 +3,28 @@ User Repository
 ===============
 
 Data-access layer for ``User`` entities.  Extends the generic
-``BaseRepository`` with user-specific lookup methods.
+``BaseRepository`` with user-specific lookup methods for
+authentication (by email, by username).
 """
-
 from __future__ import annotations
 
+import logging
 from typing import Optional, Sequence
 
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.user import User
 from repositories.base import BaseRepository
 
+logger = logging.getLogger(__name__)
+
 
 class UserRepository(BaseRepository[User]):
     """Repository handling all database operations for users.
+
+    Inherits generic CRUD from ``BaseRepository`` and adds
+    user-specific lookups.
 
     Attributes:
         model: The ``User`` ORM class managed by this repository.
@@ -33,69 +40,10 @@ class UserRepository(BaseRepository[User]):
         """
         super().__init__(session)
 
-    # ---- BaseRepository CRUD stubs ----
-
-    async def get(self, id: int) -> Optional[User]:
-        """Retrieve a user by primary key.
-
-        Args:
-            id: User primary key.
-
-        Returns:
-            ``User`` instance or ``None``.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def get_all(self, *, skip: int = 0, limit: int = 100) -> Sequence[User]:
-        """Retrieve a paginated list of users.
-
-        Args:
-            skip: Offset.
-            limit: Max results.
-
-        Returns:
-            Sequence of ``User`` instances.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def create(self, obj_in: dict) -> User:
-        """Create a new user record.
-
-        Args:
-            obj_in: Column data (should include hashed_password, not plaintext).
-
-        Returns:
-            Newly created ``User``.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def update(self, id: int, obj_in: dict) -> Optional[User]:
-        """Update an existing user record.
-
-        Args:
-            id: User primary key.
-            obj_in: Fields to update.
-
-        Returns:
-            Updated ``User`` or ``None``.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def delete(self, id: int) -> bool:
-        """Delete a user record (hard delete).
-
-        Args:
-            id: User primary key.
-
-        Returns:
-            ``True`` if deleted.
-        """
-        raise NotImplementedError("Not yet implemented")
-
     # ---- User-specific queries ----
 
     async def get_by_email(self, email: str) -> Optional[User]:
-        """Look up a user by their email address.
+        """Look up a user by their email address (case-insensitive).
 
         Args:
             email: Email to search for.
@@ -103,10 +51,12 @@ class UserRepository(BaseRepository[User]):
         Returns:
             ``User`` instance or ``None``.
         """
-        raise NotImplementedError("Not yet implemented")
+        stmt = select(User).where(func.lower(User.email) == email.lower())
+        result = await self.session.execute(stmt)
+        return result.scalars().first()
 
     async def get_by_username(self, username: str) -> Optional[User]:
-        """Look up a user by their username.
+        """Look up a user by their username (case-insensitive).
 
         Args:
             username: Username to search for.
@@ -114,4 +64,6 @@ class UserRepository(BaseRepository[User]):
         Returns:
             ``User`` instance or ``None``.
         """
-        raise NotImplementedError("Not yet implemented")
+        stmt = select(User).where(func.lower(User.username) == username.lower())
+        result = await self.session.execute(stmt)
+        return result.scalars().first()

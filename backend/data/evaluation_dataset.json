@@ -1,0 +1,204 @@
+{
+  "questions": [
+    {
+      "plant": "Tulsi",
+      "question": "What are the medicinal uses of Tulsi?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Tulsi",
+      "question": "What precautions should be taken when using Holy Basil/Tulsi?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Neem",
+      "question": "What skin conditions can be treated with Neem?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Neem",
+      "question": "Is it safe to consume Neem during pregnancy?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Ashwagandha",
+      "question": "How does Ashwagandha help with physical and mental stress?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Ashwagandha",
+      "question": "Are there any contraindications or warnings for Ashwagandha?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Aloe Vera",
+      "question": "What are the therapeutic benefits of Aloe Vera inner leaf gel?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Aloe Vera",
+      "question": "What is aloin and why should it be avoided?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Brahmi",
+      "question": "How does Brahmi improve memory and cognitive function?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Brahmi",
+      "question": "What is the difference between Bacopa monnieri and Gotu Kola?",
+      "category": "misconceptions"
+    },
+    {
+      "plant": "Turmeric",
+      "question": "What are the main therapeutic benefits of Curcuma longa?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Turmeric",
+      "question": "Why is black pepper recommended with turmeric preparations?",
+      "category": "preparation"
+    },
+    {
+      "plant": "Amla",
+      "question": "Why is Amla considered a potent source of antioxidants?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Amla",
+      "question": "Does cooking destroy the Vitamin C in Amla?",
+      "category": "misconceptions"
+    },
+    {
+      "plant": "Mint",
+      "question": "What gastrointestinal issues can Mint help resolve?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Mint",
+      "question": "Why is Mint contraindicated for patients with acid reflux or GERD?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Curry Leaves",
+      "question": "What are the main medicinal uses of Curry Leaves?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Curry Leaves",
+      "question": "Is it safe to eat curry leaf seeds?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Hibiscus",
+      "question": "How does Hibiscus help regulate blood pressure?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Hibiscus",
+      "question": "What is Hibiscus primarily used for in hair formulations?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Ginger",
+      "question": "Can Ginger be used to treat nausea and motion sickness?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Ginger",
+      "question": "What is the maximum recommended daily dosage of Ginger?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Garlic",
+      "question": "What compound gives Garlic its antimicrobial properties?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Garlic",
+      "question": "Why should therapeutic garlic be discontinued before surgery?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Moringa",
+      "question": "Why is Moringa oleifera called the miracle tree?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Moringa",
+      "question": "Which parts of the Moringa tree contain cardiotoxic alkaloids?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Lemongrass",
+      "question": "What are the preparation methods for Lemongrass tea?",
+      "category": "preparation"
+    },
+    {
+      "plant": "Lemongrass",
+      "question": "Does lemongrass tea contain caffeine?",
+      "category": "misconceptions"
+    },
+    {
+      "plant": "Shatavari",
+      "question": "How does Shatavari support reproductive health in women?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Shatavari",
+      "question": "What are the precautions when taking Asparagus racemosus?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Giloy",
+      "question": "What are the immunomodulatory uses of Giloy?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Giloy",
+      "question": "Why should diabetics monitor blood glucose when using Giloy?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Arjuna",
+      "question": "How does Arjuna bark support cardiovascular health?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Arjuna",
+      "question": "Can Arjuna replace prescription cardiac medications?",
+      "category": "misconceptions"
+    },
+    {
+      "plant": "Bael",
+      "question": "Why is unripe Bael fruit more effective for diarrhea than ripe fruit?",
+      "category": "misconceptions"
+    },
+    {
+      "plant": "Bael",
+      "question": "What are the precautions of Aegle marmelos fruit?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Bhringraj",
+      "question": "Why is Bhringraj traditionally called the king of hair?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Bhringraj",
+      "question": "Are there any side effects or cooling sensations of Bhringraj?",
+      "category": "safety_precautions"
+    },
+    {
+      "plant": "Fenugreek",
+      "question": "How does Fenugreek help regulate blood sugar levels?",
+      "category": "therapeutic_uses"
+    },
+    {
+      "plant": "Fenugreek",
+      "question": "Is it safe to consume large doses of Fenugreek seeds during pregnancy?",
+      "category": "safety_precautions"
+    }
+  ]
+}

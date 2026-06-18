@@ -48,8 +48,19 @@ class Settings(BaseSettings):
     # --- ML Model ---
     MODEL_PATH: str = "./data/models/plant_classifier.pth"
 
-    # --- ChromaDB ---
+    # --- ChromaDB / Embeddings ---
     CHROMA_PERSIST_DIR: str = "./data/embeddings"
+    EMBEDDINGS_DIR: str = "./data/embeddings"
+    EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
+
+    # --- Groq ---
+    GROQ_API_KEY: str = ""
+    GROQ_MODEL: str = "llama-3.1-8b-instant"
+
+    # --- ServiceNow CMDB ---
+    SERVICENOW_INSTANCE: str = ""
+    SERVICENOW_USERNAME: str = ""
+    SERVICENOW_PASSWORD: str = ""
 
     # --- File Uploads ---
     UPLOAD_DIR: str = "./data/uploads"
@@ -65,6 +76,9 @@ class Settings(BaseSettings):
         "http://localhost:3000",
         "http://localhost:5173",
         "http://localhost:8080",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:8080",
     ]
 
     @property

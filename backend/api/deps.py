@@ -15,6 +15,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError, jwt
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from fastapi import HTTPException
 from api.exceptions import UnauthorizedException
 from config.database import get_db
 from config.settings import settings
@@ -131,11 +132,12 @@ async def get_current_user(
         )
         user_id: int | None = payload.get("sub")
         username: str | None = payload.get("username")
+        role: str = payload.get("role", "customer")
 
         if user_id is None:
             raise UnauthorizedException("Invalid token: missing subject")
 
-        return TokenData(user_id=int(user_id), username=username)
+        return TokenData(user_id=int(user_id), username=username, role=role)
 
     except JWTError as e:
         logger.warning("JWT validation failed: %s", e)
@@ -145,9 +147,21 @@ async def get_current_user(
 async def get_current_active_user(
     current_user: TokenData = Depends(get_current_user),
 ) -> TokenData:
-    """Ensure the current user is active.
+    """Ensure the current user is active."""
+    return current_user
 
-    For Phase 1, simply returns the token data.  In later phases,
-    this will check ``user.is_active`` from the database.
+
+async def require_developer(
+    current_user: TokenData = Depends(get_current_user),
+) -> TokenData:
+    """Restrict an endpoint to users with the 'developer' role.
+
+    Raises:
+        HTTPException 403: If the authenticated user is not a developer.
     """
+    if current_user.role != "developer":
+        raise HTTPException(
+            status_code=403,
+            detail="Access denied. Developer role required.",
+        )
     return current_user

@@ -9,17 +9,24 @@ Routes:
     GET   /history       — Retrieve detection history for the current user.
     GET   /{detection_id} — Retrieve a specific detection result.
 """
-
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, File, status
+import logging
+
+from fastapi import APIRouter, Depends, Query, UploadFile, File, status
 
 from api.deps import get_current_user, get_detection_service
+from api.exceptions import BadRequestException
 from schemas.detection import DetectionResponse
 from schemas.user import TokenData
 from services.detection_service import DetectionService
 
+logger = logging.getLogger(__name__)
+
 router = APIRouter()
+
+# Allowed image MIME types
+_ALLOWED_TYPES = {"image/jpeg", "image/png", "image/webp", "image/bmp", "image/tiff"}
 
 
 @router.post(
@@ -36,11 +43,12 @@ async def detect_plant(
 ) -> DetectionResponse:
     """Upload an image for plant detection.
 
-    Reads the uploaded file bytes, delegates to ``DetectionService``
-    for model inference, and returns the prediction result.
+    Reads the uploaded file bytes, validates it is an image,
+    delegates to ``DetectionService`` for inference, and returns
+    the prediction result.
 
     Args:
-        image: Uploaded image file (JPEG, PNG, etc.).
+        image: Uploaded image file (JPEG, PNG, WebP, etc.).
         current_user: Authenticated user extracted from the JWT.
         service: Injected ``DetectionService``.
 
@@ -48,10 +56,28 @@ async def detect_plant(
         ``DetectionResponse`` with prediction details.
 
     Raises:
-        HTTPException: 400 if the file is not a valid image.
-        HTTPException: 401 if the user is not authenticated.
+        BadRequestException: If the file is not a valid image type.
     """
-    raise NotImplementedError("Not yet implemented")
+    # Validate file type
+    content_type = image.content_type or ""
+    if content_type not in _ALLOWED_TYPES:
+        raise BadRequestException(
+            f"Invalid image type '{content_type}'. "
+            f"Allowed: {', '.join(sorted(_ALLOWED_TYPES))}"
+        )
+
+    # Read image bytes
+    image_bytes = await image.read()
+    if len(image_bytes) == 0:
+        raise BadRequestException("Uploaded file is empty")
+
+    # Run detection
+    detection = await service.detect_plant(
+        image_bytes=image_bytes,
+        filename=image.filename or "upload.jpg",
+        user_id=current_user.user_id,
+    )
+    return service.build_response(detection)
 
 
 @router.get(
@@ -76,11 +102,11 @@ async def get_detection_history(
 
     Returns:
         List of ``DetectionResponse`` objects in reverse-chronological order.
-
-    Raises:
-        HTTPException: 401 if the user is not authenticated.
     """
-    raise NotImplementedError("Not yet implemented")
+    detections = await service.get_history(
+        current_user.user_id, skip=skip, limit=limit,
+    )
+    return [service.build_response(d) for d in detections]
 
 
 @router.get(
@@ -102,10 +128,13 @@ async def get_detection(
         service: Injected ``DetectionService``.
 
     Returns:
-        ``DetectionResponse`` if found.
+        ``DetectionResponse`` if found and owned by the user.
 
     Raises:
-        HTTPException: 404 if the detection record does not exist.
-        HTTPException: 403 if the detection belongs to another user.
+        NotFoundException: 404 if the detection record does not exist.
+        ForbiddenException: 403 if the detection belongs to another user.
     """
-    raise NotImplementedError("Not yet implemented")
+    detection = await service.get_detection(
+        detection_id, current_user.user_id,
+    )
+    return service.build_response(detection)

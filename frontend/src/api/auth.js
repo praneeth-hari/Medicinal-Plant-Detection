@@ -1,37 +1,45 @@
 /**
- * Auth API module.
+ * Auth API Module
+ * ================
  *
- * Provides functions for user authentication — login, registration,
- * and profile retrieval.
+ * Exposes methods for logging in, registering, and retrieving the current user's profile.
  */
 import client from './client';
+import { API_ROUTES } from '../utils/api';
 
 /**
- * Log in with email and password.
- * @param {string} email
- * @param {string} password
- * @returns {Promise<import('axios').AxiosResponse>}
+ * Logs in a user using email and password.
+ * @param {string} email 
+ * @param {string} password 
+ * @returns {Promise<object>} Token payload
  */
 export async function login(email, password) {
-  // TODO: implement
-  return client.post('/auth/login', { email, password });
+  const response = await client.post(API_ROUTES.AUTH_LOGIN, { email, password });
+  return response.data;
 }
 
 /**
- * Register a new user account.
- * @param {{ name: string, email: string, password: string }} data
- * @returns {Promise<import('axios').AxiosResponse>}
+ * Registers a new user.
+ * @param {object} userData { username, email, password }
+ * @returns {Promise<object>} User detail response
  */
-export async function register(data) {
-  // TODO: implement
-  return client.post('/auth/register', data);
+export async function register(userData) {
+  const response = await client.post(API_ROUTES.AUTH_REGISTER, userData);
+  return response.data;
 }
 
 /**
- * Get the profile of the currently authenticated user.
- * @returns {Promise<import('axios').AxiosResponse>}
+ * Retrieves the current authenticated user's profile.
+ * @returns {Promise<object>} User profile details
  */
 export async function getProfile() {
-  // TODO: implement
-  return client.get('/auth/profile');
+  const response = await client.get(API_ROUTES.AUTH_ME);
+  return response.data;
+}
+
+export async function changePassword(currentPassword, newPassword) {
+  await client.post('/auth/change-password', {
+    current_password: currentPassword,
+    new_password: newPassword,
+  });
 }

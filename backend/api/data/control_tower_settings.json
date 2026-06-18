@@ -1,0 +1,6 @@
+{
+  "pii_masking": true,
+  "dosage_disclaimer": true,
+  "toxicity_guardrail": true,
+  "source_verification": true
+}

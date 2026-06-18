@@ -2,21 +2,30 @@
 Detection Repository
 ====================
 
-Data-access layer for ``DetectionResult`` entities.
+Data-access layer for ``DetectionResult`` entities.  Inherits generic
+CRUD from ``BaseRepository`` and adds detection-specific queries
+for user history and plant-based lookups.
 """
-
 from __future__ import annotations
 
+import logging
 from typing import Optional, Sequence
 
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import joinedload
 
 from models.detection import DetectionResult
 from repositories.base import BaseRepository
 
+logger = logging.getLogger(__name__)
+
 
 class DetectionRepository(BaseRepository[DetectionResult]):
     """Repository for plant detection results.
+
+    Inherits generic CRUD from ``BaseRepository`` and adds
+    queries for user-scoped and plant-scoped lookups.
 
     Attributes:
         model: The ``DetectionResult`` ORM class.
@@ -32,66 +41,25 @@ class DetectionRepository(BaseRepository[DetectionResult]):
         """
         super().__init__(session)
 
-    # ---- BaseRepository CRUD stubs ----
-
-    async def get(self, id: int) -> Optional[DetectionResult]:
-        """Retrieve a detection result by primary key.
-
-        Args:
-            id: DetectionResult primary key.
-
-        Returns:
-            ``DetectionResult`` instance or ``None``.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def get_all(self, *, skip: int = 0, limit: int = 100) -> Sequence[DetectionResult]:
-        """Retrieve a paginated list of detection results.
-
-        Args:
-            skip: Offset.
-            limit: Max results.
-
-        Returns:
-            Sequence of ``DetectionResult`` instances.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def create(self, obj_in: dict) -> DetectionResult:
-        """Create a new detection result record.
-
-        Args:
-            obj_in: Column data.
-
-        Returns:
-            Newly created ``DetectionResult``.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def update(self, id: int, obj_in: dict) -> Optional[DetectionResult]:
-        """Update a detection result.
-
-        Args:
-            id: DetectionResult primary key.
-            obj_in: Fields to update.
-
-        Returns:
-            Updated ``DetectionResult`` or ``None``.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def delete(self, id: int) -> bool:
-        """Delete a detection result.
-
-        Args:
-            id: DetectionResult primary key.
-
-        Returns:
-            ``True`` if deleted.
-        """
-        raise NotImplementedError("Not yet implemented")
-
     # ---- Detection-specific queries ----
+
+    async def get_with_plant(self, id: int) -> Optional[DetectionResult]:
+        """Retrieve a detection result by primary key, eagerly loading the plant.
+
+        Args:
+            id: DetectionResult primary key.
+
+        Returns:
+            ``DetectionResult`` instance with plant relationship loaded,
+            or ``None`` if not found.
+        """
+        stmt = (
+            select(DetectionResult)
+            .options(joinedload(DetectionResult.plant))
+            .where(DetectionResult.id == id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalars().first()
 
     async def get_by_user(
         self,
@@ -102,6 +70,9 @@ class DetectionRepository(BaseRepository[DetectionResult]):
     ) -> Sequence[DetectionResult]:
         """Retrieve all detection results for a given user.
 
+        Results are returned in reverse chronological order with
+        the plant relationship eagerly loaded.
+
         Args:
             user_id: User's primary key.
             skip: Offset.
@@ -110,7 +81,16 @@ class DetectionRepository(BaseRepository[DetectionResult]):
         Returns:
             Sequence of ``DetectionResult`` instances.
         """
-        raise NotImplementedError("Not yet implemented")
+        stmt = (
+            select(DetectionResult)
+            .options(joinedload(DetectionResult.plant))
+            .where(DetectionResult.user_id == user_id)
+            .order_by(DetectionResult.created_at.desc())
+            .offset(skip)
+            .limit(limit)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalars().unique().all()
 
     async def get_by_plant(
         self,
@@ -129,4 +109,13 @@ class DetectionRepository(BaseRepository[DetectionResult]):
         Returns:
             Sequence of ``DetectionResult`` instances.
         """
-        raise NotImplementedError("Not yet implemented")
+        stmt = (
+            select(DetectionResult)
+            .options(joinedload(DetectionResult.plant))
+            .where(DetectionResult.plant_id == plant_id)
+            .order_by(DetectionResult.created_at.desc())
+            .offset(skip)
+            .limit(limit)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalars().unique().all()

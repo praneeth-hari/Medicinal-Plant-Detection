@@ -2,44 +2,55 @@
  * Axios HTTP client instance.
  *
  * Provides a pre-configured Axios instance with:
- * - baseURL sourced from env
+ * - baseURL sourced from env config
  * - Request interceptor that attaches the JWT auth token
- * - Response interceptor for centralised error handling
+ * - Response interceptor for centralised error handling (401, 500)
  */
 import axios from 'axios';
+import config from '../config/config';
 import { LOCAL_STORAGE_KEYS } from '../utils/constants';
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1',
+  baseURL: config.API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 30000,
+  timeout: 180000,
 });
 
-// ── Request interceptor — attach auth token ──────────────
+// Request Interceptor: Attach token if it exists
 client.interceptors.request.use(
-  (config) => {
+  (reqConfig) => {
     const token = localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN);
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      reqConfig.headers.Authorization = `Bearer ${token}`;
     }
-    return config;
+    return reqConfig;
   },
-  (error) => Promise.reject(error),
+  (error) => Promise.reject(error)
 );
 
-// ── Response interceptor — centralised error handling ────
+// Response Interceptor: Centralised error handling
 client.interceptors.response.use(
   (response) => response,
   (error) => {
-    // TODO: implement global error toasts, 401 redirect, etc.
-    if (error.response?.status === 401) {
+    const status = error.response?.status;
+    
+    if (status === 401) {
+      // Clear token and user on unauthorized response
       localStorage.removeItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN);
-      // Optionally redirect to /login
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.USER);
+      
+      // Optionally reload the page to trigger app-level redirect to login
+      if (window.location.pathname !== '/login' && window.location.pathname !== '/register') {
+        window.location.href = '/login';
+      }
+    } else if (status >= 500) {
+      console.error('Server error occurred:', error.response?.data || error.message);
     }
+    
     return Promise.reject(error);
-  },
+  }
 );
 
 export default client;
