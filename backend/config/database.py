@@ -79,9 +79,15 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
     try:
         yield session
         await session.commit()
-    except Exception:
+    except Exception as exc:
         await session.rollback()
-        logger.exception("Database session rollback due to exception")
+        # Only log rollback as an error for genuine database exceptions.
+        # Validation errors, auth errors, etc. are expected and don't
+        # indicate a database problem.
+        from sqlalchemy.exc import SQLAlchemyError
+
+        if isinstance(exc, SQLAlchemyError):
+            logger.exception("Database session rollback due to DB exception")
         raise
     finally:
         await session.close()

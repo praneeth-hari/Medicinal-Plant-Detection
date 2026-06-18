@@ -1,19 +1,24 @@
 /**
- * Card — generic content card container.
- *
- * Will provide a styled wrapper with optional header, body,
- * footer slots, hover effects, and click handling.
+ * Reusable Card Component
+ * =======================
  */
+import React from 'react';
 
-/**
- * @param {object} props
- * @returns {JSX.Element}
- */
-export function Card(props) {
+export function Card({
+  children,
+  className = '',
+  onClick,
+  ...props
+}) {
   return (
-    <div className="card">
-      {/* TODO: implement Card */}
-      <span>Card</span>
+    <div
+      onClick={onClick}
+      className={`rounded-2xl border border-surface-200 bg-white shadow-soft dark:border-white/10 dark:bg-white/[0.04] backdrop-blur-md p-6 transition-all duration-300 ${
+        onClick ? 'cursor-pointer hover:shadow-glow-sm hover:border-primary-500/35 hover:translate-y-[-2px]' : ''
+      } ${className}`}
+      {...props}
+    >
+      {children}
     </div>
   );
 }

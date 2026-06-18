@@ -1,27 +1,18 @@
 /**
- * useAuth — custom hook for authentication state.
+ * useAuth Hook
+ * ============
  *
- * Will provide the current user, login/logout/register actions,
- * loading state, and token management via AuthContext.
+ * Provides current user profile and auth actions.
  */
 import { useContext } from 'react';
-// import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
-/**
- * Access auth state and actions.
- * @returns {{ user: object|null, isAuthenticated: boolean, loading: boolean, login: Function, logout: Function, register: Function }}
- */
 export function useAuth() {
-  // TODO: implement — consume AuthContext
-  // return useContext(AuthContext);
-  return {
-    user: null,
-    isAuthenticated: false,
-    loading: false,
-    login: async () => {},
-    logout: () => {},
-    register: async () => {},
-  };
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 }
 
 export default useAuth;

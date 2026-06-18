@@ -1,0 +1,8 @@
+{
+  "mediplant_app": "71f56ba1c3a143103adf39ec05013194",
+  "fastapi_backend": "cef5afa1c3a143103adf39ec0501316f",
+  "ml_classifier": "16f5afa1c3a143103adf39ec05013177",
+  "sqlite_db": "6af5afa1c3a143103adf39ec05013197",
+  "chromadb": "aef5afa1c3a143103adf39ec0501319e",
+  "groq_api": "72f5afa1c3a143103adf39ec050131bf"
+}

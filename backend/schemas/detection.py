@@ -14,7 +14,7 @@ from pydantic import BaseModel, ConfigDict, Field
 class PredictionItem(BaseModel):
     """A single prediction in the top-K results."""
 
-    plant_id: int
+    plant_id: Optional[int] = None
     name: str
     confidence: float = Field(ge=0.0, le=1.0)
 

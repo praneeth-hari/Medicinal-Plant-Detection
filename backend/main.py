@@ -10,6 +10,10 @@ Run with::
 """
 from __future__ import annotations
 
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import logging
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
@@ -17,6 +21,7 @@ from typing import AsyncGenerator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from config.settings import settings
 from config.logging import setup_logging
@@ -105,6 +110,9 @@ app.add_middleware(
 # Router registration
 # ------------------------------------------------------------------
 app.include_router(api_v1_router, prefix=settings.API_V1_PREFIX)
+
+# Static file serving for uploads
+app.mount("/data/uploads", StaticFiles(directory="data/uploads"), name="uploads")
 
 logger.info("Routers mounted at %s", settings.API_V1_PREFIX)
 

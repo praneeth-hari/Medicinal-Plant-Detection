@@ -3,16 +3,21 @@ Chat Repository
 ===============
 
 Data-access layer for ``ChatSession`` and ``ChatMessage`` entities.
+Inherits generic CRUD (scoped to ``ChatSession``) from ``BaseRepository``
+and adds dedicated methods for message management and user-scoped queries.
 """
-
 from __future__ import annotations
 
+import logging
 from typing import Optional, Sequence
 
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models.chat import ChatMessage, ChatSession
+from models.chat import ChatMessage, ChatSession, MessageRole
 from repositories.base import BaseRepository
+
+logger = logging.getLogger(__name__)
 
 
 class ChatRepository(BaseRepository[ChatSession]):
@@ -35,65 +40,6 @@ class ChatRepository(BaseRepository[ChatSession]):
         """
         super().__init__(session)
 
-    # ---- BaseRepository CRUD stubs (ChatSession) ----
-
-    async def get(self, id: int) -> Optional[ChatSession]:
-        """Retrieve a chat session by primary key.
-
-        Args:
-            id: ChatSession primary key.
-
-        Returns:
-            ``ChatSession`` instance or ``None``.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def get_all(self, *, skip: int = 0, limit: int = 100) -> Sequence[ChatSession]:
-        """Retrieve a paginated list of chat sessions.
-
-        Args:
-            skip: Offset.
-            limit: Max results.
-
-        Returns:
-            Sequence of ``ChatSession`` instances.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def create(self, obj_in: dict) -> ChatSession:
-        """Create a new chat session.
-
-        Args:
-            obj_in: Column data (user_id, title, etc.).
-
-        Returns:
-            Newly created ``ChatSession``.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def update(self, id: int, obj_in: dict) -> Optional[ChatSession]:
-        """Update an existing chat session.
-
-        Args:
-            id: ChatSession primary key.
-            obj_in: Fields to update.
-
-        Returns:
-            Updated ``ChatSession`` or ``None``.
-        """
-        raise NotImplementedError("Not yet implemented")
-
-    async def delete(self, id: int) -> bool:
-        """Delete a chat session and all its messages (cascade).
-
-        Args:
-            id: ChatSession primary key.
-
-        Returns:
-            ``True`` if deleted.
-        """
-        raise NotImplementedError("Not yet implemented")
-
     # ---- Chat-specific queries ----
 
     async def get_sessions_by_user(
@@ -105,6 +51,8 @@ class ChatRepository(BaseRepository[ChatSession]):
     ) -> Sequence[ChatSession]:
         """List all chat sessions belonging to a specific user.
 
+        Returns sessions in reverse chronological order (newest first).
+
         Args:
             user_id: Owner's user ID.
             skip: Offset.
@@ -113,7 +61,34 @@ class ChatRepository(BaseRepository[ChatSession]):
         Returns:
             Sequence of ``ChatSession`` instances.
         """
-        raise NotImplementedError("Not yet implemented")
+        stmt = (
+            select(ChatSession)
+            .where(ChatSession.user_id == user_id)
+            .order_by(ChatSession.updated_at.desc())
+            .offset(skip)
+            .limit(limit)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalars().all()
+
+    async def get_session_for_user(
+        self, session_id: int, user_id: int,
+    ) -> Optional[ChatSession]:
+        """Retrieve a chat session only if it belongs to the given user.
+
+        Args:
+            session_id: ChatSession primary key.
+            user_id: Expected owner.
+
+        Returns:
+            ``ChatSession`` if found and owned by user, else ``None``.
+        """
+        stmt = (
+            select(ChatSession)
+            .where(ChatSession.id == session_id, ChatSession.user_id == user_id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalars().first()
 
     async def get_messages_by_session(
         self,
@@ -132,15 +107,48 @@ class ChatRepository(BaseRepository[ChatSession]):
         Returns:
             Sequence of ``ChatMessage`` instances.
         """
-        raise NotImplementedError("Not yet implemented")
+        stmt = (
+            select(ChatMessage)
+            .where(ChatMessage.session_id == session_id)
+            .order_by(ChatMessage.created_at.asc())
+            .offset(skip)
+            .limit(limit)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalars().all()
 
     async def create_message(self, obj_in: dict) -> ChatMessage:
         """Append a new message to a chat session.
 
         Args:
-            obj_in: Column data (session_id, role, content, sources).
+            obj_in: Column data (session_id, role, content, sources, token_count).
 
         Returns:
             Newly created ``ChatMessage``.
         """
-        raise NotImplementedError("Not yet implemented")
+        db_msg = ChatMessage(**obj_in)
+        self.session.add(db_msg)
+        await self.session.flush()
+        await self.session.refresh(db_msg)
+        logger.debug(
+            "Created ChatMessage(id=%s, role=%s, session=%s)",
+            db_msg.id, db_msg.role, db_msg.session_id,
+        )
+        return db_msg
+
+    async def count_messages(self, session_id: int) -> int:
+        """Count the number of messages in a session.
+
+        Args:
+            session_id: ChatSession primary key.
+
+        Returns:
+            Message count.
+        """
+        stmt = (
+            select(func.count())
+            .select_from(ChatMessage)
+            .where(ChatMessage.session_id == session_id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one()

@@ -50,7 +50,7 @@ class UserCreate(UserBase):
 
     Attributes:
         password: Plain-text password (will be hashed server-side).
-                  Must meet complexity requirements.
+        role: Assigned role — defaults to 'customer'.
     """
 
     password: str = Field(
@@ -59,6 +59,7 @@ class UserCreate(UserBase):
         max_length=128,
         description="Must be at least 8 characters with mixed case and a digit",
     )
+    role: str = Field(default="customer", pattern="^(customer|developer)$")
 
     @field_validator("password")
     @classmethod
@@ -83,6 +84,7 @@ class UserResponse(UserBase):
 
     id: int
     is_active: bool
+    role: str = "customer"
     created_at: datetime
     updated_at: datetime
 
@@ -107,3 +109,20 @@ class TokenData(BaseModel):
 
     user_id: Optional[int] = None
     username: Optional[str] = None
+    role: str = "customer"
+
+
+class ChangePasswordRequest(BaseModel):
+    current_password: str = Field(..., min_length=1)
+    new_password: str = Field(..., min_length=8, max_length=128)
+
+    @field_validator("new_password")
+    @classmethod
+    def validate_password_strength(cls, v: str) -> str:
+        if not any(c.isupper() for c in v):
+            raise ValueError("Password must contain at least one uppercase letter")
+        if not any(c.islower() for c in v):
+            raise ValueError("Password must contain at least one lowercase letter")
+        if not any(c.isdigit() for c in v):
+            raise ValueError("Password must contain at least one digit")
+        return v

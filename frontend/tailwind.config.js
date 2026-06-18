@@ -67,7 +67,7 @@ export default {
         // Background tokens
         background: {
           light: '#fafdf7',
-          dark:  '#0c1a0e',
+          dark:  '#04130a',
         },
       },
       fontFamily: {

@@ -63,11 +63,23 @@ models/*.pth
 models/*.onnx
 models/*.h5
 data/raw/
+data/train/
+data/test/
+data/val/
+data/embeddings/
+data/processed/
+data/models/
+backend/data/embeddings/
+backend/data/models/
+backend/data/uploads/
 *.hdf5
 
 # ----- Uploaded Images -----
 data/uploads/*
 !data/uploads/.gitkeep
+
+# ----- Temp Files -----
+rotated_temp*.png
 
 # ----- IDE & Editor Files -----
 .vscode/
