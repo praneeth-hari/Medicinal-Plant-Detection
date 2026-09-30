@@ -73,17 +73,11 @@ class PlantClassifier(nn.Module):
     def load_checkpoint(checkpoint_path: str, num_classes: int = 14) -> PlantClassifier:
         """
         Load model weights from a checkpoint file.
-        
-        Args:
-            checkpoint_path: Path to the .pth state dictionary.
-            num_classes: Number of target classes.
-            
-        Returns:
-            An instantiated PlantClassifier with loaded weights.
+        Handles both plain state_dict files and full training-state dicts.
         """
         model = PlantClassifier(num_classes=num_classes, pretrained=False)
-        # Load map_location='cpu' since inference and local runs happen on CPU
-        state_dict = torch.load(checkpoint_path, map_location=torch.device('cpu'))
+        payload = torch.load(checkpoint_path, map_location=torch.device('cpu'), weights_only=False)
+        state_dict = payload.get("model_state_dict", payload) if isinstance(payload, dict) and "model_state_dict" in payload else payload
         model.load_state_dict(state_dict)
         model.eval()
         return model

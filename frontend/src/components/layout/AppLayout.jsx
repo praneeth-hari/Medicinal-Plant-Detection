@@ -5,7 +5,6 @@
  * Controls layout scaffolding including desktop sidebar, mobile drawer,
  * topnav bar, and content container.
  */
-import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Sidebar from './Sidebar';

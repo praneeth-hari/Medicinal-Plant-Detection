@@ -45,6 +45,7 @@ class RAGPipeline:
         *,
         top_k: int = 5,
         max_tokens: int = 512,
+        temperature: Optional[float] = None,
     ) -> dict[str, Any]:
         """Run the full RAG pipeline for a user query.
 
@@ -71,7 +72,7 @@ class RAGPipeline:
 
         # 3. Generate
         answer_text = await self.generator.generate(
-            query, context, max_tokens=max_tokens,
+            query, context, max_tokens=max_tokens, temperature=temperature,
         )
 
         # 4. Build sources
@@ -90,6 +91,7 @@ class RAGPipeline:
         *,
         top_k: int = 5,
         max_tokens: int = 512,
+        temperature: Optional[float] = None,
     ) -> dict[str, Any]:
         """Run the RAG pipeline while incorporating chat history.
 
@@ -116,6 +118,7 @@ class RAGPipeline:
         answer_text = await self.generator.generate(
             query, context,
             max_tokens=max_tokens,
+            temperature=temperature,
             chat_history=chat_history,
         )
 
@@ -153,10 +156,10 @@ def get_rag_pipeline() -> RAGPipeline:
         vector_store = get_vector_store()
         retriever = DocumentRetriever(vector_store, embedding_service)
         generator = ResponseGenerator(
-            model_name=settings.GROQ_MODEL,
-            api_key=settings.GROQ_API_KEY,
+            model_name=settings.OLLAMA_MODEL,
+            base_url=settings.OLLAMA_BASE_URL,
         )
 
         _pipeline = RAGPipeline(retriever, generator)
-        logger.info("RAG pipeline initialised with Groq model %s", settings.GROQ_MODEL)
+        logger.info("RAG pipeline initialised with Ollama model %s", settings.OLLAMA_MODEL)
     return _pipeline

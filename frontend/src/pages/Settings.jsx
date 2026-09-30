@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, Cpu, Settings as SettingsIcon, User, Lock, Scan } from 'lucide-react';
+import { Moon, Sun, Cpu, Scan } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
 import useTheme from '../hooks/useTheme';
 import useToast from '../hooks/useToast';
-import { useAuth } from '../hooks/useAuth';
-import { changePassword } from '../api/auth';
 
 const CHAT_TEMP_KEY        = 'mediplant_chat_temp';
 const CHAT_TOKENS_KEY      = 'mediplant_chat_tokens';
@@ -18,23 +16,17 @@ const DETECT_MAX_KEY       = 'mediplant_detect_max';
 export function Settings() {
   const { setTheme, isDark } = useTheme();
   const { addToast } = useToast();
-  const { user, isDeveloper } = useAuth();
 
-  const [activeTab, setActiveTab] = useState('general');
+  const [activeTab, setActiveTab] = useState('ai');
 
   // AI settings
-  const [temperature, setTemperature] = useState(0.7);
-  const [maxTokens, setMaxTokens]     = useState(2048);
+  const [temperature, setTemperature] = useState(0.3);
+  const [maxTokens, setMaxTokens]     = useState(512);
 
   // Detection preferences
   const [threshold, setThreshold] = useState(0.7);
   const [maxResults, setMaxResults] = useState(5);
 
-  // Change password
-  const [currentPw, setCurrentPw]   = useState('');
-  const [newPw, setNewPw]           = useState('');
-  const [confirmPw, setConfirmPw]   = useState('');
-  const [pwLoading, setPwLoading]   = useState(false);
 
   useEffect(() => {
     const temp = localStorage.getItem(CHAT_TEMP_KEY);
@@ -64,31 +56,11 @@ export function Settings() {
     addToast('Detection preferences saved!', 'success');
   };
 
-  const handleChangePassword = async (e) => {
-    e.preventDefault();
-    if (newPw !== confirmPw) {
-      addToast('New passwords do not match.', 'error');
-      return;
-    }
-    setPwLoading(true);
-    try {
-      await changePassword(currentPw, newPw);
-      addToast('Password changed successfully!', 'success');
-      setCurrentPw(''); setNewPw(''); setConfirmPw('');
-    } catch (err) {
-      const msg = err?.response?.data?.detail || 'Failed to change password.';
-      addToast(msg, 'error');
-    } finally {
-      setPwLoading(false);
-    }
-  };
-
   const tabs = [
-    { id: 'general',   label: 'General',   icon: SettingsIcon, devOnly: false },
-    { id: 'ai',        label: 'AI & RAG',   icon: Cpu,          devOnly: true  },
-    { id: 'detection', label: 'Detection',  icon: Scan,         devOnly: true  },
-    { id: 'theme',     label: 'Theme',      icon: Sun,          devOnly: false },
-  ].filter(t => !t.devOnly || isDeveloper);
+    { id: 'ai',        label: 'AI & RAG',   icon: Cpu  },
+    { id: 'detection', label: 'Detection',  icon: Scan },
+    { id: 'theme',     label: 'Theme',      icon: Sun  },
+  ];
 
   return (
     <div className="space-y-6 relative z-10 w-full pb-10">
@@ -130,76 +102,6 @@ export function Settings() {
               transition={{ duration: 0.15 }}
               className="space-y-6 min-h-[260px]"
             >
-              {/* ── General: Account Info + Change Password ── */}
-              {activeTab === 'general' && (
-                <div className="space-y-6">
-                  {/* Account Info */}
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-extrabold text-surface-900 dark:text-white pb-3 border-b border-surface-200 dark:border-white/5 flex items-center gap-2">
-                      <User className="w-4 h-4 text-primary-450" /> Account Info
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="space-y-1">
-                        <p className="text-[10px] uppercase font-bold text-surface-400 tracking-wider">Username</p>
-                        <p className="text-sm font-semibold text-surface-800 dark:text-white">{user?.username || '—'}</p>
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-[10px] uppercase font-bold text-surface-400 tracking-wider">Email</p>
-                        <p className="text-sm font-semibold text-surface-800 dark:text-white">{user?.email || '—'}</p>
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-[10px] uppercase font-bold text-surface-400 tracking-wider">Role</p>
-                        <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-full ${
-                          isDeveloper
-                            ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'
-                            : 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
-                        }`}>
-                          {isDeveloper ? 'Developer' : 'Customer'}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Change Password */}
-                  <form onSubmit={handleChangePassword} className="space-y-4">
-                    <h3 className="text-sm font-extrabold text-surface-900 dark:text-white pb-3 border-b border-surface-200 dark:border-white/5 flex items-center gap-2">
-                      <Lock className="w-4 h-4 text-primary-450" /> Change Password
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <Input
-                        label="Current Password"
-                        type="password"
-                        value={currentPw}
-                        onChange={(e) => setCurrentPw(e.target.value)}
-                        required
-                        className="text-surface-900 dark:text-white text-xs"
-                      />
-                      <Input
-                        label="New Password"
-                        type="password"
-                        value={newPw}
-                        onChange={(e) => setNewPw(e.target.value)}
-                        required
-                        className="text-surface-900 dark:text-white text-xs"
-                      />
-                      <Input
-                        label="Confirm New Password"
-                        type="password"
-                        value={confirmPw}
-                        onChange={(e) => setConfirmPw(e.target.value)}
-                        required
-                        className="text-surface-900 dark:text-white text-xs"
-                      />
-                    </div>
-                    <div className="flex justify-end">
-                      <Button type="submit" variant="primary" className="rounded-xl px-6" disabled={pwLoading}>
-                        {pwLoading ? 'Saving…' : 'Update Password'}
-                      </Button>
-                    </div>
-                  </form>
-                </div>
-              )}
-
               {/* ── AI & RAG ── */}
               {activeTab === 'ai' && (
                 <form onSubmit={handleSaveAI} className="space-y-5">

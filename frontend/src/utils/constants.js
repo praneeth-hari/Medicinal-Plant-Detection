@@ -5,24 +5,12 @@
  * and other default configuration values.
  */
 
-/** API route segments (appended to the base URL) */
-export const API_ROUTES = {
-  AUTH_LOGIN:      '/auth/login',
-  AUTH_REGISTER:   '/auth/register',
-  AUTH_PROFILE:    '/auth/profile',
-  PLANTS:          '/plants',
-  PLANTS_SEARCH:   '/plants/search',
-  DETECT:          '/detect',
-  DETECT_HISTORY:  '/detect/history',
-  CHAT_MESSAGE:    '/chat/message',
-  CHAT_SESSIONS:   '/chat/sessions',
-};
+// NOTE: API route constants are defined in utils/api.js.
+// Do NOT define API_ROUTES here to avoid path inconsistencies.
 
 /** Keys used to persist data in localStorage */
 export const LOCAL_STORAGE_KEYS = {
-  AUTH_TOKEN:  'mediplant_auth_token',
   THEME:       'mediplant_theme',
-  USER:        'mediplant_user',
 };
 
 /** Default / fallback values */

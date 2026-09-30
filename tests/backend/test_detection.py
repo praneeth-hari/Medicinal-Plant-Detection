@@ -41,12 +41,14 @@ def test_map_class_name():
     assert map_class_name("bhrami") == "Brahmi"
     assert map_class_name("bringaraja") == "Bhringraj"
     assert map_class_name("amla") == "Amla"
+    assert map_class_name("Curry") == "Curry Leaves"
+    assert map_class_name("Drumstick") == "Moringa"
     assert map_class_name("Astma_weed") == "Astma Weed"
 
 def test_real_inference_prediction(dummy_image):
     """Verify that PyTorch MobileNetV3 model loads and classifies the dummy image."""
     # Ensure model weights exist before running
-    model_path = r"c:\Medicinal-Plant-RAG\backend\data\models\plant_classifier.pth"
+    from ml.predict import MODEL_PATH as model_path
     if not os.path.exists(model_path):
         pytest.skip("Model weights not found. Skipping real inference test.")
 
@@ -61,9 +63,15 @@ def test_real_inference_prediction(dummy_image):
     assert isinstance(result["confidence"], float)
     assert 0.0 <= result["confidence"] <= 1.0
     
-    # Check that predictions include expected mapped class names
+    # Every prediction must be one of the model's known classes (after name mapping)
+    import json
+    from ml.predict import MAPPING_PATH
+    with open(MAPPING_PATH, encoding="utf-8") as f:
+        known = {map_class_name(c) for c in json.load(f)}
     pred_names = [p["name"] for p in result["top_predictions"]]
-    assert any(name in pred_names for name in ["Aloe Vera", "Giloy", "Brahmi", "Bhringraj", "Amla"])
+    assert set(pred_names) <= known
+    confidences = [p["confidence"] for p in result["top_predictions"]]
+    assert confidences == sorted(confidences, reverse=True)
 
 @pytest.mark.asyncio
 async def test_detection_service_with_monograph(dummy_image):

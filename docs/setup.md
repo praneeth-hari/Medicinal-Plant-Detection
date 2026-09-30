@@ -1,67 +1,60 @@
-# 🛠️ Development Environment Setup
-
-> **Status:** Stub — detailed instructions will be added as the project matures.
+# Development Environment Setup
 
 ## Prerequisites
 
-- Python 3.10+
+- Python 3.11+
 - Node.js 18+ and npm
-- Git
-- Docker & Docker Compose (optional, for containerized development)
+- [Ollama](https://ollama.com), with the model pulled: `ollama pull qwen2.5:3b`
 
-## Backend Setup
+## Backend
 
 ```bash
-# Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate    # Linux/macOS
-venv\Scripts\activate       # Windows
+python -m venv .venv
+.venv\Scripts\activate          # Windows   (source .venv/bin/activate on Linux/macOS)
 
-# Install backend dependencies
 cd backend
 pip install -r requirements.txt
+pip install -r ../ml/requirements.txt
 
-# Set up environment variables
-cp ../deployment/.env.production.example .env
-# Edit .env with your local configuration
+cp .env.example .env            # then edit if needed
+alembic upgrade head            # optional: tables are also created on startup
 
-# Run database migrations
-alembic upgrade head
+# One-time: seed plants and build the search index
+python scripts/seed_plants.py
+python scripts/build_index.py
 
-# Start the development server
-uvicorn app.main:app --reload --port 8000
+uvicorn main:app --reload --port 8000
 ```
 
-## Frontend Setup
+API docs: http://localhost:8000/docs
+
+## Frontend
 
 ```bash
-# Install frontend dependencies
 cd frontend
 npm install
-
-# Start the development server
-npm run dev
+npm run dev                     # http://localhost:3000 (proxies /api to :8000)
 ```
 
-## ML Environment Setup
+## Tests
 
-```bash
-# Install ML dependencies (in the same or separate virtualenv)
-cd ml
-pip install -r requirements.txt
-```
+Run from the repository root: `pytest tests -v`. Tests use a temporary database and
+never touch your real data.
 
-## Environment Variables
+## Environment variables (`backend/.env`)
 
-<!-- TODO: Document all required environment variables -->
-
-| Variable          | Description                     | Default       |
-| ----------------- | ------------------------------- | ------------- |
-| `DATABASE_URL`    | Database connection string      | `sqlite:///…` |
-| `SECRET_KEY`      | JWT signing secret              | —             |
-| `OPENAI_API_KEY`  | OpenAI API key for embeddings   | —             |
-| `ENVIRONMENT`     | Runtime environment             | `development` |
+| Variable              | Description                          | Default                       |
+| --------------------- | ------------------------------------ | ----------------------------- |
+| `DATABASE_URL`        | Database connection string           | `sqlite+aiosqlite:///./medicinal_plants.db` |
+| `OLLAMA_BASE_URL`     | Ollama server                        | `http://localhost:11434`      |
+| `OLLAMA_MODEL`        | Model used for chat answers          | `qwen2.5:3b`                  |
+| `EMBEDDING_MODEL`     | Sentence-transformer model           | `all-MiniLM-L6-v2`            |
+| `UPLOAD_DIR`          | Where uploaded images are stored     | `./data/uploads`              |
+| `SERVICENOW_*`        | Optional CMDB sync credentials       | empty                         |
 
 ## Troubleshooting
 
-<!-- TODO: Add common setup issues and solutions -->
+- **Chat says "ollama pull ..."**: Ollama is not running or the model is not installed.
+- **Plants show "No Monograph Available"**: the plant is not in the database; only 20 plants
+  are seeded.
+- **Empty chat sources**: run `python scripts/build_index.py` from `backend/`.

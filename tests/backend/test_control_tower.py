@@ -84,6 +84,10 @@ def test_control_tower_endpoints(client):
     assert "memory_usage" in stats_data
     assert "active_sessions" in stats_data
     assert stats_data["db_health"] == "Healthy"
+    names = {svc["name"] for svc in stats_data["services"]}
+    assert {"SQLite Database", "Ollama LLM", "FAISS Vector Index"} <= names
+    assert stats_data["ollama_availability"] in {"Available", "Unavailable"}
+    assert stats_data["latency_history"] == [] and stats_data["total_tokens"] == 0
 
 
 @pytest.mark.asyncio

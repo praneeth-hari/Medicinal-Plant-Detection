@@ -6,6 +6,7 @@ metric evaluation, and saving checkpoints to plant_classifier.pth.
 """
 from __future__ import annotations
 
+import argparse
 import os
 import sys
 import json
@@ -17,27 +18,34 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 from sklearn.metrics import precision_recall_fscore_support, confusion_matrix
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from pathlib import Path
+
+# All paths are relative to this script's location (ml/)
+_ML_DIR = Path(__file__).resolve().parent
+_ROOT_DIR = _ML_DIR.parent
+
+sys.path.insert(0, str(_ROOT_DIR))
 
 from ml.model import PlantClassifier
 
 # Hyperparameters
 BATCH_SIZE = 16
-EPOCHS = 10
-LEARNING_RATE = 1e-3
-EARLY_STOPPING_PATIENCE = 3
-MODEL_SAVE_PATH = r"c:\Medicinal-Plant-RAG\backend\data\models\plant_classifier.pth"
-DATA_DIR = r"c:\Medicinal-Plant-RAG\data"
+EPOCHS = 30
+LEARNING_RATE = 1e-4
+EARLY_STOPPING_PATIENCE = 7
+MODEL_SAVE_PATH = str(_ROOT_DIR / "backend" / "data" / "models" / "plant_classifier.pth")
+TRAINING_STATE_PATH = str(_ROOT_DIR / "backend" / "data" / "models" / "training_state.pth")
+DATA_DIR = str(_ROOT_DIR / "data")
 
 # ImageNet normalization statistics
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
 
-def train_model():
+def train_model(resume: bool = False):
     print("=" * 64)
-    print("STARTING PYTORCH MODEL TRAINING PIPELINE")
+    print("RESUMING PYTORCH MODEL TRAINING PIPELINE" if resume else "STARTING PYTORCH MODEL TRAINING PIPELINE")
     print("=" * 64)
-    
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Executing training on target device: {device}")
     
@@ -64,6 +72,10 @@ def train_model():
     if not (os.path.exists(train_dir) and os.path.exists(val_dir)):
         print("Error: Train/Val split datasets not found. Run prepare_dataset first.")
         sys.exit(1)
+
+    if not os.path.exists(test_dir):
+        print("Error: Test split directory not found. Run prepare_dataset first.")
+        sys.exit(1)
         
     train_dataset = datasets.ImageFolder(train_dir, transform=train_transforms)
     val_dataset = datasets.ImageFolder(val_dir, transform=val_transforms)
@@ -83,7 +95,7 @@ def train_model():
     print(f"  - Test samples:  {len(test_dataset)}")
     
     # Save the class names index mapping to a JSON file so inference can read it
-    mapping_path = r"c:\Medicinal-Plant-RAG\backend\data\models\class_mapping.json"
+    mapping_path = str(_ROOT_DIR / "backend" / "data" / "models" / "class_mapping.json")
     os.makedirs(os.path.dirname(mapping_path), exist_ok=True)
     with open(mapping_path, "w", encoding="utf-8") as f:
         json.dump(class_names, f, indent=2)
@@ -92,22 +104,48 @@ def train_model():
     # 3. Model, Criterion, Optimizer
     model = PlantClassifier(num_classes=num_classes, pretrained=True)
     model = model.to(device)
-    
+
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-    
-    # 4. Training Loop
+
+    # 4. Training Loop — initialise state (overwritten if resuming)
     best_val_loss = float("inf")
     best_val_acc = 0.0
     epochs_no_improve = 0
-    start_time = time.time()
-    
+    start_epoch = 1
     history = {
         "train_loss": [], "train_acc": [],
         "val_loss": [], "val_acc": []
     }
-    
-    for epoch in range(1, EPOCHS + 1):
+
+    if resume:
+        if os.path.exists(TRAINING_STATE_PATH):
+            print(f"Loading full training state from: {TRAINING_STATE_PATH}")
+            state = torch.load(TRAINING_STATE_PATH, map_location=device, weights_only=False)
+            model.load_state_dict(state["model_state_dict"])
+            optimizer.load_state_dict(state["optimizer_state_dict"])
+            start_epoch = state["epoch"] + 1
+            best_val_loss = state["best_val_loss"]
+            best_val_acc = state["best_val_acc"]
+            epochs_no_improve = state["epochs_no_improve"]
+            history = state["history"]
+            print(f"Resuming from epoch {start_epoch} | Best val loss so far: {best_val_loss:.4f}")
+        elif os.path.exists(MODEL_SAVE_PATH):
+            print(f"No full training state found. Loading model weights from: {MODEL_SAVE_PATH}")
+            ckpt = torch.load(MODEL_SAVE_PATH, map_location=device, weights_only=True)
+            model.load_state_dict(ckpt.get("model_state_dict", ckpt) if isinstance(ckpt, dict) else ckpt)
+            print("Warm-starting from saved weights; optimizer state reset.")
+        else:
+            print("Warning: --resume specified but no checkpoint found. Starting from scratch.")
+
+    remaining_epochs = EPOCHS - (start_epoch - 1)
+    if remaining_epochs <= 0:
+        print(f"Already completed {EPOCHS} epochs. Increase EPOCHS to train further.")
+        sys.exit(0)
+
+    start_time = time.time()
+
+    for epoch in range(start_epoch, EPOCHS + 1):
         epoch_start = time.time()
         
         # Training pass
@@ -169,10 +207,20 @@ def train_model():
             best_val_loss = epoch_val_loss
             best_val_acc = epoch_val_acc
             epochs_no_improve = 0
-            # Save checkpoint
             os.makedirs(os.path.dirname(MODEL_SAVE_PATH), exist_ok=True)
+            # Save inference-ready weights (plain state_dict)
             model.save_checkpoint(MODEL_SAVE_PATH)
             print(f"  --> Best weights checkpoint saved to: {MODEL_SAVE_PATH}")
+            # Save full training state for resuming
+            torch.save({
+                "epoch": epoch,
+                "model_state_dict": model.state_dict(),
+                "optimizer_state_dict": optimizer.state_dict(),
+                "best_val_loss": best_val_loss,
+                "best_val_acc": best_val_acc,
+                "epochs_no_improve": epochs_no_improve,
+                "history": history,
+            }, TRAINING_STATE_PATH)
         else:
             epochs_no_improve += 1
             if epochs_no_improve >= EARLY_STOPPING_PATIENCE:
@@ -246,10 +294,13 @@ def train_model():
         "confusion_matrix": cm.tolist()
     }
     
-    report_path = r"c:\Medicinal-Plant-RAG\backend\data\training_metrics_report.json"
+    report_path = str(_ROOT_DIR / "backend" / "data" / "training_metrics_report.json")
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
     print(f"Final training evaluation report written directly to: {report_path}")
 
 if __name__ == "__main__":
-    train_model()
+    parser = argparse.ArgumentParser(description="Train the medicinal plant classifier.")
+    parser.add_argument("--resume", action="store_true", help="Resume training from the last saved checkpoint.")
+    args = parser.parse_args()
+    train_model(resume=args.resume)

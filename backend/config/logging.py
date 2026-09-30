@@ -15,6 +15,7 @@ Usage::
 from __future__ import annotations
 
 import logging
+import logging.handlers
 import sys
 from pathlib import Path
 
@@ -55,7 +56,12 @@ def setup_logging() -> None:
     if settings.LOG_FILE:
         log_path = Path(settings.LOG_FILE)
         log_path.parent.mkdir(parents=True, exist_ok=True)
-        file_handler = logging.FileHandler(str(log_path), encoding="utf-8")
+        file_handler = logging.handlers.RotatingFileHandler(
+            str(log_path),
+            maxBytes=10 * 1024 * 1024,  # 10 MB per file
+            backupCount=5,
+            encoding="utf-8",
+        )
         file_handler.setLevel(log_level)
         file_handler.setFormatter(formatter)
         root_logger.addHandler(file_handler)

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeftRight, Search, Sprout, AlertTriangle, Info, Check, ChevronDown } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
-import Button from '../components/common/Button';
 import Loader from '../components/common/Loader';
 import ErrorState from '../components/common/ErrorState';
 import { getPlants } from '../api/plants';

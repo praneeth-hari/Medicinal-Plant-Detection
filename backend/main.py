@@ -26,12 +26,32 @@ from fastapi.staticfiles import StaticFiles
 from config.settings import settings
 from config.logging import setup_logging
 from config.database import init_db, close_db
+from api.deps import LOCAL_USER_ID, LOCAL_USERNAME
 from api.exceptions import register_exception_handlers
 from api.v1.router import api_v1_router
 
 # Set up logging before anything else
 setup_logging()
 logger = logging.getLogger(__name__)
+
+
+async def ensure_local_user() -> None:
+    """Make sure the single local user (owner of chats/detections) exists."""
+    from config.database import async_session_maker
+    from models.user import User
+
+    async with async_session_maker() as session:
+        if await session.get(User, LOCAL_USER_ID) is None:
+            session.add(User(
+                id=LOCAL_USER_ID,
+                username=LOCAL_USERNAME,
+                email="local@localhost",
+                hashed_password="!login-disabled",
+                is_active=True,
+                role="developer",
+            ))
+            await session.commit()
+            logger.info("Created local user (id=%d)", LOCAL_USER_ID)
 
 
 # ------------------------------------------------------------------
@@ -58,11 +78,12 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     logger.info("API prefix: %s", settings.API_V1_PREFIX)
 
     # Create upload directory
-    settings.upload_path  # triggers mkdir via property
+    upload_path = settings.upload_path  # triggers mkdir via property
     logger.info("Upload directory: %s", settings.UPLOAD_DIR)
 
     # Initialize database tables
     await init_db()
+    await ensure_local_user()
     logger.info("Application startup complete ✓")
 
     yield  # ── Application is running ──
@@ -112,7 +133,10 @@ app.add_middleware(
 app.include_router(api_v1_router, prefix=settings.API_V1_PREFIX)
 
 # Static file serving for uploads
-app.mount("/data/uploads", StaticFiles(directory="data/uploads"), name="uploads")
+# NOTE: upload_path property ensures the directory exists before mounting.
+import pathlib as _pathlib
+_pathlib.Path(settings.UPLOAD_DIR).mkdir(parents=True, exist_ok=True)
+app.mount("/data/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
 
 logger.info("Routers mounted at %s", settings.API_V1_PREFIX)
 

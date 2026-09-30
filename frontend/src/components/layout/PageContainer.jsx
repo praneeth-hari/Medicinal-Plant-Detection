@@ -4,7 +4,6 @@
  *
  * Provides a responsive layout wrapper with standard padding around main contents.
  */
-import React from 'react';
 
 export function PageContainer({ children, className = '' }) {
   return (

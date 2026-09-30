@@ -24,6 +24,12 @@ class ChatRequest(BaseModel):
         max_length=4096,
         description="The user's natural-language question",
     )
+    temperature: Optional[float] = Field(
+        None, ge=0.0, le=1.2, description="LLM sampling temperature (default 0.3)"
+    )
+    max_tokens: Optional[int] = Field(
+        None, ge=128, le=4096, description="Max tokens in the generated answer (default 512)"
+    )
 
 
 class SourceReference(BaseModel):

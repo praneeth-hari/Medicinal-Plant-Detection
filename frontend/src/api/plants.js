@@ -30,9 +30,9 @@ export async function getPlant(plantId) {
  * Search plants by query string.
  * @param {string} query
  * @param {object} [params] - Additional filters
- * @returns {Promise<import('axios').AxiosResponse>}
+ * @returns {Promise<Array>} Array of PlantResponse objects
  */
 export async function searchPlants(query, params = {}) {
-  // TODO: implement
-  return client.get('/plants/search', { params: { q: query, ...params } });
+  const response = await client.get('/plants/search', { params: { q: query, ...params } });
+  return response.data;
 }

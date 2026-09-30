@@ -2,7 +2,6 @@
  * Reusable Loader (Spinner) Component
  * ===================================
  */
-import React from 'react';
 
 export function Loader({ className = 'w-6 h-6 text-primary-600', ...props }) {
   return (

@@ -2,7 +2,6 @@
  * Reusable PageHeader Component
  * =============================
  */
-import React from 'react';
 
 export function PageHeader({
   title,

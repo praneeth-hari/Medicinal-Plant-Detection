@@ -51,7 +51,7 @@ class DetectionResult(Base):
     model_version: Mapped[str] = mapped_column(
         String(50), nullable=False, default="v1.0.0"
     )
-    top_predictions: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    top_predictions: Mapped[list | None] = mapped_column(JSON, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         server_default=func.now(),

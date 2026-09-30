@@ -3,6 +3,8 @@ System Info endpoint — returns live configuration values for the About page.
 """
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import APIRouter
 from pydantic import BaseModel
 
@@ -26,8 +28,8 @@ async def get_system_info() -> SystemInfo:
     return SystemInfo(
         backend_framework="FastAPI",
         app_version=settings.APP_VERSION,
-        database=f"{db_type} + ChromaDB",
-        rag_llm_model=f"Groq / {settings.GROQ_MODEL}",
+        database=f"{db_type} + FAISS",
+        rag_llm_model=f"Ollama / {settings.OLLAMA_MODEL}",
         embedding_model=settings.EMBEDDING_MODEL,
-        classification_model="ResNet-50 (not trained yet)" if not Path(settings.MODEL_PATH).exists() else "ResNet-50",
+        classification_model="MobileNetV3-Small" if Path(settings.MODEL_PATH).exists() else "MobileNetV3-Small (weights missing)",
     )
