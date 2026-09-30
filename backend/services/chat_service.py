@@ -4,14 +4,17 @@ Chat Service
 
 Business-logic layer for the conversational interface.  Manages
 chat sessions, persists messages, and generates assistant responses
-via the RAG pipeline (Ollama + FAISS retrieval).
+via the RAG pipeline (FAISS retrieval + Ollama generation).
 
 Falls back to a graceful message when the RAG pipeline or Ollama
 is unavailable.
 """
 from __future__ import annotations
 
+import aiofiles
+import asyncio
 import logging
+import time
 import json
 import os
 import re
@@ -22,6 +25,7 @@ from typing import Optional, Sequence
 from api.exceptions import ForbiddenException, NotFoundException
 from models.chat import ChatMessage, ChatSession, MessageRole
 from repositories.chat_repository import ChatRepository
+from services import metrics
 from schemas.chat import (
     ChatMessageResponse,
     ChatResponse,
@@ -29,6 +33,27 @@ from schemas.chat import (
 )
 
 logger = logging.getLogger(__name__)
+
+# Queries showing intent to harm someone (or self). Deliberately narrower than a
+# bare keyword list so legitimate safety questions ("Is neem toxic?", "Can tulsi
+# poison a dog?") are still answered.
+_TOXIC_PATTERNS = [
+    re.compile(p, re.IGNORECASE) for p in (
+        r"\b(kill|poison|murder|harm|hurt|killing|poisoning|murdering|hurting)\s+"
+        r"(someone|somebody|a person|people|my\s+(wife|husband|partner|neighbou?r|boss|friend|mother|father|mom|dad|brother|sister|child|son|daughter|family|enemy|teacher|colleague)|him|her|them|a human)\b",
+        r"\b(suicide|suicidal|self[- ]harm|kill myself|end my life)\b",
+        r"\b(make|build|making|building)\s+(a\s+)?(bomb|explosive|weapon)s?\b",
+        r"\bbomb\b",
+        r"\bhate\s+(speech|crime)\b",
+    )
+]
+
+_DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
+SETTINGS_PATH = os.path.join(_DATA_DIR, "control_tower_settings.json")
+AUDIT_PATH = os.path.join(_DATA_DIR, "control_tower_audit_logs.json")
+
+# Serialises read-modify-write of the audit log file across concurrent requests.
+_AUDIT_LOCK = asyncio.Lock()
 
 # Fallback when RAG pipeline is unavailable
 _FALLBACK_RESPONSE = (
@@ -100,6 +125,9 @@ class ChatService:
         session_id: int,
         user_message: str,
         user_id: int,
+        *,
+        temperature: float | None = None,
+        max_tokens: int | None = None,
     ) -> ChatResponse:
         """Process a user message and generate an assistant reply.
 
@@ -127,15 +155,16 @@ class ChatService:
         session = await self._get_user_session(session_id, user_id)
 
         # Load control tower governance settings
-        settings_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "control_tower_settings.json"))
+        settings_path = SETTINGS_PATH
         pii_masking = False
         dosage_disclaimer = True
         toxicity_guardrail = True
         source_verification = True
         if os.path.exists(settings_path):
             try:
-                with open(settings_path, "r") as f:
-                    settings_data = json.load(f)
+                async with aiofiles.open(settings_path, "r") as f:
+                    raw = await f.read()
+                    settings_data = json.loads(raw)
                     pii_masking = settings_data.get("pii_masking", False)
                     dosage_disclaimer = settings_data.get("dosage_disclaimer", True)
                     toxicity_guardrail = settings_data.get("toxicity_guardrail", True)
@@ -149,9 +178,7 @@ class ChatService:
         
         if toxicity_guardrail:
             policies_applied.append("Toxicity Guardrail")
-            toxic_words = ["abuse", "poison", "kill", "toxic", "hate", "suicide", "murder", "bomb"]
-            if any(word in user_message.lower() for word in toxic_words):
-                is_toxic = True
+            is_toxic = any(p.search(user_message) for p in _TOXIC_PATTERNS)
 
         # Apply PII Masking
         masked_message = user_message
@@ -177,9 +204,19 @@ class ChatService:
             sources = []
         else:
             # 3. Generate response via RAG pipeline
+            started = time.perf_counter()
             assistant_content, sources = await self._generate_response(
                 session_id, masked_message,
+                temperature=temperature, max_tokens=max_tokens,
             )
+            latency_ms = (time.perf_counter() - started) * 1000
+            try:
+                await asyncio.to_thread(
+                    metrics.record, latency_ms,
+                    len(user_message.split()) + len(assistant_content.split()),
+                )
+            except Exception as e:
+                logger.warning("Failed to record chat metrics: %s", e)
 
         # Apply Dosage disclaimer
         dosage_keywords = ["dosage", "dose", "preparation", "preperation", "recipe", "quantity", "how to use", "how to prepare", "administration"]
@@ -204,7 +241,7 @@ class ChatService:
             details = "Query contains toxic keywords."
 
         # Write to compliance audit log
-        audit_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "control_tower_audit_logs.json"))
+        audit_path = AUDIT_PATH
         audit_entry = {
             "id": str(uuid.uuid4()),
             "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -216,14 +253,16 @@ class ChatService:
         }
         
         try:
-            audit_logs = []
-            if os.path.exists(audit_path):
-                with open(audit_path, "r") as f:
-                    audit_logs = json.load(f)
-            audit_logs.insert(0, audit_entry)
-            audit_logs = audit_logs[:100]
-            with open(audit_path, "w") as f:
-                json.dump(audit_logs, f, indent=2)
+            async with _AUDIT_LOCK:
+                audit_logs = []
+                if os.path.exists(audit_path):
+                    async with aiofiles.open(audit_path, "r") as f:
+                        raw = await f.read()
+                        audit_logs = json.loads(raw)
+                audit_logs.insert(0, audit_entry)
+                audit_logs = audit_logs[:100]
+                async with aiofiles.open(audit_path, "w") as f:
+                    await f.write(json.dumps(audit_logs, indent=2))
         except Exception as e:
             logger.warning("Failed to save control tower audit logs: %s", e)
 
@@ -259,6 +298,9 @@ class ChatService:
         self,
         session_id: int,
         user_message: str,
+        *,
+        temperature: float | None = None,
+        max_tokens: int | None = None,
     ) -> tuple[str, list[dict]]:
         """Generate an assistant response via the RAG pipeline.
 
@@ -277,13 +319,15 @@ class ChatService:
             return _FALLBACK_RESPONSE, []
 
         try:
-            # Build chat history from prior messages
+            # Build chat history from prior messages (skip=1 to exclude the current user message
+            # which was just persisted, preventing it from appearing twice in the LLM context)
             history_msgs = await self.repository.get_messages_by_session(
                 session_id, skip=0, limit=20,
             )
+            # Exclude the very last message (current user message just added)
+            history_msgs = list(history_msgs)[:-1] if history_msgs else []
             chat_history = [
-                {"role": m.role.value if hasattr(m.role, 'value') else m.role,
-                 "content": m.content}
+                {"role": m.role.value, "content": m.content}
                 for m in history_msgs
             ]
 
@@ -291,12 +335,12 @@ class ChatService:
             if chat_history:
                 result = await pipeline.answer_with_history(
                     user_message, chat_history,
-                    top_k=5, max_tokens=512,
+                    top_k=5, max_tokens=max_tokens or 512, temperature=temperature,
                 )
             else:
                 result = await pipeline.answer(
                     user_message,
-                    top_k=5, max_tokens=512,
+                    top_k=5, max_tokens=max_tokens or 512, temperature=temperature,
                 )
 
             answer = result.get("answer", _FALLBACK_RESPONSE)

@@ -43,7 +43,7 @@ MEDIPLANT_CIS = [
     {
         "key": "ml_classifier",
         "name": "MediPlant ML Classifier",
-        "short_description": "ResNet-50 plant image classification model",
+        "short_description": "MobileNetV3-Small plant image classification model",
         "version": "1.0.0",
         "operational_status": "1",
     },
@@ -55,16 +55,16 @@ MEDIPLANT_CIS = [
         "operational_status": "1",
     },
     {
-        "key": "chromadb",
-        "name": "MediPlant ChromaDB Vector Store",
-        "short_description": "ChromaDB vector store for RAG embeddings (all-MiniLM-L6-v2)",
+        "key": "chromadb",  # key kept stable: existing sys_id mappings and the UI use it
+        "name": "MediPlant FAISS Vector Store",
+        "short_description": "FAISS vector store for RAG embeddings (all-MiniLM-L6-v2)",
         "version": "1.0.0",
         "operational_status": "1",
     },
     {
         "key": "groq_api",
-        "name": "MediPlant Groq LLM Integration",
-        "short_description": f"Groq API integration using {settings.GROQ_MODEL}",
+        "name": "MediPlant Ollama LLM Integration",
+        "short_description": f"Local Ollama LLM integration using {settings.OLLAMA_MODEL}",
         "version": "1.0.0",
         "operational_status": "1",
     },
@@ -162,6 +162,7 @@ class ServiceNowService:
     async def _update_ci(self, client: httpx.AsyncClient, sys_id: str, ci: dict) -> bool:
         """Update an existing CI."""
         payload = {
+            "name": ci["name"],
             "short_description": ci["short_description"],
             "version": ci["version"],
             "operational_status": ci["operational_status"],

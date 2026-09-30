@@ -9,18 +9,22 @@ from __future__ import annotations
 import os
 import sys
 import json
+import threading
 import torch
+from pathlib import Path
 from PIL import Image
 from torchvision import transforms
 
 # Set path relative to project root
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+_ML_DIR = Path(__file__).resolve().parent
+_ROOT_DIR = _ML_DIR.parent
+sys.path.insert(0, str(_ROOT_DIR))
 
 from ml.model import PlantClassifier
 
-# Configured paths
-MODEL_PATH = r"c:\Medicinal-Plant-RAG\backend\data\models\plant_classifier.pth"
-MAPPING_PATH = r"c:\Medicinal-Plant-RAG\backend\data\models\class_mapping.json"
+# Configured paths (portable, relative to project root)
+MODEL_PATH = str(_ROOT_DIR / "backend" / "data" / "models" / "plant_classifier.pth")
+MAPPING_PATH = str(_ROOT_DIR / "backend" / "data" / "models" / "class_mapping.json")
 
 # ImageNet normalization statistics
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
@@ -32,29 +36,41 @@ _ALIAS_MAP = {
     "amruthaballi": "Giloy",
     "bhrami": "Brahmi",
     "bringaraja": "Bhringraj",
-    "amla": "Amla"  # Direct match mapping
+    "amla": "Amla",  # Direct match mapping
+    "curry": "Curry Leaves",
+    "drumstick": "Moringa",
 }
 
-# Lazy-loaded model singleton
+# Thread-safe lazy-loaded model singleton
 _model = None
-_class_names = []
+_class_names: list[str] = []
+_device: torch.device | None = None
+_load_lock = threading.Lock()
 
-def load_inference_model() -> tuple[PlantClassifier, list[str]]:
-    """Load model weights and class mappings if not already loaded."""
-    global _model, _class_names
+def load_inference_model() -> tuple["PlantClassifier", list[str]]:
+    """Load model weights and class mappings if not already loaded (thread-safe)."""
+    global _model, _class_names, _device
     if _model is not None:
         return _model, _class_names
 
-    if not os.path.exists(MODEL_PATH):
-        raise FileNotFoundError(f"Model checkpoint not found at: {MODEL_PATH}")
-    if not os.path.exists(MAPPING_PATH):
-        raise FileNotFoundError(f"Class mapping index not found at: {MAPPING_PATH}")
+    with _load_lock:
+        # Double-check after acquiring lock
+        if _model is not None:
+            return _model, _class_names
 
-    with open(MAPPING_PATH, "r", encoding="utf-8") as f:
-        _class_names = json.load(f)
+        if not os.path.exists(MODEL_PATH):
+            raise FileNotFoundError(f"Model checkpoint not found at: {MODEL_PATH}")
+        if not os.path.exists(MAPPING_PATH):
+            raise FileNotFoundError(f"Class mapping index not found at: {MAPPING_PATH}")
 
-    # Initialize model with correct number of output classes
-    _model = PlantClassifier.load_checkpoint(MODEL_PATH, num_classes=len(_class_names))
+        with open(MAPPING_PATH, "r", encoding="utf-8") as f:
+            _class_names = json.load(f)
+
+        _device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # Initialize model with correct number of output classes
+        _model = PlantClassifier.load_checkpoint(MODEL_PATH, num_classes=len(_class_names))
+        _model = _model.to(_device)
+
     return _model, _class_names
 
 def map_class_name(name: str) -> str:
@@ -96,8 +112,8 @@ def predict(image_path: str, top_k: int = 5) -> dict:
     
     input_tensor = preprocess(image).unsqueeze(0)  # Add batch dimension
     
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = model.to(device)
+    # Use the device from load_inference_model (model already on device)
+    device = _device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
     input_tensor = input_tensor.to(device)
     
     with torch.no_grad():

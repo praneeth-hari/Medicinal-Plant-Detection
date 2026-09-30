@@ -2,10 +2,14 @@ import os
 import shutil
 import random
 import sys
+from pathlib import Path
+
+# All paths relative to project root (parent of ml/)
+_ROOT_DIR = Path(__file__).resolve().parent.parent
 
 # Target directories
-SOURCE_DIR = r"C:\Indian Medicinal Leaves Image Datasets\Medicinal Leaf dataset"
-DEST_DIR = r"c:\Medicinal-Plant-RAG\data"
+SOURCE_DIR = str(_ROOT_DIR / "data" / "raw")
+DEST_DIR = str(_ROOT_DIR / "data")
 
 TRAIN_PCT = 0.70
 VAL_PCT = 0.15
@@ -60,8 +64,8 @@ def split_dataset():
         class_path = os.path.join(SOURCE_DIR, c)
         files = [f for f in os.listdir(class_path) if os.path.isfile(os.path.join(class_path, f))]
         
-        # Filter only image files
-        image_files = [f for f in files if f.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp', '.gif', '.webp'))]
+        # Filter only supported image files (exclude .gif/.webp which cause training issues)
+        image_files = [f for f in files if f.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp'))]
         random.shuffle(image_files)
         
         n_total = len(image_files)

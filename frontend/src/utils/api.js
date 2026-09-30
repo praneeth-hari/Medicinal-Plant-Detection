@@ -6,9 +6,6 @@
  */
 
 export const API_ROUTES = {
-  AUTH_LOGIN: '/auth/login',
-  AUTH_REGISTER: '/auth/register',
-  AUTH_ME: '/auth/me',
   PLANTS: '/plants',
   PLANTS_SEARCH: '/plants/search',
   DETECT: '/detect',

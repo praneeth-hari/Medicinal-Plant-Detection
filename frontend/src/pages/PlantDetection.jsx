@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   UploadCloud,
   History,
@@ -43,6 +43,9 @@ export function PlantDetection() {
   const [previewUrl, setPreviewUrl] = useState('');
   const [isDetecting, setIsDetecting] = useState(false);
   const [detectionResult, setDetectionResult] = useState(null);
+  // Detection preferences saved from the Settings page
+  const threshold = parseFloat(localStorage.getItem('mediplant_detect_threshold')) || 0.7;
+  const maxResults = parseInt(localStorage.getItem('mediplant_detect_max'), 10) || 3;
   const [uploadError, setUploadError] = useState('');
   const [dragActive, setDragActive] = useState(false);
 
@@ -458,9 +461,16 @@ export function PlantDetection() {
                     </div>
                   </div>
 
+                  {detectionResult.confidence < threshold && (
+                    <div className="text-xs font-semibold text-amber-700 dark:text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded-lg px-3 py-2">
+                      Low confidence ({Math.round(detectionResult.confidence * 100)}% is below your {Math.round(threshold * 100)}% threshold).
+                      This match may be wrong. Try a clearer, closer photo of a single leaf.
+                    </div>
+                  )}
+
                   {/* Confidence breakdown progress bars */}
                   <div className="space-y-3.5">
-                    {detectionResult.top_predictions?.slice(0, 3).map((pred, i) => (
+                    {detectionResult.top_predictions?.slice(0, maxResults).map((pred, i) => (
                       <div key={i} className="space-y-1">
                         <div className="flex justify-between text-xs font-semibold">
                           <span className="text-surface-800 dark:text-surface-200">{pred.name}</span>

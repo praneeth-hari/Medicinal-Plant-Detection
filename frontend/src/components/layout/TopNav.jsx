@@ -3,20 +3,17 @@
  * ================
  *
  * Renders the top bar. Includes dark / light theme toggling, hamburger menu trigger
- * for mobile viewports, and user profile displays.
+ * for mobile viewports.
  */
-import React from 'react';
-import { Menu, Sun, Moon, User } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { useSidebar } from '../../hooks/useSidebar';
 import { useTheme } from '../../hooks/useTheme';
-import { useAuth } from '../../hooks/useAuth';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export function TopNav() {
   const { openSidebar } = useSidebar();
   const { isDark, toggleTheme } = useTheme();
-  const { user, isDeveloper } = useAuth();
   const location = useLocation();
 
   // Helper to construct a breadcrumb title from the path
@@ -76,27 +73,6 @@ export function TopNav() {
           />
         </button>
 
-        {/* User Badge */}
-        {user && (
-          <div className="flex items-center gap-2 pl-2 border-l border-surface-200 dark:border-white/10">
-            <div className="flex flex-col text-right hidden md:flex">
-              <span className="text-xs font-semibold text-surface-900 dark:text-white leading-none">
-                {user.username}
-              </span>
-              {/* Role badge */}
-              <span className={`text-[10px] font-bold mt-0.5 leading-none px-1.5 py-0.5 rounded-full self-end ${
-                isDeveloper
-                  ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 border border-amber-200 dark:border-amber-700/40'
-                  : 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-700/40'
-              }`}>
-                {isDeveloper ? 'Developer' : 'Customer'}
-              </span>
-            </div>
-            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-950/40 text-primary-700 dark:text-primary-400 font-bold text-xs uppercase border border-primary-200 dark:border-primary-900/50">
-              {user.username?.substring(0, 2) || <User className="w-4 h-4" />}
-            </div>
-          </div>
-        )}
       </div>
     </header>
   );

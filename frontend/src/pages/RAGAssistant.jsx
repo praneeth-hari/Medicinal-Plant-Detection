@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -7,15 +7,12 @@ import {
   Send,
   Sprout,
   User,
-  History,
   BookOpen,
   ChevronDown,
   ChevronUp,
-  Search,
   ExternalLink,
   Bot
 } from 'lucide-react';
-import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Loader from '../components/common/Loader';
@@ -101,6 +98,7 @@ export function RAGAssistant() {
   // Initial load
   useEffect(() => {
     loadSessions();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Sync messages when active session changes
@@ -150,6 +148,10 @@ export function RAGAssistant() {
       
       if (!activeSessionId) {
         const newSessionId = response.session_id;
+        // Add the first assistant reply to messages before switching session
+        if (response.message) {
+          setMessages((prev) => [...prev, response.message]);
+        }
         setActiveSessionId(newSessionId);
         await loadSessions(newSessionId);
       } else {
@@ -200,7 +202,7 @@ export function RAGAssistant() {
       
       if (isListItem) {
         if (!inList) {
-          result.push('<ul class="list-slate list-disc pl-5 space-y-1.5 my-2">');
+          result.push('<ul class="list-disc pl-5 space-y-1.5 my-2">');
           inList = true;
         }
         result.push(line);
@@ -410,7 +412,7 @@ export function RAGAssistant() {
 
                                   {isExpanded && (
                                     <div className="mt-2 text-[11px] italic bg-white/40 dark:bg-white/[0.02] p-2.5 rounded border-l-2 border-primary-500 leading-relaxed text-surface-600 dark:text-surface-300">
-                                      "{src.snippet}"
+                                      &quot;{src.snippet}&quot;
                                       {linkId && (
                                         <div className="mt-2.5 text-right">
                                           <button
@@ -445,7 +447,7 @@ export function RAGAssistant() {
                         <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                         <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                       </span>
-                      <span className="text-[10px] text-surface-500 dark:text-surface-400 font-bold ml-1 uppercase tracking-wider">Groq Model is computing...</span>
+                      <span className="text-[10px] text-surface-500 dark:text-surface-400 font-bold ml-1 uppercase tracking-wider">AI model is computing...</span>
                     </div>
                   </motion.div>
                 )}

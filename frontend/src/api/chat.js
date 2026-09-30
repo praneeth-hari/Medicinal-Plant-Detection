@@ -15,9 +15,14 @@ import { API_ROUTES } from '../utils/api';
  * @returns {Promise<object>} ChatResponse { session_id, message: ChatMessageResponse }
  */
 export async function sendMessage(sessionId, message) {
+  // Optional AI preferences saved from the Settings page
+  const temperature = parseFloat(localStorage.getItem('mediplant_chat_temp'));
+  const maxTokens = parseInt(localStorage.getItem('mediplant_chat_tokens'), 10);
   const response = await client.post(API_ROUTES.CHAT, {
     session_id: sessionId ? parseInt(sessionId, 10) : null,
     message,
+    ...(Number.isFinite(temperature) && { temperature }),
+    ...(Number.isFinite(maxTokens) && { max_tokens: maxTokens }),
   });
   return response.data;
 }

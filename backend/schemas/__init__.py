@@ -16,14 +16,7 @@ from schemas.plant import (
     PlantResponse,
     PlantListResponse,
 )
-from schemas.user import (
-    UserBase,
-    UserCreate,
-    UserResponse,
-    UserLogin,
-    Token,
-    TokenData,
-)
+from schemas.user import TokenData
 from schemas.chat import (
     ChatRequest,
     ChatResponse,
@@ -48,11 +41,6 @@ __all__ = [
     "PlantUpdate",
     "PlantResponse",
     "PlantListResponse",
-    "UserBase",
-    "UserCreate",
-    "UserResponse",
-    "UserLogin",
-    "Token",
     "TokenData",
     "ChatRequest",
     "ChatResponse",

@@ -2,7 +2,6 @@
  * Reusable Toast Component
  * ========================
  */
-import React from 'react';
 import { X, CheckCircle, AlertCircle, AlertTriangle, Info } from 'lucide-react';
 
 export function Toast({ message, type = 'info', onClose }) {

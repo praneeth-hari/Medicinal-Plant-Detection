@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Scan, MessageSquare, Sprout, ArrowRight, Activity, Cpu, CheckCircle } from 'lucide-react';
-import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import { ROUTES } from '../utils/routes';
-import { useAuth } from '../hooks/useAuth';
 import { getDetectionHistory } from '../api/detection';
 import { getSessions } from '../api/chat';
-import axios from 'axios';
+import client from '../api/client';
+import config from '../config/config';
 
 export function Dashboard() {
-  const { user } = useAuth();
   const navigate = useNavigate();
 
   // Metrics states
@@ -54,8 +52,8 @@ export function Dashboard() {
 
       // Perform a health check of backend
       try {
-        const healthUrl = 'http://127.0.0.1:8000/api/v1/health';
-        const healthRes = await axios.get(healthUrl, { timeout: 3000 });
+        const healthUrl = `${config.API_URL}/health`;
+        const healthRes = await client.get(healthUrl, { timeout: 3000 });
         if (healthRes.data?.status === 'healthy') {
           setSystemStatuses({
             detection: 'Online',
@@ -71,9 +69,9 @@ export function Dashboard() {
         }
       } catch (e) {
         setSystemStatuses({
-          detection: 'Online',
-          rag: 'Online',
-          ollama: 'Online',
+          detection: 'Offline',
+          rag: 'Offline',
+          ollama: 'Offline',
         });
       }
     }
@@ -144,7 +142,7 @@ export function Dashboard() {
               <Activity className="w-3.5 h-3.5 animate-pulse" /> AI Health Portal
             </span>
             <h1 className="text-3xl md:text-5xl font-black text-surface-900 dark:text-white tracking-tight leading-tight">
-              Welcome back, <span className="bg-gradient-to-r from-primary-600 via-primary-500 to-emerald-600 dark:from-primary-400 dark:via-accent-300 dark:to-emerald-400 bg-clip-text text-transparent">{user?.username || 'Researcher'}</span>!
+              Welcome, <span className="bg-gradient-to-r from-primary-600 via-primary-500 to-emerald-600 dark:from-primary-400 dark:via-accent-300 dark:to-emerald-400 bg-clip-text text-transparent">Researcher</span>!
             </h1>
             <p className="text-sm md:text-base text-surface-600 dark:text-surface-300 leading-relaxed max-w-2xl">
               Access clinical documentation, perform botanical classifications using neural models, and chat with our RAG agent to analyze traditional formulations.

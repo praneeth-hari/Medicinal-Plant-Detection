@@ -65,6 +65,8 @@ async def send_message(
         session_id=session_id,
         user_message=body.message,
         user_id=current_user.user_id,
+        temperature=body.temperature,
+        max_tokens=body.max_tokens,
     )
     return response
 

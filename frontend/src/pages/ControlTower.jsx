@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Shield,
   Activity,
@@ -44,7 +44,16 @@ export default function ControlTower() {
     avg_latency_ms: 0,
     latency_history: [],
     token_history: [],
+    total_tokens: 0,
+    peak_tokens: 0,
+    services: [],
   });
+  // Scale telemetry series to the chart height (viewBox is 100 x 35, baseline at y=35)
+  const scaleY = (val, series) => {
+    const max = Math.max(...series, 1);
+    return 35 - (val / max) * 30;
+  };
+  const scaleX = (idx, series) => (series.length > 1 ? (idx * 100) / (series.length - 1) : 50);
   const [auditLogs, setAuditLogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -131,6 +140,7 @@ export default function ControlTower() {
 
   useEffect(() => {
     loadData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Poll stats and audit logs every 8 seconds when dashboard is open
@@ -613,10 +623,13 @@ export default function ControlTower() {
                 <h4 className="font-bold text-surface-800 dark:text-surface-150">Subservice Connectivity</h4>
                 <div className="space-y-3 flex-1 flex flex-col justify-center">
                   {[
-                    { name: 'SQLite DB Server', health: stats.db_health === 'Healthy', latency: '2ms' },
-                    { name: 'Ollama Pipeline', health: stats.ollama_availability === 'Available', latency: '24ms' },
-                    { name: 'FAISS Vectors Index', health: true, latency: '1ms' },
-                    { name: 'FastAPI Web Core', health: true, latency: '14ms' },
+                    ...stats.services.map((svc) => ({
+                      name: svc.name,
+                      health: svc.healthy,
+                      latency: svc.latency_ms != null ? `${svc.latency_ms}ms` : (svc.detail || 'n/a'),
+                      detail: svc.detail,
+                    })),
+                    { name: 'FastAPI Web Core', health: true, latency: 'online' },
                   ].map((srv, idx) => (
                     <div key={idx} className="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/3 text-xs">
                       <div className="flex items-center gap-2 font-semibold text-surface-800 dark:text-surface-200">
@@ -662,7 +675,7 @@ export default function ControlTower() {
                       
                       {/* Latency line */}
                       <path
-                        d={`M ${stats.latency_history.map((val, idx) => `${(idx * 100) / 9} ${35 - (val * 30) / 600}`).join(' L ')}`}
+                        d={`M ${stats.latency_history.map((val, idx) => `${scaleX(idx, stats.latency_history)} ${scaleY(val, stats.latency_history)}`).join(' L ')}`}
                         fill="none"
                         stroke="#22c55e"
                         strokeWidth="1.2"
@@ -672,7 +685,7 @@ export default function ControlTower() {
                       
                       {/* Gradient area */}
                       <path
-                        d={`M 0 35 L ${stats.latency_history.map((val, idx) => `${(idx * 100) / 9} ${35 - (val * 30) / 600}`).join(' L ')} L 100 35 Z`}
+                        d={`M 0 35 L ${stats.latency_history.map((val, idx) => `${scaleX(idx, stats.latency_history)} ${scaleY(val, stats.latency_history)}`).join(' L ')} L 100 35 Z`}
                         fill="url(#latencyAreaGrad)"
                       />
                       
@@ -688,8 +701,8 @@ export default function ControlTower() {
                   )}
                 </div>
                 <div className="flex justify-between items-center text-[10px] text-surface-500 font-bold border-t border-white/5 pt-2">
-                  <span>Current: {stats.avg_latency_ms}ms</span>
-                  <span>Baseline: 340ms</span>
+                  <span>Average: {stats.avg_latency_ms}ms</span>
+                  <span>Latest: {stats.latency_history.length ? stats.latency_history[stats.latency_history.length - 1] : 0}ms</span>
                 </div>
               </div>
 
@@ -717,9 +730,9 @@ export default function ControlTower() {
                         <rect
                           key={idx}
                           x={(idx * 100) / 10 + 2}
-                          y={35 - (val * 30) / 500}
+                          y={scaleY(val, stats.token_history)}
                           width="5"
-                          height={(val * 30) / 500}
+                          height={35 - scaleY(val, stats.token_history)}
                           fill="url(#tokenBarGrad)"
                           rx="1"
                         />
@@ -737,8 +750,8 @@ export default function ControlTower() {
                   )}
                 </div>
                 <div className="flex justify-between items-center text-[10px] text-surface-500 font-bold border-t border-white/5 pt-2">
-                  <span>Peak turn: 420 tokens</span>
-                  <span>Monthly Accum: {(stats.total_queries * 380).toLocaleString()} tokens</span>
+                  <span>Peak turn: {stats.peak_tokens.toLocaleString()} tokens</span>
+                  <span>Total: {stats.total_tokens.toLocaleString()} tokens</span>
                 </div>
               </div>
 
@@ -911,8 +924,8 @@ export default function ControlTower() {
                       }`}>
                         <NodeIcon className="w-5 h-5" />
                       </div>
-                      <span className="text-xs font-bold text-surface-200">{node.label}</span>
-                      <span className="text-[10px] text-surface-500 font-bold uppercase mt-1">
+                      <span className="text-xs font-bold text-surface-900 dark:text-surface-200">{node.label}</span>
+                      <span className="text-[10px] text-surface-700 dark:text-surface-400 font-bold uppercase mt-1">
                         {isCurrent ? 'PROCESSING' : isCompleted ? 'SUCCESS' : 'PENDING'}
                       </span>
                     </div>
@@ -924,7 +937,7 @@ export default function ControlTower() {
               <div className="bg-neutral-950/75 rounded-xl p-4 border border-white/5 h-44 overflow-y-auto space-y-2">
                 <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block mb-2">Workflow Trace Log</span>
                 {flowLog.length === 0 ? (
-                  <p className="text-xs text-neutral-500 font-medium">Click "Run Flow Test" above to trigger and trace the workflow execution steps.</p>
+                  <p className="text-xs text-neutral-500 font-medium">Click &quot;Run Flow Test&quot; above to trigger and trace the workflow execution steps.</p>
                 ) : (
                   flowLog.map((logStr, i) => (
                     <p key={i} className="text-xs font-mono text-emerald-400 animate-fadeIn">{logStr}</p>
@@ -1007,7 +1020,7 @@ export default function ControlTower() {
               <div className="text-center py-16 space-y-3">
                 <Database className="w-10 h-10 text-surface-400 mx-auto opacity-40" />
                 <p className="text-sm font-bold text-surface-600 dark:text-surface-400">No CIs registered yet</p>
-                <p className="text-xs text-surface-400">Click "Sync to ServiceNow" to register MediPlant components as Configuration Items.</p>
+                <p className="text-xs text-surface-400">Click &quot;Sync to ServiceNow&quot; to register MediPlant components as Configuration Items.</p>
               </div>
             ) : (
               <div className="overflow-hidden rounded-2xl border border-surface-200 dark:border-white/10">
@@ -1063,8 +1076,8 @@ export default function ControlTower() {
                 { name: 'FastAPI Backend', key: 'fastapi_backend' },
                 { name: 'ML Classifier', key: 'ml_classifier' },
                 { name: 'SQLite Database', key: 'sqlite_db' },
-                { name: 'ChromaDB Vector Store', key: 'chromadb' },
-                { name: 'Groq LLM Integration', key: 'groq_api' },
+                { name: 'FAISS Vector Store', key: 'chromadb' },
+                { name: 'Ollama LLM Integration', key: 'groq_api' },
               ].map((item) => {
                 const registered = cmdbCIs.some(ci => ci.key === item.key);
                 return (

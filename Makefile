@@ -3,7 +3,7 @@
 # Convenience targets for development workflow
 # ============================================================
 
-.PHONY: install dev-backend dev-frontend dev test lint format docker-up docker-down db-migrate db-upgrade clean
+.PHONY: install dev-backend dev-frontend dev test lint format db-migrate db-upgrade clean
 
 # ----- Installation -----
 install: ## Install all project dependencies (backend + frontend)
@@ -13,7 +13,7 @@ install: ## Install all project dependencies (backend + frontend)
 
 # ----- Development Servers -----
 dev-backend: ## Start the FastAPI backend dev server
-	cd backend && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+	cd backend && ..\.venv\Scripts\uvicorn main:app --reload --host 127.0.0.1 --port 8000
 
 dev-frontend: ## Start the React frontend dev server
 	cd frontend && npm run dev
@@ -34,13 +34,6 @@ lint: ## Run linters (ruff for Python, eslint for frontend)
 format: ## Auto-format code (ruff for Python, prettier for frontend)
 	cd backend && ruff format .
 	cd frontend && npm run format
-
-# ----- Docker -----
-docker-up: ## Start all Docker services
-	docker-compose up --build -d
-
-docker-down: ## Stop all Docker services
-	docker-compose down
 
 # ----- Database -----
 db-migrate: ## Create a new Alembic migration (usage: make db-migrate msg="migration message")

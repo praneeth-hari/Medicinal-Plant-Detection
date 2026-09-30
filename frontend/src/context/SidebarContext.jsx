@@ -5,6 +5,7 @@
  */
 import { createContext, useState, useCallback, useMemo } from 'react';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const SidebarContext = createContext(null);
 
 export function SidebarProvider({ children }) {

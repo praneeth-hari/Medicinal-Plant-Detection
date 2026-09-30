@@ -31,6 +31,15 @@ class AuditLogEntry(BaseModel):
     details: Optional[str] = None
 
 
+class ServiceHealth(BaseModel):
+    """Live health probe result for one subsystem."""
+
+    name: str
+    healthy: bool
+    latency_ms: Optional[float] = None
+    detail: Optional[str] = None
+
+
 class ControlTowerStats(BaseModel):
     """System performance telemetry and metrics."""
 
@@ -43,4 +52,7 @@ class ControlTowerStats(BaseModel):
     avg_latency_ms: float
     latency_history: List[int] = Field(default_factory=list)
     token_history: List[int] = Field(default_factory=list)
+    total_tokens: int = 0
+    peak_tokens: int = 0
+    services: List[ServiceHealth] = Field(default_factory=list)
     timestamp: datetime

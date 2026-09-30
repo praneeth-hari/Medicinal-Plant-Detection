@@ -2,7 +2,6 @@
  * Reusable ErrorState Component
  * ============================
  */
-import React from 'react';
 import { AlertCircle } from 'lucide-react';
 import Button from './Button';
 

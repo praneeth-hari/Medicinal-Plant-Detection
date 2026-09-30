@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, BookOpen, ExternalLink, Calendar, User, History, RefreshCw, AlertCircle, ChevronLeft, ChevronRight, FileText } from 'lucide-react';
+import { Search, BookOpen, ExternalLink, Calendar, User, History, RefreshCw, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
 import Input from '../components/common/Input';
@@ -316,7 +316,7 @@ export function ResearchPapers() {
   useEffect(() => {
     const history = localStorage.getItem(SEARCH_HISTORY_KEY);
     if (history) {
-      try { setSearchHistory(JSON.parse(history)); } catch (_) {}
+      try { setSearchHistory(JSON.parse(history)); } catch (_) { /* ignore corrupt saved history */ }
     }
   }, []);
 
@@ -423,6 +423,7 @@ export function ResearchPapers() {
       executeSearch(q);
       saveToHistory(q);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const handleSearchSubmit = (e) => {

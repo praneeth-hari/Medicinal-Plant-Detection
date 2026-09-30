@@ -5,7 +5,6 @@
  * Dark translucent overlay that covers page content behind the mobile sidebar menu drawer.
  * Clicking the overlay triggers the menu to close.
  */
-import React from 'react';
 import { useSidebar } from '../../hooks/useSidebar';
 
 export function MobileOverlay() {
@@ -16,7 +15,7 @@ export function MobileOverlay() {
   return (
     <div
       onClick={closeSidebar}
-      className="fixed inset-0 z-35 bg-surface-950/40 backdrop-blur-sm lg:hidden transition-opacity duration-300"
+      className="fixed inset-0 z-40 bg-surface-950/40 backdrop-blur-sm lg:hidden transition-opacity duration-300"
       aria-hidden="true"
     />
   );

@@ -5,7 +5,7 @@
  * Displays medicinal plant monographs bookmarked by the user, persisted in localStorage.
  * Supports toggling between Grid and List layouts, and immediate unfavoriting.
  */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, Sprout, LayoutGrid, List } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
@@ -67,6 +67,7 @@ export function Favorites() {
 
   useEffect(() => {
     fetchFavoritesData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Remove a plant from favorites list

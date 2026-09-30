@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sprout, ArrowLeft, ShieldAlert, Sparkles, BookOpen, Heart, Landmark, Globe, FileText, ArrowRight } from 'lucide-react';
-import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Loader from '../components/common/Loader';
@@ -53,6 +52,7 @@ export function PlantDetail() {
 
   useEffect(() => {
     loadPlantDetails();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handleToggleFavorite = () => {
@@ -231,7 +231,7 @@ export function PlantDetail() {
               <div className="p-4 bg-white/40 dark:bg-black/40 border border-surface-200 dark:border-white/5 rounded-xl flex items-center justify-between">
                 <div>
                   <h4 className="text-xs font-extrabold text-surface-900 dark:text-white">Search NCBI Database</h4>
-                  <p className="text-[10px] text-surface-500 dark:text-surface-450 mt-0.5 font-bold">Lookup "{plant.scientific_name}"</p>
+                  <p className="text-[10px] text-surface-500 dark:text-surface-450 mt-0.5 font-bold">Lookup &quot;{plant.scientific_name}&quot;</p>
                 </div>
                 <Button
                   onClick={() => navigate(`/papers?q=${encodeURIComponent(plant.scientific_name)}`)}

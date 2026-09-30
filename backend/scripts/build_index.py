@@ -33,10 +33,10 @@ PLANT_DOCUMENTS = [
         "plant": "Tulsi",
         "content": (
             "Tulsi (Ocimum tenuiflorum), also known as Holy Basil, is one of the most sacred plants in India, belonging to the family Lamiaceae. "
-            "Medicinal Uses: Revered as an adaptogen, Tulsi helps the body adapt to stress and balances energy. It exhibits strong anti-inflammatory, antioxidant, and antimicrobial properties. It is highly effective in treating respiratory conditions such as coughs, cold, bronchitis, asthma, and sore throats. It helps regulate blood sugar, supports cardiac function, and boosts overall immune system activity. "
+            "Medicinal Uses: Revered as an adaptogen, Tulsi helps the body adapt to stress and balances energy. It exhibits strong anti-inflammatory, antioxidant, and antimicrobial properties. It is traditionally used in treating respiratory conditions such as coughs, cold, bronchitis, asthma, and sore throats. It helps regulate blood sugar, supports cardiac function, and is traditionally used to support immune function. "
             "Preparation Methods: Commonly consumed as an herbal infusion (Tulsi tea) by boiling 5-8 fresh leaves in water. The fresh leaf juice can be extracted directly, or the raw leaves can be chewed. "
             "Precautions: Tulsi may lower blood glucose levels; diabetics on insulin or oral medications should monitor blood sugar. It contains eugenol, which has mild blood-thinning effects, so avoid excessive quantities before surgery or if taking antiplatelet/anticoagulant drugs. Safety during pregnancy and lactation is not established; consult a doctor. "
-            "Common Misconceptions: Some believe Tulsi has no side effects because it is sacred, but large doses can cause liver strain due to eugenol concentration, and chewing leaves excessively is sometimes discouraged due to trace mercury or iron content that can damage tooth enamel."
+            "Common Misconceptions: Tulsi is sometimes assumed to be risk-free because it is sacred, but large doses can cause liver strain due to eugenol concentration, and chewing leaves excessively is sometimes discouraged due to trace mercury or iron content that can damage tooth enamel."
         ),
     },
     {
@@ -44,7 +44,7 @@ PLANT_DOCUMENTS = [
         "plant": "Neem",
         "content": (
             "Neem (Azadirachta indica), belonging to the family Meliaceae, is traditionally called the 'village pharmacy' due to its comprehensive healing traits. "
-            "Medicinal Uses: Neem is a powerful antiseptic, antifungal, antibacterial, and antiviral agent. It is widely applied in dermatology to cure acne, eczema, psoriasis, ringworm, and scabies. Neem bark extracts act as anti-malarial agents, and neem oil is used for head lice and insect repellent. It is highly valued for blood purification, liver detoxification, and improving oral hygiene. "
+            "Medicinal Uses: Neem is a powerful antiseptic, antifungal, antibacterial, and antiviral agent. It is widely applied in dermatology to treat acne, eczema, psoriasis, ringworm, and scabies. Neem bark extracts act as anti-malarial agents, and neem oil is used for head lice and insect repellent. It is traditionally used to support oral hygiene. "
             "Preparation Methods: Neem leaves are crushed into a paste for topical application on skin infections. A decoction is prepared by boiling leaves in water. Neem oil is diluted in a carrier oil for skin application. Twigs are chewed as natural toothbrushes. "
             "Precautions: Neem is a potent abortifacient and must be strictly avoided during pregnancy. Long-term internal use can lead to liver or kidney toxicity. It can lower blood sugar, requiring careful monitoring in diabetics. Neem oil should never be ingested internally in large doses, especially by children, as it can cause severe poisoning or death. "
             "Common Misconceptions: Many assume that because neem twigs are good for gums, neem oil can be consumed daily as a health tonic. Internal ingestion of neem oil is highly toxic and can cause liver damage."
@@ -66,7 +66,7 @@ PLANT_DOCUMENTS = [
         "plant": "Aloe Vera",
         "content": (
             "Aloe Vera (Aloe barbadensis miller) is a succulent plant belonging to the family Asphodelaceae, utilized across historical cultures for skincare and digestive health. "
-            "Medicinal Uses: The cooling inner leaf gel is highly effective for soothing sunburns, thermal burns, cuts, and minor skin wounds. Orally, aloe vera juice supports digestive health, reduces inflammation in ulcerative colitis, and acts as a laxative. It has strong moisturizing, antimicrobial, and anti-aging properties. "
+            "Medicinal Uses: The cooling inner leaf gel is traditionally used for soothing sunburns, thermal burns, cuts, and minor skin wounds. Orally, aloe vera juice supports digestive health, reduces inflammation in ulcerative colitis, and acts as a laxative. It has strong moisturizing, antimicrobial, and anti-aging properties. "
             "Preparation Methods: The fresh inner gel is scraped from cut leaves and applied directly to the skin. The gel can be blended with water or juice for oral consumption. "
             "Precautions: Avoid consuming the yellow latex (aloin) found directly beneath the leaf rind, as it is a harsh anthraquinone laxative that causes severe abdominal cramps and electrolyte depletion. Oral ingestion is contraindicated during pregnancy due to risk of uterine contractions. It may interact with diuretics and diabetic medications. "
             "Common Misconceptions: Many believe the whole aloe leaf can be juiced and consumed safely. However, the outer leaf and yellow latex contain aloin, which is a gastrointestinal irritant and a suspected carcinogen in high chronic doses."
@@ -88,7 +88,7 @@ PLANT_DOCUMENTS = [
         "plant": "Turmeric",
         "content": (
             "Turmeric (Curcuma longa) is a rhizomatous herbaceous plant of the ginger family Zingiberaceae, native to the Indian subcontinent. "
-            "Medicinal Uses: The active polyphenol curcumin gives turmeric its potent anti-inflammatory and antioxidant properties. It is highly effective in relieving joint pain, stiffness, and inflammation associated with osteoarthritis and rheumatoid arthritis. It supports liver detoxification, cardiovascular function, and digestive health. "
+            "Medicinal Uses: The active polyphenol curcumin gives turmeric its potent anti-inflammatory and antioxidant properties. It is traditionally used in relieving joint pain, stiffness, and inflammation associated with osteoarthritis and rheumatoid arthritis. It is traditionally used to support liver, cardiovascular, and digestive health. "
             "Preparation Methods: The dried rhizome powder is used widely in cooking, or mixed with warm milk and black pepper (golden milk) to enhance curcumin absorption. Supplements are available as standardized capsules. "
             "Precautions: Curcumin has mild anticoagulant properties and should not be taken in high doses by individuals on blood thinners. It is contraindicated in cases of bile duct obstruction or gallstones. High doses can cause mild gastric irritation. "
             "Common Misconceptions: A common misconception is that regular culinary turmeric provides enough curcumin for therapeutic effects. In truth, curcumin has very low bioavailability, and therapeutic outcomes usually require black pepper (piperine) or lipid-formulations to enhance absorption."
@@ -99,7 +99,7 @@ PLANT_DOCUMENTS = [
         "plant": "Amla",
         "content": (
             "Amla (Phyllanthus emblica), also called Indian Gooseberry, is a deciduous tree of the family Phyllanthaceae yielding translucent green fruits. "
-            "Medicinal Uses: Amla is one of the richest natural sources of Vitamin C, providing potent antioxidant activity. It boosts immune response, enhances skin and hair health, prevents premature hair greying, regulates digestive acidity, and supports liver health. It also helps manage blood glucose and lipid profiles. "
+            "Medicinal Uses: Amla is one of the richest natural sources of Vitamin C, providing potent antioxidant activity. It is traditionally used to support immune response, enhances skin and hair health, prevents premature hair greying, regulates digestive acidity, and supports liver health. It also helps manage blood glucose and lipid profiles. "
             "Preparation Methods: Fresh fruit juice, dried fruit powder mixed with water or honey, or consumed raw or pickled. "
             "Precautions: Amla is highly acidic; individuals with acute hyperacidity or acid reflux should consume it with food. It has mild antiplatelet properties, so caution is advised if taking blood-thinning medications or before surgeries. "
             "Common Misconceptions: Some think that cooking Amla destroys all its Vitamin C. However, Amla contains heat-stable tannins that protect its Vitamin C content, preserving its antioxidant benefits even after moderate heat processing."
@@ -143,7 +143,7 @@ PLANT_DOCUMENTS = [
         "plant": "Ginger",
         "content": (
             "Ginger (Zingiber officinale) is a flowering plant in the family Zingiberaceae, whose underground rhizome is used globally as a spice and medicine. "
-            "Medicinal Uses: Ginger is highly effective for alleviating nausea, morning sickness in pregnancy, and motion sickness. It has potent anti-inflammatory properties that ease joint and muscle pain in arthritis. It acts as a carminative, helping to relieve bloating, gas, and digestive cramps. "
+            "Medicinal Uses: Ginger is traditionally used for alleviating nausea, morning sickness in pregnancy, and motion sickness. It has potent anti-inflammatory properties that ease joint and muscle pain in arthritis. It acts as a carminative, helping to relieve bloating, gas, and digestive cramps. "
             "Preparation Methods: Steep fresh rhizome slices in boiling water for ginger tea, add grated ginger to foods, or consume dried rhizome powder capsules. "
             "Precautions: Ginger may interact with blood thinners due to its antiplatelet properties. Avoid large therapeutic doses if taking warfarin or aspirin. High doses can trigger mild heartburn or diarrhea in sensitive individuals. "
             "Common Misconceptions: Some believe ginger can be consumed in unlimited quantities. However, consuming more than 4 grams of ginger daily can lead to gastric irritation, reflux, and increased risk of bleeding."
@@ -154,7 +154,7 @@ PLANT_DOCUMENTS = [
         "plant": "Garlic",
         "content": (
             "Garlic (Allium sativum) is a bulbous perennial of the family Amaryllidaceae, containing the organosulfur compound allicin which provides its characteristic odor and medical activity. "
-            "Medicinal Uses: Garlic supports cardiovascular health by lowering blood pressure and regulating cholesterol levels. It exhibits broad-spectrum antimicrobial activity against bacteria, viruses, and fungi. It boosts immune response to counter common colds and acts as an antioxidant. "
+            "Medicinal Uses: Garlic supports cardiovascular health by lowering blood pressure and regulating cholesterol levels. It exhibits broad-spectrum antimicrobial activity against bacteria, viruses, and fungi. It is traditionally used to support immune response to counter common colds and acts as an antioxidant. "
             "Preparation Methods: Consumed raw (chopped or crushed to activate allicin), infused in oils, or taken as aged garlic extract tablets. "
             "Precautions: Garlic has significant antiplatelet effects and can increase the risk of bleeding. Discontinue therapeutic doses two weeks prior to surgery. It can cause gastrointestinal upset or heartburn if eaten raw in excess. "
             "Common Misconceptions: Many swallow whole garlic cloves to avoid bad breath. However, unless the garlic clove is crushed or chewed, allicin is not synthesized, and most of its medicinal benefits are lost."
@@ -220,7 +220,7 @@ PLANT_DOCUMENTS = [
         "plant": "Bael",
         "content": (
             "Bael (Aegle marmelos), belonging to the family Rutaceae, is a sacred deciduous tree native to India, bearing large, hard-shelled fruits with aromatic pulp. "
-            "Medicinal Uses: Rich in tannins and pectin, Bael fruit pulp is highly effective for treating acute diarrhea, dysentery, and irritable bowel syndrome (IBS). It exerts protective effects on the gastric mucosa and aids digestion. "
+            "Medicinal Uses: Rich in tannins and pectin, Bael fruit pulp is traditionally used for treating acute diarrhea, dysentery, and irritable bowel syndrome (IBS). It exerts protective effects on the gastric mucosa and aids digestion. "
             "Preparation Methods: The orange pulp of the semi-ripe or ripe fruit is consumed fresh, blended into juices, or the dried fruit powder is mixed with water. "
             "Precautions: Excessive consumption of ripe Bael fruit can lead to constipation due to high tannin content. The leaves and bark may have mild hypoglycemic and uterine-stimulating properties; avoid in pregnancy. "
             "Common Misconceptions: Some believe that Bael should only be eaten when fully ripe. However, for treating diarrhea and dysentery, the unripe or semi-ripe fruit is actually more effective due to its higher concentration of astringent tannins."
@@ -231,7 +231,7 @@ PLANT_DOCUMENTS = [
         "plant": "Bhringraj",
         "content": (
             "Bhringraj (Eclipta prostrata), of the family Asteraceae, is a creeping herb found in wet, waste areas and marshy lands, traditionally called the 'king of hair'. "
-            "Medicinal Uses: Bhringraj is widely used to promote hair growth, prevent premature greying, treat dandruff, and support scalp health. Internally, it acts as a liver tonic, helping in detoxification, bile regulation, and skin healing. "
+            "Medicinal Uses: Bhringraj is widely used to promote hair growth, prevent premature greying, treat dandruff, and support scalp health. Internally, it acts as a liver tonic, supporting traditional liver-care use, bile regulation, and skin healing. "
             "Preparation Methods: The fresh leaf juice is infused into a carrier oil (like coconut or sesame oil) for scalp application, or leaf paste is applied topically. "
             "Precautions: Bhringraj is considered to have a cooling effect. When applied to the scalp, it can cause a mild cooling sensation; avoid if suffering from acute chills or sinus congestion. Do not ingest without guidance. "
             "Common Misconceptions: Many believe that applying Bhringraj oil once will instantly stop hair fall. Hair rejuvenation is a gradual process, and consistent application over 4-8 weeks is usually necessary to see results."

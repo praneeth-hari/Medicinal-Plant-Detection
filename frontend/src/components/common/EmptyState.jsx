@@ -2,7 +2,6 @@
  * Reusable EmptyState Component
  * =============================
  */
-import React from 'react';
 import Button from './Button';
 
 export function EmptyState({

@@ -16,8 +16,6 @@ export const ROUTES = {
   SETTINGS: '/settings',
   CONTROL_TOWER: '/control-tower',
   ABOUT: '/about',
-  LOGIN: '/login',
-  REGISTER: '/register',
   NOT_FOUND: '*',
 };
 

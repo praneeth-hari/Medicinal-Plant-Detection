@@ -40,22 +40,16 @@ class Settings(BaseSettings):
     # --- Database ---
     DATABASE_URL: str = "sqlite+aiosqlite:///./medicinal_plants.db"
 
-    # --- Authentication / JWT ---
-    SECRET_KEY: str = "change-me-to-a-random-secret-key"
-    ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-
     # --- ML Model ---
     MODEL_PATH: str = "./data/models/plant_classifier.pth"
 
-    # --- ChromaDB / Embeddings ---
-    CHROMA_PERSIST_DIR: str = "./data/embeddings"
+    # --- Embeddings / FAISS ---
     EMBEDDINGS_DIR: str = "./data/embeddings"
     EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
 
-    # --- Groq ---
-    GROQ_API_KEY: str = ""
-    GROQ_MODEL: str = "llama-3.1-8b-instant"
+    # --- Ollama (local LLM) ---
+    OLLAMA_BASE_URL: str = "http://localhost:11434"
+    OLLAMA_MODEL: str = "qwen2.5:3b"
 
     # --- ServiceNow CMDB ---
     SERVICENOW_INSTANCE: str = ""

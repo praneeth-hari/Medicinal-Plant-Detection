@@ -7,6 +7,7 @@
 import { createContext, useState, useEffect, useMemo } from 'react';
 import { LOCAL_STORAGE_KEYS } from '../utils/constants';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const ThemeContext = createContext(null);
 
 /**
