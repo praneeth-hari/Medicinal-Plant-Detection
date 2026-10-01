@@ -1,0 +1,79 @@
+class_folder,kb_status,identity_status,authoring_gate,dataset_row,dataset_common_name,dataset_botanical_name,folder_files,paper_samples,count_check,who_monograph_candidate,evidence_and_notes
+Aloevera,covered,confirmed,allowed,1,Alovera,Aloe barbadensis miller,118,118,match,Vol 1: Aloe; Aloe vera gel,Name matches the paper's table row; folder count equals the paper's sample count.
+Amla,covered,confirmed,allowed,2,Amla,Phyllanthus emblica,67,67,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Amruthaballi,covered,confirmed,allowed,4,Giloy (Amrutaballi),Tinospora cordifolia,91,91,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Arali,missing,confirmed,allowed,5,Peepal (Arali),Ficus religiosa,89,89,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Astma_weed,missing,confirmed,allowed,6,Asthma weed,Euphorbia hirta,82,82,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Badipala,missing,unresolved,blocked,36,Badipala,,76,76,match,,"Paper table row 36 gives no botanical name and no explanation. No other source found. Folder count 76 matches row 36 but 3 other rows share that count, so the match rests on the name."
+Balloon_Vine,missing,confirmed,allowed,35,Balloon Vine,Cardiospermum halicacabum,61,61,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Bamboo,missing,genus_level_only,genus-level entry only,7,Bamboo,Bambusoideae,118,118,match,,"Dataset gives 'Bambusoideae' (a subfamily, not even a genus). No species-level identification anywhere in the dataset documentation."
+Beans,missing,genus_level_only,genus-level entry only,27,Beans,Phaseolus,97,97,match,,Dataset gives genus 'Phaseolus' only. No species-level identification found.
+Betel,missing,confirmed,allowed,8,Betel,Piper betle,114,114,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Bhrami,covered,confirmed,allowed,9,Brahmi,Bacopa monnieri,104,104,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Bringaraja,covered,confirmed,allowed,10,Bringaraj,Eclipta prostrate [sic: prostrata],73,73,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Caricature,missing,confirmed,allowed,73,Caricature,Graptophyllum pictum,76,76,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Castor,missing,confirmed,allowed,12,Castor,Ricinus communis,129,129,match,Vol 4: Oleum Ricini,Name matches the paper's table row; folder count equals the paper's sample count.
+Catharanthus,missing,confirmed,allowed,41,Nithya Pushpa,Catharanthus roseus,134,134,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Chakte,missing,unresolved,blocked,37,Chakte,,68,68,match,,Paper table row 37 gives no botanical name and no explanation. No other source found. Folder count 68 matches row 37 uniquely (link folder<->row is sound; the species is unknown).
+Chilly,missing,confirmed,allowed,28,Chilly,Capsicum frutescens,69,69,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Citron lime (herelikai),missing,confirmed,allowed,13,Citron lime (herelikai),Citrus medica,99,99,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Coffee,missing,genus_level_only,genus-level entry only,14,Coffee,Coffea,83,83,match,,Dataset gives genus 'Coffea' only. No species-level identification found.
+Common rue(naagdalli),missing,confirmed,allowed,65,Nagadali,Ruta graveolens,67,67,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Coriender,missing,confirmed,allowed,53,Coriander,Coriandrum sativum,115,115,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Curry,covered,confirmed,allowed,15,Curry leaf,Murraya koenigii,168,168,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Doddpathre,missing,confirmed,allowed,54,Indian Borge (Doddapatre),Coleus amboinicus,142,142,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Drumstick,covered,confirmed,allowed,55,Drumstick,Moringa oleifera,56,56,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Ekka,missing,unresolved,blocked,56?,Aak,Calotropis gigantea,81,81,match,,"Pairing with row 56 'Aak' (Calotropis gigantea) rests on elimination. Count 81 is shared by three rows (Aak, Ashoka, Globe amarnath), so it cannot discriminate. A claim that Ekka = Calotropis gigantea came only from an inaccessible third-party page and is not accepted."
+Eucalyptus,missing,confirmed,allowed,58,Eucalyptus,Eucalyptus globulus,80,80,match,Vol 2: Folium Eucalypti; Aetheroleum Eucalypti (species to confirm),Name matches the paper's table row; folder count equals the paper's sample count.
+Ganigale,missing,unresolved,blocked,63?,Ganigale,Calotropis gigantea,75,75,match,,"Paper lists Calotropis gigantea for both Aak (row 56) and Ganigale (row 63), with no note. Sample images of the two folders show clearly different leaves (Ekka: broad, pale, ovate; Ganigale: long narrow lanceolate), so they cannot be one species. The botanical name for row 63 is therefore very likely wrong; the correct species is unknown. Image comparison is a visual observation by me, not an authoritative identification."
+Ganike,missing,needs_source_verification,blocked until verified,57,Black nightshade,Solanum nigrum,63,63,match,,Folder count 63 matches row 57 'Black nightshade' (Solanum nigrum) uniquely. Independent web sources give Kannada 'Ganike soppu' = Solanum nigrum. No authoritative dataset statement; needs botanist or dataset-author confirmation.
+Gasagase,missing,confirmed,allowed,69,Gasagase,Papaver somniferum,79,79,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Ginger,covered,confirmed,allowed,19,Ginger,Zingiber officinale,82,82,match,Vol 1: Rhizoma Zingiberis,Name matches the paper's table row; folder count equals the paper's sample count.
+Globe Amarnath,missing,confirmed,allowed,72,Globe amarnath,Gomphrena globosa,81,81,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Guava,missing,confirmed,allowed,20,Guava,Psidium guajava,128,128,match,Vol 4: Folium Guavae,Name matches the paper's table row; folder count equals the paper's sample count.
+Henna,missing,confirmed,allowed,21,Henna,Lawsonia inermis,80,80,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Hibiscus,covered,confirmed,allowed,22,Hibiscus,Hibiscus rosa-sinensis,118,118,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Honge,missing,confirmed,allowed,29,Honge,Millettia pinnata,113,113,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Insulin,missing,confirmed,allowed,16,Insulin plant,Costus igneus,89,89,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Jackfruit,missing,confirmed,allowed,17,Jackfruit,Artocarpus heterophyllus,110,110,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Jasmine,missing,genus_level_only,genus-level entry only,18,Jasmine,Jasminum,49,49,match,,Dataset gives genus 'Jasminum' only. No species-level identification found.
+Kambajala,missing,unresolved,blocked,75?,Butterfly pea,Clitoria ternatea,59,60,differs (59 vs 60),,"Paper row 75 is 'Butterfly pea' (Clitoria ternatea), paired only by elimination. Count mismatch: folder 59 vs paper 60. Sample images show bilobed (two-lobed) simple leaves, which does not match the compound leaves of Clitoria ternatea. No source found for the Kannada name."
+Kasambruga,missing,unresolved,blocked,76,Kasaambruga,,48,48,match,,Paper table row 76 gives no botanical name. No other source found. Folder count 48 matches row 76 uniquely (folder<->row link is sound; the species is unknown).
+Kohlrabi,missing,confirmed,allowed,79,Kohlrabi,Brassica oleracea Gongylodes,73,73,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Lantana,missing,confirmed,allowed,78,Lantana,Lantana camara,76,76,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Lemon,missing,confirmed,allowed,59,Lemon,Citrus limon,123,123,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Malabar_Nut,missing,confirmed,allowed,34,Malabar Nut,Adathoda vasica [sic: Adhatoda vasica],51,51,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Malabar_Spinach,missing,confirmed,allowed,24,Malabar spinach,Basella alba,79,79,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Mango,missing,confirmed,allowed,25,Mango,Mangifera indica,103,103,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Marigold,missing,confirmed,allowed,26,Marigold,Tagetes erecta,93,93,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Mint,covered,genus_level_only,genus-level entry only,80,Mint,Mentha,135,135,match,,"Dataset gives genus 'Mentha' only. The current KB and plants table use 'Mentha spicata', which the dataset does not support. Reconcile later (relabel as Mentha spp. or get species confirmation); not changed now."
+Neem,covered,confirmed,allowed,44,Neem,Azadirachta indica,132,132,match,Vol 3: Azadirachta (part to confirm),Name matches the paper's table row; folder count equals the paper's sample count.
+Nelavembu,missing,confirmed,allowed,77,Nelavambu,Andrographis paniculata,90,90,match,Vol 2: Herba Andrographidis,Name matches the paper's table row; folder count equals the paper's sample count.
+Nerale,missing,confirmed,allowed,46,Indian blackberry (Nerale),Syzygium cumini,62,62,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Nooni,missing,confirmed,allowed,3,Noni,Morinda citrifolia,72,72,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Onion,missing,confirmed,allowed,42,Onion,Allium cepa,92,92,match,Vol 1: Bulbus Allii Cepae,Name matches the paper's table row; folder count equals the paper's sample count.
+Padri,missing,confirmed,allowed,38,Padri,Radermachera xylocarpa,73,73,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Palak(Spinach),missing,confirmed,allowed,43,Spinach,Spinacia oleracea,149,149,match,,Same species as Spinach1; one KB entry for both folders.
+Papaya,missing,confirmed,allowed,47,Papaya,Carica papaya,135,135,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Parijatha,missing,confirmed,allowed,48,Parijatha,Nyctanthes arbor-tristis,66,66,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Pea,missing,genus_level_only,genus-level entry only,39,Pea,Pisum,47,47,match,,Dataset gives genus 'Pisum' only. No species-level identification found.
+Pomoegranate,missing,confirmed,allowed,50,Pomegranate,Punica granatum,75,75,match,Vol 4: Cortex Granati; Pericarpium Granati,Name matches the paper's table row; folder count equals the paper's sample count.
+Pumpkin,missing,unresolved,blocked,62,Fluted pumpkin leaf,Cucurbita moschata,92,92,match,Vol 4: Semen Cucurbitae (species to confirm vs C. moschata),"Paper row 62 pairs the common name 'Fluted pumpkin leaf' with Cucurbita moschata. 'Fluted pumpkin' is Telfairia occidentalis (confirmed via web sources), a different species. The common name and botanical name conflict; the dataset does not say which is right."
+Raddish,missing,confirmed,allowed,51,Raddish,Raphanus sativus,40,40,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Rose,missing,genus_level_only,genus-level entry only,52,Rose,Rosa,106,106,match,,Dataset gives genus 'Rosa' only. No species-level identification found.
+Sampige,missing,confirmed,allowed,71,Sampige,Magnolia champaca,61,61,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Sapota,missing,confirmed,allowed,68,Sapota,Manilkara zapota,45,45,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Seethaashoka,missing,unresolved,blocked,45,Seethashoka,,47,47,match,,Paper table row 45 gives no botanical name. No other source found. Do not assume Saraca asoca: the dataset already lists 'Ashoka' separately as Saraca asoca.
+Seethapala,missing,confirmed,allowed,67,Seethapala,Annona reticulata,114,114,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Spinach1,missing,confirmed,allowed,74,Spinach,Spinacia oleracea,70,54,differs (70 vs 54),,"Same species as Palak(Spinach) per the table; folder count 70 differs from paper row 74 (54): dataset version difference, identity unaffected. Two folders, one KB entry."
+Tamarind,missing,confirmed,allowed,66,Tamarind,Tamarindus indica,176,156,differs (176 vs 156),,Folder count 176 differs from paper 156 (dataset version difference); identity unaffected.
+Taro,missing,confirmed,allowed,23,Taro,Colocasia esculenta,69,69,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Tecoma,missing,confirmed,allowed,64,Tecoma,Tecoma stans,69,69,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Thumbe,missing,confirmed,allowed,31,Thumbe,Leucas aspera,74,74,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Tomato,missing,confirmed,allowed,70,Tomato,Solanum lycopersicum,62,62,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+Tulsi,covered,confirmed,allowed,32,Tulsi,Ocimum tenuiflorum,177,177,match,Vol 2: Folium Ocimi Sancti,Name matches the paper's table row; folder count equals the paper's sample count.
+Turmeric,covered,confirmed,allowed,33,Turmeric,Curcuma longa,39,39,match,Vol 1: Rhizoma Curcumae Longae,Name matches the paper's table row; folder count equals the paper's sample count.
+ashoka,missing,needs_source_verification,blocked until verified,40,Ashoka,Saraca asoca,81,81,match,,"Name pairing is clear (Ashoka = Saraca asoca per the paper). But sample images show simple lanceolate leaves with distinctly wavy margins, whereas Saraca asoca has compound paripinnate leaves; Polyalthia longifolia ('false ashoka') has simple wavy lanceolate leaves and is a documented bark adulterant. Possible misidentification; visual observation only, needs botanist verification."
+camphor,missing,confirmed,allowed,11,Camphor,Cinnamomum camphora,66,66,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+kamakasturi,missing,confirmed,allowed,61,Kamakasturi,Ocimum basilicum,67,67,match,,Name matches the paper's table row; folder count equals the paper's sample count.
+kepala,missing,needs_source_verification,blocked until verified,30,Flameleaf,Ixora coccinea,76,76,match,,"Count 76 is shared by four rows; the other three folders are matched by name, leaving row 30 'Flameleaf' (Ixora coccinea). Independent sources give Kannada 'Kepala' = Ixora coccinea (eFloraofIndia, WisdomLib). Needs confirmation from the dataset authors."
