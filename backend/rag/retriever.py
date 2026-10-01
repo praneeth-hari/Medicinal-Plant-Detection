@@ -9,6 +9,7 @@ block, and converts results to source reference dicts.
 from __future__ import annotations
 
 import logging
+import re
 from typing import Any
 
 from rag.embeddings import EmbeddingService
@@ -38,6 +39,17 @@ class DocumentRetriever:
         """
         self.vector_store = vector_store
         self.embedding_service = embedding_service
+        self._plant_names: list[str] = []
+        self._plant_names_count = -1  # chunk count the cached names were derived from
+
+    def _known_plant_names(self) -> list[str]:
+        """Lower-cased distinct ``plant`` values of the loaded chunks, cached until the chunk count changes."""
+        if self._plant_names_count != self.vector_store.count:
+            self._plant_names = sorted({
+                str(m["plant"]).lower() for m in self.vector_store.metadatas if m.get("plant")
+            })
+            self._plant_names_count = self.vector_store.count
+        return self._plant_names
 
     def retrieve(
         self,
@@ -66,15 +78,9 @@ class DocumentRetriever:
         # 2. Metadata-Aware Re-ranking / Keyword Boosting
         # Parse query for plant names
         query_lower = query.lower()
-        plant_names = [
-            "tulsi", "neem", "ashwagandha", "aloe vera", "brahmi", "turmeric", "amla", 
-            "mint", "curry leaves", "hibiscus", "ginger", "garlic", "moringa", "lemongrass", 
-            "shatavari", "giloy", "arjuna", "bael", "bhringraj", "fenugreek"
-        ]
-        
         detected_plants = []
-        for name in plant_names:
-            if name in query_lower:
+        for name in self._known_plant_names():
+            if re.search(rf"(?<!\w){re.escape(name)}(?!\w)", query_lower):
                 detected_plants.append(name)
 
         # If a plant is detected, boost its score

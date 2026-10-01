@@ -1,0 +1,2518 @@
+{
+  "generated": "2026-10-01T18:35:22",
+  "rag": {
+    "n_questions": 89,
+    "n_original_questions": 40,
+    "n_pilot_questions": 49,
+    "n_chunks": 78,
+    "kb_plants": [
+      "Aloe Vera",
+      "Amla",
+      "Arjuna",
+      "Ashwagandha",
+      "Bael",
+      "Bhringraj",
+      "Brahmi",
+      "Castor",
+      "Curry Leaves",
+      "Fenugreek",
+      "Garlic",
+      "Giloy",
+      "Ginger",
+      "Guava",
+      "Hibiscus",
+      "Lemongrass",
+      "Mint",
+      "Moringa",
+      "Neem",
+      "Shatavari",
+      "Tomato",
+      "Tulsi",
+      "Turmeric"
+    ],
+    "category_counts": {
+      "therapeutic_uses": 30,
+      "safety_precautions": 33,
+      "misconceptions": 5,
+      "preparation": 6,
+      "identity": 9,
+      "phytochemistry": 6
+    },
+    "production_retriever": {
+      "by_set": {
+        "original": {
+          "n": 40,
+          "plant_match": {
+            "hit@1": 1.0,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "plant_and_category_match": {
+            "hit@1": 0.825,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "top1_wrong_plant": 0,
+          "by_category": {
+            "misconceptions": {
+              "n": 5,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "preparation": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "safety_precautions": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5714,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "therapeutic_uses": {
+              "n": 19,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.9474,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            }
+          },
+          "by_plant": {
+            "Aloe Vera": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Amla": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Arjuna": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Ashwagandha": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Bael": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Bhringraj": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Brahmi": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Curry Leaves": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Fenugreek": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Garlic": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Giloy": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Ginger": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Hibiscus": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Lemongrass": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Mint": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Moringa": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Neem": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Shatavari": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Tulsi": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Turmeric": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            }
+          },
+          "misses_at_5_plant_and_category": [],
+          "misses_at_5_answer_chunk": []
+        },
+        "pilot": {
+          "n": 49,
+          "plant_match": {
+            "hit@1": 1.0,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "plant_and_category_match": {
+            "hit@1": 0.7959,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "top1_wrong_plant": 0,
+          "answer_chunk_match": {
+            "n": 49,
+            "hit@1": 0.7755,
+            "hit@3": 0.9388,
+            "hit@5": 0.9592
+          },
+          "by_category": {
+            "identity": {
+              "n": 9,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7778,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 9,
+                "hit@1": 0.7778,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "phytochemistry": {
+              "n": 6,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 6,
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "preparation": {
+              "n": 4,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 4,
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "safety_precautions": {
+              "n": 19,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7895,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 19,
+                "hit@1": 0.7895,
+                "hit@3": 0.9474,
+                "hit@5": 1.0
+              }
+            },
+            "therapeutic_uses": {
+              "n": 11,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8182,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 11,
+                "hit@1": 0.7273,
+                "hit@3": 0.8182,
+                "hit@5": 0.8182
+              }
+            }
+          },
+          "by_plant": {
+            "Castor": {
+              "n": 18,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7222,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 18,
+                "hit@1": 0.6667,
+                "hit@3": 0.8333,
+                "hit@5": 0.8889
+              }
+            },
+            "Guava": {
+              "n": 17,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8824,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 17,
+                "hit@1": 0.8824,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "Tomato": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7857,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 14,
+                "hit@1": 0.7857,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            }
+          },
+          "by_style": {
+            "alias_or_scientific": {
+              "n": 8,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 8,
+                "hit@1": 0.75,
+                "hit@3": 0.875,
+                "hit@5": 0.875
+              }
+            },
+            "common_name": {
+              "n": 27,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7407,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 27,
+                "hit@1": 0.7037,
+                "hit@3": 0.9259,
+                "hit@5": 0.963
+              }
+            },
+            "descriptor": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.9286,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 14,
+                "hit@1": 0.9286,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            }
+          },
+          "misses_at_5_plant_and_category": [],
+          "misses_at_5_answer_chunk": [
+            {
+              "plant": "Castor",
+              "category": "therapeutic_uses",
+              "question": "What is castor oil used for?",
+              "top5": [
+                "Castor#3",
+                "Castor#9",
+                "Castor#7",
+                "Castor#13",
+                "Castor#16"
+              ]
+            },
+            {
+              "plant": "Castor",
+              "category": "therapeutic_uses",
+              "question": "What are the pharmacopoeial uses of erand oil?",
+              "top5": [
+                "Castor#10",
+                "Castor#3",
+                "Castor#8",
+                "Castor#15",
+                "Castor#13"
+              ]
+            }
+          ]
+        },
+        "combined": {
+          "n": 89,
+          "plant_match": {
+            "hit@1": 1.0,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "plant_and_category_match": {
+            "hit@1": 0.809,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "top1_wrong_plant": 0,
+          "answer_chunk_match": {
+            "n": 49,
+            "hit@1": 0.7755,
+            "hit@3": 0.9388,
+            "hit@5": 0.9592
+          },
+          "by_category": {
+            "identity": {
+              "n": 9,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7778,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 9,
+                "hit@1": 0.7778,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "misconceptions": {
+              "n": 5,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "phytochemistry": {
+              "n": 6,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 6,
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "preparation": {
+              "n": 6,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 4,
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "safety_precautions": {
+              "n": 33,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.697,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 19,
+                "hit@1": 0.7895,
+                "hit@3": 0.9474,
+                "hit@5": 1.0
+              }
+            },
+            "therapeutic_uses": {
+              "n": 30,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.9,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 11,
+                "hit@1": 0.7273,
+                "hit@3": 0.8182,
+                "hit@5": 0.8182
+              }
+            }
+          },
+          "by_plant": {
+            "Aloe Vera": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Amla": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Arjuna": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Ashwagandha": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Bael": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Bhringraj": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Brahmi": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Castor": {
+              "n": 18,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7222,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 18,
+                "hit@1": 0.6667,
+                "hit@3": 0.8333,
+                "hit@5": 0.8889
+              }
+            },
+            "Curry Leaves": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Fenugreek": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Garlic": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Giloy": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Ginger": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Guava": {
+              "n": 17,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8824,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 17,
+                "hit@1": 0.8824,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "Hibiscus": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Lemongrass": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Mint": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Moringa": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Neem": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Shatavari": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Tomato": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7857,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 14,
+                "hit@1": 0.7857,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "Tulsi": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Turmeric": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            }
+          },
+          "by_style": {
+            "alias_or_scientific": {
+              "n": 8,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 8,
+                "hit@1": 0.75,
+                "hit@3": 0.875,
+                "hit@5": 0.875
+              }
+            },
+            "common_name": {
+              "n": 27,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7407,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 27,
+                "hit@1": 0.7037,
+                "hit@3": 0.9259,
+                "hit@5": 0.963
+              }
+            },
+            "descriptor": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.9286,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 14,
+                "hit@1": 0.9286,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            }
+          },
+          "misses_at_5_plant_and_category": [],
+          "misses_at_5_answer_chunk": [
+            {
+              "plant": "Castor",
+              "category": "therapeutic_uses",
+              "question": "What is castor oil used for?",
+              "top5": [
+                "Castor#3",
+                "Castor#9",
+                "Castor#7",
+                "Castor#13",
+                "Castor#16"
+              ]
+            },
+            {
+              "plant": "Castor",
+              "category": "therapeutic_uses",
+              "question": "What are the pharmacopoeial uses of erand oil?",
+              "top5": [
+                "Castor#10",
+                "Castor#3",
+                "Castor#8",
+                "Castor#15",
+                "Castor#13"
+              ]
+            }
+          ]
+        }
+      },
+      "plant_match": {
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      "plant_and_category_match": {
+        "hit@1": 0.825,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      "top1_wrong_plant": 0,
+      "by_category_plant_and_category": {
+        "misconceptions": {
+          "n": 5,
+          "hit@1": 1.0,
+          "hit@3": 1.0,
+          "hit@5": 1.0
+        },
+        "preparation": {
+          "n": 2,
+          "hit@1": 1.0,
+          "hit@3": 1.0,
+          "hit@5": 1.0
+        },
+        "safety_precautions": {
+          "n": 14,
+          "hit@1": 0.5714,
+          "hit@3": 1.0,
+          "hit@5": 1.0
+        },
+        "therapeutic_uses": {
+          "n": 19,
+          "hit@1": 0.9474,
+          "hit@3": 1.0,
+          "hit@5": 1.0
+        }
+      },
+      "misses_at_5_plant_and_category": []
+    },
+    "raw_faiss": {
+      "by_set": {
+        "original": {
+          "n": 40,
+          "plant_match": {
+            "hit@1": 1.0,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "plant_and_category_match": {
+            "hit@1": 0.825,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "top1_wrong_plant": 0,
+          "by_category": {
+            "misconceptions": {
+              "n": 5,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "preparation": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "safety_precautions": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5714,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "therapeutic_uses": {
+              "n": 19,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.9474,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            }
+          },
+          "by_plant": {
+            "Aloe Vera": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Amla": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Arjuna": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Ashwagandha": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Bael": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Bhringraj": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Brahmi": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Curry Leaves": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Fenugreek": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Garlic": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Giloy": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Ginger": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Hibiscus": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Lemongrass": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Mint": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Moringa": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Neem": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Shatavari": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Tulsi": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Turmeric": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            }
+          },
+          "misses_at_5_plant_and_category": [],
+          "misses_at_5_answer_chunk": []
+        },
+        "pilot": {
+          "n": 49,
+          "plant_match": {
+            "hit@1": 1.0,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "plant_and_category_match": {
+            "hit@1": 0.7959,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "top1_wrong_plant": 0,
+          "answer_chunk_match": {
+            "n": 49,
+            "hit@1": 0.7755,
+            "hit@3": 0.9388,
+            "hit@5": 0.9592
+          },
+          "by_category": {
+            "identity": {
+              "n": 9,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7778,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 9,
+                "hit@1": 0.7778,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "phytochemistry": {
+              "n": 6,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 6,
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "preparation": {
+              "n": 4,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 4,
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "safety_precautions": {
+              "n": 19,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7895,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 19,
+                "hit@1": 0.7895,
+                "hit@3": 0.9474,
+                "hit@5": 1.0
+              }
+            },
+            "therapeutic_uses": {
+              "n": 11,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8182,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 11,
+                "hit@1": 0.7273,
+                "hit@3": 0.8182,
+                "hit@5": 0.8182
+              }
+            }
+          },
+          "by_plant": {
+            "Castor": {
+              "n": 18,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7222,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 18,
+                "hit@1": 0.6667,
+                "hit@3": 0.8333,
+                "hit@5": 0.8889
+              }
+            },
+            "Guava": {
+              "n": 17,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8824,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 17,
+                "hit@1": 0.8824,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "Tomato": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7857,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 14,
+                "hit@1": 0.7857,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            }
+          },
+          "by_style": {
+            "alias_or_scientific": {
+              "n": 8,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 8,
+                "hit@1": 0.75,
+                "hit@3": 0.875,
+                "hit@5": 0.875
+              }
+            },
+            "common_name": {
+              "n": 27,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7407,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 27,
+                "hit@1": 0.7037,
+                "hit@3": 0.9259,
+                "hit@5": 0.963
+              }
+            },
+            "descriptor": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.9286,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 14,
+                "hit@1": 0.9286,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            }
+          },
+          "misses_at_5_plant_and_category": [],
+          "misses_at_5_answer_chunk": [
+            {
+              "plant": "Castor",
+              "category": "therapeutic_uses",
+              "question": "What is castor oil used for?",
+              "top5": [
+                "Castor#3",
+                "Castor#9",
+                "Castor#7",
+                "Castor#13",
+                "Castor#16"
+              ]
+            },
+            {
+              "plant": "Castor",
+              "category": "therapeutic_uses",
+              "question": "What are the pharmacopoeial uses of erand oil?",
+              "top5": [
+                "Castor#10",
+                "Castor#3",
+                "Castor#8",
+                "Castor#15",
+                "Castor#13"
+              ]
+            }
+          ]
+        },
+        "combined": {
+          "n": 89,
+          "plant_match": {
+            "hit@1": 1.0,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "plant_and_category_match": {
+            "hit@1": 0.809,
+            "hit@3": 1.0,
+            "hit@5": 1.0
+          },
+          "top1_wrong_plant": 0,
+          "answer_chunk_match": {
+            "n": 49,
+            "hit@1": 0.7755,
+            "hit@3": 0.9388,
+            "hit@5": 0.9592
+          },
+          "by_category": {
+            "identity": {
+              "n": 9,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7778,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 9,
+                "hit@1": 0.7778,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "misconceptions": {
+              "n": 5,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "phytochemistry": {
+              "n": 6,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 6,
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "preparation": {
+              "n": 6,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8333,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 4,
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "safety_precautions": {
+              "n": 33,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.697,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 19,
+                "hit@1": 0.7895,
+                "hit@3": 0.9474,
+                "hit@5": 1.0
+              }
+            },
+            "therapeutic_uses": {
+              "n": 30,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.9,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 11,
+                "hit@1": 0.7273,
+                "hit@3": 0.8182,
+                "hit@5": 0.8182
+              }
+            }
+          },
+          "by_plant": {
+            "Aloe Vera": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Amla": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Arjuna": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Ashwagandha": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Bael": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Bhringraj": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Brahmi": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Castor": {
+              "n": 18,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7222,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 18,
+                "hit@1": 0.6667,
+                "hit@3": 0.8333,
+                "hit@5": 0.8889
+              }
+            },
+            "Curry Leaves": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Fenugreek": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Garlic": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Giloy": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Ginger": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Guava": {
+              "n": 17,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.8824,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 17,
+                "hit@1": 0.8824,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "Hibiscus": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Lemongrass": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Mint": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Moringa": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Neem": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Shatavari": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Tomato": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7857,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 14,
+                "hit@1": 0.7857,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            },
+            "Tulsi": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.5,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            },
+            "Turmeric": {
+              "n": 2,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0
+            }
+          },
+          "by_style": {
+            "alias_or_scientific": {
+              "n": 8,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.75,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 8,
+                "hit@1": 0.75,
+                "hit@3": 0.875,
+                "hit@5": 0.875
+              }
+            },
+            "common_name": {
+              "n": 27,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.7407,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 27,
+                "hit@1": 0.7037,
+                "hit@3": 0.9259,
+                "hit@5": 0.963
+              }
+            },
+            "descriptor": {
+              "n": 14,
+              "plant_match": {
+                "hit@1": 1.0,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "plant_and_category_match": {
+                "hit@1": 0.9286,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              },
+              "top1_wrong_plant": 0,
+              "answer_chunk_match": {
+                "n": 14,
+                "hit@1": 0.9286,
+                "hit@3": 1.0,
+                "hit@5": 1.0
+              }
+            }
+          },
+          "misses_at_5_plant_and_category": [],
+          "misses_at_5_answer_chunk": [
+            {
+              "plant": "Castor",
+              "category": "therapeutic_uses",
+              "question": "What is castor oil used for?",
+              "top5": [
+                "Castor#3",
+                "Castor#9",
+                "Castor#7",
+                "Castor#13",
+                "Castor#16"
+              ]
+            },
+            {
+              "plant": "Castor",
+              "category": "therapeutic_uses",
+              "question": "What are the pharmacopoeial uses of erand oil?",
+              "top5": [
+                "Castor#10",
+                "Castor#3",
+                "Castor#8",
+                "Castor#15",
+                "Castor#13"
+              ]
+            }
+          ]
+        }
+      },
+      "plant_match": {
+        "hit@1": 1.0,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      "plant_and_category_match": {
+        "hit@1": 0.825,
+        "hit@3": 1.0,
+        "hit@5": 1.0
+      },
+      "top1_wrong_plant": 0,
+      "by_category_plant_and_category": {
+        "misconceptions": {
+          "n": 5,
+          "hit@1": 1.0,
+          "hit@3": 1.0,
+          "hit@5": 1.0
+        },
+        "preparation": {
+          "n": 2,
+          "hit@1": 1.0,
+          "hit@3": 1.0,
+          "hit@5": 1.0
+        },
+        "safety_precautions": {
+          "n": 14,
+          "hit@1": 0.5714,
+          "hit@3": 1.0,
+          "hit@5": 1.0
+        },
+        "therapeutic_uses": {
+          "n": 19,
+          "hit@1": 0.9474,
+          "hit@3": 1.0,
+          "hit@5": 1.0
+        }
+      },
+      "misses_at_5_plant_and_category": []
+    }
+  }
+}

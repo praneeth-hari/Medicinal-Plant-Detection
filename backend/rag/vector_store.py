@@ -72,6 +72,11 @@ class VectorStoreService:
         """Number of documents in the store."""
         return len(self._documents)
 
+    @property
+    def metadatas(self) -> list[dict[str, Any]]:
+        """Per-document metadata of the loaded documents (read-only use)."""
+        return self._metadatas
+
     def create_index(
         self,
         embeddings: list[list[float]],

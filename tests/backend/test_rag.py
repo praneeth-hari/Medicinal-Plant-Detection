@@ -82,6 +82,43 @@ class TestRetriever:
         assert plants[0] == "Tulsi"
         assert plants.count("Tulsi") <= 3  # max 2 via suppression, extra only as top-up filler
 
+    def test_boost_names_come_from_the_loaded_chunks(self, tmp_path):
+        store = _build_store(tmp_path)
+        retriever = DocumentRetriever(store, FakeEmbedder())
+        assert retriever._known_plant_names() == ["ginger", "neem", "tulsi"]
+        store.add_documents([[1, 1, 1]], ["guava leaf"], [{"plant": "Guava"}])
+        assert "guava" in retriever._known_plant_names()  # cache refreshes when the chunk count changes
+        empty = DocumentRetriever(VectorStoreService(str(tmp_path), "empty"), FakeEmbedder())
+        assert empty._known_plant_names() == []
+
+    def test_current_kb_plants_are_boost_candidates(self, tmp_path):
+        from scripts.build_index import PLANT_DOCUMENTS
+
+        metas = [{"plant": p} for p in [d["plant"] for d in PLANT_DOCUMENTS] + ["Guava", "Castor", "Tomato"]]
+        store = VectorStoreService(str(tmp_path), "kb")
+        store.create_index([[1, 0, 0]] * len(metas), ["x"] * len(metas), metas)
+        names = DocumentRetriever(store, FakeEmbedder())._known_plant_names()
+        assert len(names) == 23 and {"guava", "castor", "tomato"} <= set(names)
+
+    @pytest.mark.parametrize("query, expected", [
+        ("does it appear safe, or belong on a label?", {}),                       # pea / bel inside other words
+        ("how do i make lemongrass tea", {"Lemongrass": 0.25, "Lemon": -0.1}),    # lemon is not inside lemongrass
+        ("what are neem's uses", {"Neem": 0.25, "Pea": -0.1}),                    # possessive still matches
+    ])
+    def test_plant_names_match_whole_words_only(self, tmp_path, query, expected):
+        plants = ["Pea", "Lemon", "Lemongrass", "Neem", "Bael"]
+        store = VectorStoreService(str(tmp_path), "words")
+        store.create_index([[0.2, 0.2 + i / 10, 0.5] for i in range(len(plants))], plants,
+                           [{"plant": p, "source": p.lower()} for p in plants])
+        retriever = DocumentRetriever(store, FakeEmbedder())
+        raw = {d["id"]: d["score"] for d in store.search(FakeEmbedder().embed_text(query), n_results=10)}
+        deltas = {d["metadata"]["plant"]: round(d["score"] - raw[d["id"]], 2) for d in retriever.retrieve(query, top_k=5)}
+        if not expected:
+            assert set(deltas.values()) == {0.0}
+        else:
+            assert {p: deltas[p] for p in expected} == expected
+            assert all(v == -0.1 for p, v in deltas.items() if p not in expected)
+
     def test_context_and_source_references(self, tmp_path):
         retriever = DocumentRetriever(_build_store(tmp_path), FakeEmbedder())
         docs = retriever.retrieve("neem", top_k=2)
