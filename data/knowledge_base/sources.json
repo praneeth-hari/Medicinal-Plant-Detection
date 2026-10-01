@@ -1,0 +1,226 @@
+{
+  "_comment": "Citation / source registry for the knowledge base. Every source_id used in a plant file under data/knowledge_base/ must resolve here. 'basis' records what was actually read: full text of the cited pages, or the PubMed abstract only.",
+  "schema_version": 1,
+  "sources": {
+    "who-v4": {
+      "kind": "pharmacopoeial_monograph_collection",
+      "tier": 1,
+      "title": "WHO monographs on selected medicinal plants, Volume 4",
+      "publisher": "World Health Organization, Geneva",
+      "year": 2009,
+      "identifiers": {"isbn": "978 92 4 154705 5"},
+      "retrieval": {
+        "method": "Full-text PDF (456 pages, text layer) from a third-party scan at https://www.survivorlibrary.com/library/who-monographs-on-selected-medicinal-plants-volume-4.pdf, text extracted locally. WHO's own server returned HTTP 403, so the official copy was not retrieved.",
+        "date": "2026-10-01",
+        "basis": "full text of the cited pages"
+      },
+      "notes": "Cited with printed page numbers. Greek-letter prefixes (alpha, beta) are lost in the text layer, so isomer prefixes are not reproduced. Verify against the official WHO IRIS copy before publication."
+    },
+    "who-v4-guavae": {
+      "kind": "pharmacopoeial_monograph",
+      "tier": 1,
+      "title": "Folium Guavae (guava leaf, Psidium guajava L.), in WHO monographs on selected medicinal plants, Volume 4",
+      "publisher": "World Health Organization, Geneva",
+      "year": 2009,
+      "locator": "pp. 127-139",
+      "part_of": "who-v4",
+      "notes": "Covers the dried and/or young leaves."
+    },
+    "who-v4-ricini": {
+      "kind": "pharmacopoeial_monograph",
+      "tier": 1,
+      "title": "Oleum Ricini (castor oil, fixed oil from the seeds of Ricinus communis L.), in WHO monographs on selected medicinal plants, Volume 4",
+      "publisher": "World Health Organization, Geneva",
+      "year": 2009,
+      "locator": "pp. 271-282",
+      "part_of": "who-v4",
+      "notes": "Covers ONLY the fixed oil obtained by cold expression from the seeds. It does not cover the leaf, raw seed or other plant parts."
+    },
+    "who-v4-cumulative-index": {
+      "kind": "index",
+      "tier": 1,
+      "title": "Annex 2, cumulative index of monographs in Volumes 1-4 (alphabetical order of plant name)",
+      "publisher": "World Health Organization, Geneva",
+      "year": 2009,
+      "locator": "pp. 395-396",
+      "part_of": "who-v4",
+      "notes": "Used to confirm which plants have WHO monographs. Lists no monograph for Solanum lycopersicum (tomato)."
+    },
+    "dimpsar-table2": {
+      "kind": "dataset_documentation",
+      "tier": 4,
+      "title": "DIMPSAR: Dataset for Indian medicinal plant species analysis and recognition (Table 2, 80 species)",
+      "authors": "Pushpa B R, Shobha Rani N",
+      "year": 2023,
+      "container": "Data in Brief",
+      "identifiers": {"doi": "10.1016/j.dib.2023.109388", "pmid": "37520649", "pmcid": "PMC10375553", "dataset_doi": "10.17632/748f8jkphb.3"},
+      "retrieval": {"method": "PMC full text", "date": "2026-10-01", "basis": "Table 2"},
+      "notes": "Identity of the image classes only (folder to species). Not a source for any medicinal or safety statement. See docs/kb/coverage_plan.md."
+    },
+    "gbif-psidium-guajava": {
+      "kind": "taxonomic_database",
+      "tier": 4,
+      "title": "GBIF Backbone Taxonomy: Psidium guajava L. (ACCEPTED, family Myrtaceae)",
+      "publisher": "Global Biodiversity Information Facility",
+      "identifiers": {"url": "https://api.gbif.org/v1/species/5420380"},
+      "retrieval": {"method": "GBIF species/match API, strict", "date": "2026-10-01", "basis": "API record"}
+    },
+    "gbif-ricinus-communis": {
+      "kind": "taxonomic_database",
+      "tier": 4,
+      "title": "GBIF Backbone Taxonomy: Ricinus communis L. (ACCEPTED, family Euphorbiaceae)",
+      "publisher": "Global Biodiversity Information Facility",
+      "identifiers": {"url": "https://api.gbif.org/v1/species/5380041"},
+      "retrieval": {"method": "GBIF species/match API, strict", "date": "2026-10-01", "basis": "API record"}
+    },
+    "gbif-solanum-lycopersicum": {
+      "kind": "taxonomic_database",
+      "tier": 4,
+      "title": "GBIF Backbone Taxonomy: Solanum lycopersicum L. (ACCEPTED, family Solanaceae)",
+      "publisher": "Global Biodiversity Information Facility",
+      "identifiers": {"url": "https://api.gbif.org/v1/species/2930137"},
+      "retrieval": {"method": "GBIF species/match API, strict", "date": "2026-10-01", "basis": "API record"},
+      "notes": "Kew Plants of the World Online (the preferred taxonomic source) returned HTTP 403, so GBIF was used instead."
+    },
+    "pmid-12413703": {
+      "kind": "randomized_trial",
+      "tier": 3,
+      "title": "Intestinal anti-spasmodic effect of a phytodrug of Psidium guajava folia in the treatment of acute diarrheic disease",
+      "authors": "Lozoya X, Reyes-Morales H, Chavez-Soto MA, et al.",
+      "year": 2002,
+      "container": "J Ethnopharmacol 83(1-2):19-24",
+      "identifiers": {"pmid": "12413703", "doi": "10.1016/s0378-8741(02)00185-x"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-11938857": {
+      "kind": "randomized_trial",
+      "tier": 3,
+      "title": "Clinical study on treatment of infantile rotaviral enteritis with Psidium guajava L (in Chinese)",
+      "authors": "Wei L, Li Z, Chen B",
+      "year": 2000,
+      "container": "Zhongguo Zhong Xi Yi Jie He Za Zhi 20(12):893-895",
+      "identifiers": {"pmid": "11938857"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only (English abstract of a Chinese-language article)"}
+    },
+    "pmid-11205393": {
+      "kind": "case_report",
+      "tier": 3,
+      "title": "Allergic contact dermatitis due to guava tea",
+      "authors": "Obi M, Miyazaki Y, Yokozeki H, Nishioka K",
+      "year": 2001,
+      "container": "Contact Dermatitis 44(2):116-117",
+      "identifiers": {"pmid": "11205393", "doi": "10.1034/j.1600-0536.2001.44020917.x"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "title only (PubMed record has no abstract)"}
+    },
+    "pmid-16278363": {
+      "kind": "narrative_review",
+      "tier": 3,
+      "title": "Ricin poisoning: a comprehensive review",
+      "authors": "Audi J, Belson M, Patel M, Schier J, Osterloh J",
+      "year": 2005,
+      "container": "JAMA 294(18):2342-2351",
+      "identifiers": {"pmid": "16278363", "doi": "10.1001/jama.294.18.2342"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-28987302": {
+      "kind": "case_report",
+      "tier": 3,
+      "title": "Ricin poisoning after oral ingestion of castor beans: a case report and review of the literature and laboratory testing",
+      "authors": "Lopez Nunez OF, Pizon AF, Tamama K",
+      "year": 2017,
+      "container": "J Emerg Med 53(5):e67-e71",
+      "identifiers": {"pmid": "28987302", "doi": "10.1016/j.jemermed.2017.08.023"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-23881775": {
+      "kind": "cochrane_review",
+      "tier": 2,
+      "title": "Castor oil, bath and/or enema for cervical priming and induction of labour",
+      "authors": "Kelly AJ, Kavanagh J, Thomas J",
+      "year": 2013,
+      "container": "Cochrane Database Syst Rev 2013(7):CD003099",
+      "identifiers": {"pmid": "23881775", "doi": "10.1002/14651858.CD003099.pub2"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-28129549": {
+      "kind": "meta_analysis",
+      "tier": 2,
+      "title": "Tomato and lycopene supplementation and cardiovascular risk factors: a systematic review and meta-analysis",
+      "authors": "Cheng HM, Koutsidis G, Lodge JK, Ashor A, Siervo M, Lara J",
+      "year": 2017,
+      "container": "Atherosclerosis 257:100-108",
+      "identifiers": {"pmid": "28129549", "doi": "10.1016/j.atherosclerosis.2017.01.009"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-32652029": {
+      "kind": "meta_analysis",
+      "tier": 2,
+      "title": "Effect of dietary and supplemental lycopene on cardiovascular risk factors: a systematic review and meta-analysis",
+      "authors": "Tierney AC, Rumble CE, Billings LM, George ES",
+      "year": 2020,
+      "container": "Adv Nutr 11(6):1453-1488",
+      "identifiers": {"pmid": "32652029", "doi": "10.1093/advances/nmaa069"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-37496241": {
+      "kind": "meta_analysis",
+      "tier": 2,
+      "title": "The effects of lycopene and tomato consumption on cardiovascular risk factors in adults: a GRADE assessment systematic review and meta-analysis",
+      "authors": "Zamani M, Behmanesh Nia F, Ghaedi K, et al.",
+      "year": 2023,
+      "container": "Curr Pharm Des 29(21):1671-1700",
+      "identifiers": {"pmid": "37496241", "doi": "10.2174/1381612829666230726112510"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-12358437": {
+      "kind": "narrative_review",
+      "tier": 3,
+      "title": "Tomato glycoalkaloids: role in the plant and in the diet",
+      "authors": "Friedman M",
+      "year": 2002,
+      "container": "J Agric Food Chem 50(21):5751-5780",
+      "identifiers": {"pmid": "12358437", "doi": "10.1021/jf020560c"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-37765452": {
+      "kind": "narrative_review",
+      "tier": 3,
+      "title": "Current advances in the biosynthesis, metabolism, and transcriptional regulation of alpha-tomatine in tomato",
+      "authors": "Liu Y, Hu H, Yang R, Zhu Z, Cheng K",
+      "year": 2023,
+      "container": "Plants (Basel) 12(18):3289",
+      "identifiers": {"pmid": "37765452", "doi": "10.3390/plants12183289", "pmcid": "PMC10534454"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-38275698": {
+      "kind": "narrative_review",
+      "tier": 3,
+      "title": "Agri-food waste recycling for healthy remedies: biomedical potential of nutraceuticals from unripe tomatoes (Solanum lycopersicum L.)",
+      "authors": "Piccolo V, Pastore A, Maisto M, et al.",
+      "year": 2024,
+      "container": "Foods 13(2):331",
+      "identifiers": {"pmid": "38275698", "doi": "10.3390/foods13020331", "pmcid": "PMC10815480"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-35453329": {
+      "kind": "narrative_review",
+      "tier": 3,
+      "title": "Tomato allergy: the characterization of the selected allergens and antioxidants of tomato (Solanum lycopersicum): a review",
+      "authors": "Wlodarczyk K, Smolinska B, Majak I",
+      "year": 2022,
+      "container": "Antioxidants (Basel) 11(4):644",
+      "identifiers": {"pmid": "35453329", "doi": "10.3390/antiox11040644", "pmcid": "PMC9031248"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    },
+    "pmid-22860619": {
+      "kind": "patch_test_study_and_review",
+      "tier": 3,
+      "title": "Tomato contact dermatitis",
+      "authors": "Paulsen E, Christensen LP, Andersen KE",
+      "year": 2012,
+      "container": "Contact Dermatitis 67(6):321-327",
+      "identifiers": {"pmid": "22860619", "doi": "10.1111/j.1600-0536.2012.02138.x"},
+      "retrieval": {"method": "NCBI E-utilities efetch", "date": "2026-10-01", "basis": "abstract only"}
+    }
+  }
+}

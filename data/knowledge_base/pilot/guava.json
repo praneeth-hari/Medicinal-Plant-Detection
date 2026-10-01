@@ -1,0 +1,210 @@
+{
+  "plant_id": "psidium-guajava",
+  "class_label": "Guava",
+  "identity_check": {
+    "dataset_row": 20,
+    "dataset_common_name": "Guava",
+    "dataset_botanical_name": "Psidium guajava",
+    "status": "confirmed",
+    "source_ids": ["dimpsar-table2", "gbif-psidium-guajava"]
+  },
+  "record": {
+    "common_name": "Guava",
+    "local_names": ["Amrud", "Amrood", "Guayaba", "Goiaba", "Guava tree"],
+    "scientific_name": "Psidium guajava",
+    "family": "Myrtaceae",
+    "description": "Guava (Psidium guajava L.) is a large shrub or small tree up to 10 m high. The bark is brownish, thin and smooth, often flaking off in scaly patches. Leaves are opposite, oblong to slightly oval, 5-15 cm long, light green on the upper surface and downy and pale green on the underside, with prominent veins on the underside; the margin is smooth or dentate and the venation reticulate. Flowers are white, about 2.5 cm across, single or a few together in the leaf axils, with numerous stamens. Fruits are globose or pear-shaped, usually yellow, 2.5-10 cm long, and contain many seeds. The WHO monograph covers the dried and/or young leaves.",
+    "native_region": "Native to tropical America; now pantropical.",
+    "habitat": "Not described in the sources reviewed beyond its pantropical distribution.",
+    "cultivation_status": "Not stated in the sources reviewed",
+    "active_compounds": [
+      {
+        "compound_name": "Quercetin and quercetin glycosides (including guajaverin)",
+        "compound_class": "Flavonol",
+        "primary_activity": "WHO identifies quercetin as the main active constituent of a leaf extract that inhibited the peristaltic reflex of isolated guinea-pig ileum (laboratory finding).",
+        "evidence_level": "Preclinical Evidence Only"
+      },
+      {
+        "compound_name": "Ellagic acid, guavins A, C and D, gallocatechin",
+        "compound_class": "Tannins and related polyphenols",
+        "primary_activity": "Listed as constituents of the leaf. WHO reports at least 14% (w/w) tannins as a quality specification. No specific activity is attributed to these compounds in the monograph.",
+        "evidence_level": "Insufficient Evidence"
+      },
+      {
+        "compound_name": "Ursolic acid, oleanolic acid and related triterpene acids",
+        "compound_class": "Triterpene acids",
+        "primary_activity": "Listed as constituents of the leaf. No specific activity is attributed to them in the monograph.",
+        "evidence_level": "Insufficient Evidence"
+      },
+      {
+        "compound_name": "Leaf essential oil (1,8-cineole, pinene, caryophyllene, bisabolene)",
+        "compound_class": "Monoterpenes and sesquiterpenes",
+        "primary_activity": "WHO reports that the leaf essential oil and one of its major constituents, pinene, reduced pain responses in mice (laboratory finding). WHO specifies at least 0.6% (v/w) essential oil.",
+        "evidence_level": "Preclinical Evidence Only"
+      }
+    ],
+    "traditional_systems": [],
+    "traditional_uses_summary": "The WHO monograph lists these uses described in traditional medicine: abdominal pain, bleeding gums, cough, gastritis, headache, ringworm, vaginitis, wounds and worms; also as an astringent, an antiemetic and an emmenagogue. Traditional use reflects cultural and historical practice and does not by itself establish efficacy. The WHO monograph found no uses described in pharmacopoeias or other well-established documents.",
+    "therapeutic_claims": [
+      {
+        "condition": "Acute diarrhoea (oral leaf preparations)",
+        "claim_text": "WHO lists oral guava-leaf preparations among uses supported by clinical data for acute diarrhoea, but the trials it summarises are small. In a randomized, double-blind trial of adults with acute diarrhoea (50 per group; capsules of a quercetin-standardised leaf extract, 500 mg every 8 hours for 3 days), the extract was associated with a shorter duration of abdominal pain than placebo. In a randomized, double-blind trial of 122 patients, powdered leaf and tetracycline did not differ significantly in stool output, fluid intake or duration of diarrhoea. An aqueous leaf extract also gave results similar to a kaolin or pectin suspension in small groups. These findings do not extend to other conditions or preparations.",
+        "evidence_level": "Limited Clinical Evidence",
+        "study_quality": "Unknown",
+        "source_type": "Randomized trials (small), as summarised in the WHO monograph",
+        "citation_pmids": ["12413703"],
+        "citation_required": true,
+        "citation_flag_reason": "Only the 50-per-group trial (Lozoya 2002) has a PubMed record. The tetracycline-comparison trial (Thanangkul 1987, Siriraj Hospital Gazette) and the kaolin/pectin comparison are cited through the WHO monograph (refs 25 and 50) and were not retrieved."
+      },
+      {
+        "condition": "Gingivitis (mouthwash made from a leaf decoction)",
+        "claim_text": "WHO lists a leaf-decoction mouthwash among uses supported by clinical data for gingivitis. It describes one 3-week, placebo-controlled, double-blind trial of 70 people with gingivitis: those who rinsed three times daily with the leaf-decoction mouthwash had less gingival inflammation (19.8%) and fewer sites of severe gingival disease (40.5%) than those using a placebo mouthwash. This is a single small trial.",
+        "evidence_level": "Limited Clinical Evidence",
+        "study_quality": "Unknown",
+        "source_type": "Randomized trial (small), as summarised in the WHO monograph",
+        "citation_pmids": [],
+        "citation_required": true,
+        "citation_flag_reason": "Kraivaphan et al. 1991, J Dent Assoc Thailand 41:323-328 (WHO ref 26): no PubMed record was found; cited through the WHO monograph only."
+      },
+      {
+        "condition": "Rotaviral enteritis in infants (leaf decoction)",
+        "claim_text": "WHO lists a leaf decoction among uses supported by clinical data for rotaviral enteritis. One randomized trial of 62 patients reported recovery within 3 days in 87.1% of the guava group versus 58.1% of the control group (p < 0.05), and a shorter time to the end of diarrhoea (25.1 +/- 9.5 hours versus 38.7 +/- 15.2 hours). According to the PubMed abstract, the control group received Gegen Qinlian decoction, an active comparator rather than placebo. This is a single small trial and WHO separately advises against use in children under 12 years because safety data are lacking.",
+        "evidence_level": "Limited Clinical Evidence",
+        "study_quality": "Unknown",
+        "source_type": "Randomized trial (small) with active comparator",
+        "citation_pmids": ["11938857"],
+        "citation_required": true
+      },
+      {
+        "condition": "Experimental activities in animals and laboratory studies",
+        "claim_text": "In animal, isolated-tissue and laboratory experiments summarised by WHO, guava-leaf extracts or leaf essential oil showed antinociceptive, antidiarrhoeal, antispasmodic, antihyperglycaemic, anti-inflammatory and antimicrobial activity, and activity against Plasmodium falciparum in vitro. These findings come from animals, isolated tissues and cultures and do not establish effects in people.",
+        "evidence_level": "Preclinical Evidence Only",
+        "study_quality": "Unknown",
+        "source_type": "Animal and in vitro studies, as summarised in the WHO monograph",
+        "citation_pmids": [],
+        "citation_required": true,
+        "citation_flag_reason": "Summarised from the WHO monograph (pp. 131-133, refs 22, 29-47); the primary studies were not retrieved."
+      }
+    ],
+    "evidence_summary": "Guava leaf has a WHO monograph (Volume 4, 2009). It lists oral use for acute diarrhoea, gingivitis and rotaviral enteritis as supported by clinical data, and finds no pharmacopoeial uses. The human trials it summarises are few and small (50 to 122 participants) and two of them are not indexed in PubMed, so they have not been appraised independently here. Other traditional uses rest on traditional practice and, in part, on laboratory studies.",
+    "preparation_methods": [
+      {
+        "method_name": "Leaf decoction (as used in a clinical trial)",
+        "description": "WHO lists crude drug, decoctions, extracts and teas as dosage forms. In the gingivitis trial it summarises, a decoction was made from dried leaves (3 kg in 30 litres of water, boiled for 20 minutes) and used as a mouthwash. These are research quantities, not a household recipe.",
+        "plant_part_used": "Dried leaves",
+        "intended_use": "Mouthwash in a gingivitis trial",
+        "safety_note": "WHO advises against use in pregnancy, while breastfeeding, and in children under 12 years because safety data are lacking."
+      }
+    ],
+    "dosage_info": [
+      {
+        "preparation_form": "Aqueous leaf extract (mouthwash)",
+        "plant_part": "Leaf",
+        "route": "Topical (oral rinse)",
+        "population": "General (participants in a gingivitis trial; ages not stated)",
+        "dose_range_min": 15,
+        "dose_range_max": 15,
+        "dose_unit": "ml",
+        "frequency": "Three times daily, rinsing for at least 1 minute per session",
+        "max_duration": "3 weeks in the trial; WHO gives no maximum duration",
+        "is_clinical_trial_dose": true,
+        "evidence_source": "WHO monograph posology (Volume 4, p. 136)",
+        "citation_pmids": [],
+        "source_refs": ["who-v4-guavae"],
+        "notes": "This is the regimen of the gingivitis trial that WHO cites (ref 26, Kraivaphan 1991), which has no PubMed record. It is listed here from the WHO monograph posology; the primary trial report was not retrieved, so no PMID is given."
+      },
+      {
+        "preparation_form": "Powdered leaf (capsules)",
+        "plant_part": "Leaf",
+        "route": "Oral",
+        "population": "General (participants in an acute diarrhoea trial; ages not stated)",
+        "dose_range_min": 500,
+        "dose_range_max": 500,
+        "dose_unit": "mg",
+        "frequency": "Three or four times daily (WHO posology); the trial gave 500 mg every 6 hours",
+        "max_duration": "3 days in the trial; WHO gives no maximum duration but says not to exceed the recommended dose or duration",
+        "is_clinical_trial_dose": true,
+        "evidence_source": "WHO monograph posology (Volume 4, p. 136)",
+        "citation_pmids": [],
+        "source_refs": ["who-v4-guavae"],
+        "notes": "The trial WHO cites (ref 50, Thanangkul 1987, which has no PubMed record) gave 500 mg every 6 hours for 3 days; WHO's posology states three or four times daily. It is listed here from the WHO monograph; the primary trial report was not retrieved, so no PMID is given. WHO does not give a separate dose for children, for whom use under 12 years is not recommended."
+      }
+    ],
+    "safety_warnings": [
+      {
+        "population": "Pregnant women",
+        "warning_type": "Precaution",
+        "description": "WHO states that, because safety data are lacking, use of the crude drug (guava leaf) during pregnancy is not recommended. No information on teratogenic effects was found.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "population": "Nursing mothers",
+        "warning_type": "Precaution",
+        "description": "WHO states that, because safety data are lacking, use of the crude drug during breastfeeding is not recommended.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "population": "Children under 12 years",
+        "warning_type": "Precaution",
+        "description": "WHO states that, because safety data are lacking, use of the crude drug in children under 12 years is not recommended. One trial in infants with rotaviral enteritis is summarised by WHO, but a single small trial does not establish safety.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "population": "People with hypersensitivity or allergy to guava leaf",
+        "warning_type": "Contraindication",
+        "description": "WHO lists hypersensitivity or allergy to the plant material as a contraindication. WHO cites one report of allergic dermatitis after external application of a tea prepared from the crude drug.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": true,
+        "citation_pmids": ["11205393"]
+      },
+      {
+        "population": "General (all users)",
+        "warning_type": "Advisory",
+        "description": "WHO advises not to exceed the recommended dose or duration of treatment. WHO reports no drug-interaction information and no information on carcinogenicity, mutagenicity or fertility.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      }
+    ],
+    "drug_interactions": [],
+    "overdose_risk": "In a 6-month study in rats, an aqueous leaf extract given at 1, 10 and 100 times the usual therapeutic dose for diarrhoea was associated with changes in blood chemistry (including raised liver enzymes, which WHO describes as signs of hepatotoxicity) and with mild fatty change and kidney changes in the tissue examined. This is an animal finding; its relevance to people is not established.",
+    "regulatory_status": [],
+    "last_reviewed": "2026-10-01",
+    "claims_requiring_citation": [
+      "Gingivitis mouthwash trial (WHO ref 26): no PMID",
+      "Powdered leaf versus tetracycline trial (WHO ref 50): no PMID",
+      "Animal and in vitro findings (WHO refs 22, 29-47): primary studies not retrieved"
+    ],
+    "flagged_issues": [
+      "Drafted from sources on 2026-10-01; not yet reviewed by a qualified human reviewer."
+    ],
+    "reviewer_notes": "last_reviewed records the date the sources were extracted, not an expert review. WHO text was read from a third-party scan of Volume 4 because WHO's server returned 403; Greek-letter isomer prefixes were lost in text extraction (pinene and bisabolene isomers are therefore unspecified). PubMed items were read as abstracts only. citation_required=false on WHO-sourced warnings means the cited source is the WHO monograph, to which no PMID applies. AYUSH / Ayurvedic Pharmacopoeia of India coverage was not checked, so ayush_monograph_available is left false (unchecked, not a finding).",
+    "who_monograph_available": true,
+    "ayush_monograph_available": false
+  },
+  "provenance": {
+    "identity": [
+      {"source_id": "who-v4-guavae", "locator": "pp. 127-128"},
+      {"source_id": "gbif-psidium-guajava"},
+      {"source_id": "dimpsar-table2", "locator": "Table 2, row 20"}
+    ],
+    "traditional_use": [{"source_id": "who-v4-guavae", "locator": "p. 130"}],
+    "phytochemistry": [{"source_id": "who-v4-guavae", "locator": "pp. 129-131"}],
+    "evidence": [
+      {"source_id": "who-v4-guavae", "locator": "pp. 130-135"},
+      {"source_id": "pmid-12413703"},
+      {"source_id": "pmid-11938857"}
+    ],
+    "preparation": [{"source_id": "who-v4-guavae", "locator": "pp. 134, 136"}],
+    "safety": [
+      {"source_id": "who-v4-guavae", "locator": "pp. 133-136"},
+      {"source_id": "pmid-11205393"}
+    ]
+  }
+}
