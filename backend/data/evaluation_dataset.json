@@ -199,6 +199,497 @@
       "plant": "Fenugreek",
       "question": "Is it safe to consume large doses of Fenugreek seeds during pregnancy?",
       "category": "safety_precautions"
+    },
+    {
+      "plant": "Guava",
+      "question": "What does a guava leaf look like?",
+      "category": "identity",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "opposite, oblong"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Which plant family does Psidium guajava belong to?",
+      "category": "identity",
+      "set": "pilot",
+      "style": "alias_or_scientific",
+      "answer_contains": [
+        "family Myrtaceae"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Which large shrub or small tree, up to 10 m high, has downy pale-green leaf undersides and many-seeded yellow fruits?",
+      "category": "identity",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "up to 10 m high"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Does guava leaf help with acute diarrhoea?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "Acute diarrhoea (oral leaf preparations)"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Is there clinical evidence for a leaf-decoction mouthwash from this Myrtaceae tree for gum inflammation?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "Gingivitis (mouthwash"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "What traditional uses are listed for guava leaves?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "bleeding gums"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "What is the evidence for amrud leaf decoction in rotaviral enteritis in infants?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "alias_or_scientific",
+      "answer_contains": [
+        "Rotaviral enteritis in infants"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Which flavonols and tannins are found in guava leaf?",
+      "category": "phytochemistry",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "Quercetin and quercetin glycosides"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Which essential oil components are reported for the leaves of Psidium guajava?",
+      "category": "phytochemistry",
+      "set": "pilot",
+      "style": "alias_or_scientific",
+      "answer_contains": [
+        "1,8-cineole"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "How is a guava leaf mouthwash prepared?",
+      "category": "preparation",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "boiled for 20 minutes"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "What dose of powdered leaf capsules was used in the acute diarrhoea trial?",
+      "category": "preparation",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "Powdered leaf (capsules)",
+        "500 mg"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Is guava leaf safe during pregnancy?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "during pregnancy is not recommended"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Can children under 12 use guava leaf preparations?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "children under 12 years"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Which herbal leaf tea has a WHO contraindication for allergy and a reported case of allergic dermatitis?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "allergic dermatitis"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Are any drug interactions reported for guayaba leaf?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "alias_or_scientific",
+      "answer_contains": [
+        "Drug interactions: none were reported"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "What did the six-month rat toxicity study of guava leaf extract find?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "6-month study in rats"
+      ]
+    },
+    {
+      "plant": "Guava",
+      "question": "Can I use guava leaf while breastfeeding?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "during breastfeeding is not recommended"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "What do castor plant leaves look like?",
+      "category": "identity",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "peltate and palmate"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "Which family is Ricinus communis in?",
+      "category": "identity",
+      "set": "pilot",
+      "style": "alias_or_scientific",
+      "answer_contains": [
+        "family Euphorbiaceae"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "Which plant bears a 3-celled spiny capsule with mottled oval seeds on a raceme with female flowers above male ones?",
+      "category": "identity",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "3-celled capsule"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "What is castor oil used for?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "acute constipation"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "Is there good evidence that castor oil induces labour?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "Induction of labour (castor oil"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "What traditional uses are listed for the oil pressed from this Euphorbiaceae seed?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "emmenagogue"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "What are the pharmacopoeial uses of erand oil?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "alias_or_scientific",
+      "answer_contains": [
+        "bowel evacuation before surgery"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "What is the main fatty acid in castor oil?",
+      "category": "phytochemistry",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "Ricinoleic acid"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "Which hydroxylated C18 fatty acid makes up 85-92% of the fatty acids in this seed oil?",
+      "category": "phytochemistry",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "85-92%"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "What daily dose of castor oil is used as a laxative?",
+      "category": "preparation",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "1-10 ml"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "How should the cold-pressed oil from this seed be stored?",
+      "category": "preparation",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "protected from light"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "Are castor seeds poisonous?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "castor seeds are poisonous"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "What are the symptoms of ricin poisoning after eating the beans?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "hypotension"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "Is castor oil safe in pregnancy?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "contraindicated as a laxative in pregnancy before 40 weeks"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "Can children take castor oil as a laxative?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "children under 12 years"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "Which laxative oil should not be combined with cardiac glycosides or diuretics?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "cardiac glycosides"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "If a leaf photo is identified as castor, does that mean the leaf is poisonous?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "neither as poisonous nor as safe"
+      ]
+    },
+    {
+      "plant": "Castor",
+      "question": "Who should avoid castor oil because of biliary or bowel disease?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "biliary tract obstruction"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "What plant family does the tomato belong to?",
+      "category": "identity",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "family Solanaceae"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Is Solanum lycopersicum treated as a medicinal plant or a food crop?",
+      "category": "identity",
+      "set": "pilot",
+      "style": "alias_or_scientific",
+      "answer_contains": [
+        "treats tomato as a food plant"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Which nightshade-family crop is a major food source for humans?",
+      "category": "identity",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "major food source"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Does eating tomato lower cholesterol or blood pressure?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "Cardiovascular risk factors (tomato products and lycopene)"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Do trials of lycopene supplements show benefit for cardiovascular risk factors?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "Cardiovascular risk factors (tomato products and lycopene)"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Is there a traditional medicinal use of tomato?",
+      "category": "therapeutic_uses",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "No traditional medicinal use of tomato"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "What glycoalkaloid is found in tomato leaves and green fruit?",
+      "category": "phytochemistry",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "alpha-Tomatine"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Which carotenoid with high antioxidant capacity is studied in cardiovascular trials?",
+      "category": "phytochemistry",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "Lycopene (Carotenoid)"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Can tomato cause allergic reactions?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "most prevalent allergenic vegetables"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Is there a link between grass-pollen or latex allergy and this nightshade vegetable?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "descriptor",
+      "answer_contains": [
+        "grass-pollen and latex allergy"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Is it safe to eat tomato leaves or green tomatoes?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "safe level of intake"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Can Solanum lycopersicum plants cause contact dermatitis?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "alias_or_scientific",
+      "answer_contains": [
+        "93 patients"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Is tomato safe during pregnancy?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "No pregnancy-specific safety information"
+      ]
+    },
+    {
+      "plant": "Tomato",
+      "question": "Is tomato safe for infants and children?",
+      "category": "safety_precautions",
+      "set": "pilot",
+      "style": "common_name",
+      "answer_contains": [
+        "infants or children"
+      ]
     }
   ]
 }
