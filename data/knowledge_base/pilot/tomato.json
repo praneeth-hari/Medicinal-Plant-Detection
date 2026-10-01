@@ -1,0 +1,133 @@
+{
+  "plant_id": "solanum-lycopersicum",
+  "class_label": "Tomato",
+  "identity_check": {
+    "dataset_row": 70,
+    "dataset_common_name": "Tomato",
+    "dataset_botanical_name": "Solanum lycopersicum",
+    "status": "confirmed",
+    "source_ids": ["dimpsar-table2", "gbif-solanum-lycopersicum"]
+  },
+  "record": {
+    "common_name": "Tomato",
+    "local_names": [],
+    "scientific_name": "Solanum lycopersicum",
+    "family": "Solanaceae",
+    "description": "Tomato (Solanum lycopersicum L.) is a member of the nightshade family (Solanaceae) and an important crop worldwide; the fruit is a major food source for humans. This entry treats tomato as a food plant. The sources reviewed do not describe the leaf or plant structure, so no identification aid is given here.",
+    "native_region": "Not established from the sources reviewed.",
+    "habitat": "Not described in the sources reviewed.",
+    "cultivation_status": "Cultivated",
+    "active_compounds": [
+      {
+        "compound_name": "alpha-Tomatine and dehydrotomatine",
+        "compound_class": "Steroidal glycoalkaloids",
+        "primary_activity": "Bitter-tasting defence compounds. alpha-Tomatine is the major steroidal glycoalkaloid of tomato and accumulates in all plant tissues, particularly in the leaves and immature green fruits; it is the main one reported in unripe green tomatoes. Reviews describe a role in defence against pathogens and herbivores and interactions with cholesterol that disrupt cell membranes (laboratory findings).",
+        "evidence_level": "Preclinical Evidence Only"
+      },
+      {
+        "compound_name": "Lycopene",
+        "compound_class": "Carotenoid",
+        "primary_activity": "A carotenoid with high antioxidant capacity that is present in tomato products. Trials of tomato products and lycopene on cardiovascular risk factors give conflicting results (see the evidence section).",
+        "evidence_level": "Insufficient Evidence"
+      }
+    ],
+    "traditional_systems": [],
+    "traditional_uses_summary": "No traditional medicinal use of tomato is documented in the sources reviewed for this entry. Tomato is treated here as a food crop.",
+    "therapeutic_claims": [
+      {
+        "condition": "Cardiovascular risk factors (tomato products and lycopene)",
+        "claim_text": "Systematic reviews of intervention trials on tomato products and lycopene disagree. A 2017 meta-analysis of 21 trials reported that tomato supplementation was associated with lower LDL-cholesterol (-0.22 mmol/L) and interleukin-6 and better flow-mediated dilation, and that lycopene supplementation was associated with lower systolic blood pressure (-5.66 mmHg). A 2020 review of 43 studies found no significant difference in blood pressure or blood lipids, with conflicting findings across studies. A 2023 meta-analysis of 34 randomized trials found no effect on most cardiovascular risk factors, apart from a lower level of malondialdehyde, a marker of oxidative stress. Doses and forms of tomato and lycopene varied widely between trials. These reviews concern tomato products and lycopene, not tomato leaves, and the overall evidence is regarded as insufficient.",
+        "evidence_level": "Insufficient Evidence",
+        "study_quality": "Unknown",
+        "source_type": "Systematic reviews and meta-analyses of randomized trials",
+        "citation_pmids": ["28129549", "32652029", "37496241"],
+        "citation_required": true
+      }
+    ],
+    "evidence_summary": "Tomato is a food crop, and no WHO monograph exists for it (checked in the cumulative index of WHO Volumes 1-4). Systematic reviews of trials on tomato products and lycopene give conflicting results for cardiovascular risk factors, so the evidence is regarded as insufficient. The sources reviewed contain nothing about tomato leaves as a medicine.",
+    "preparation_methods": [],
+    "dosage_info": [],
+    "safety_warnings": [
+      {
+        "population": "People with tomato allergy, grass-pollen allergy or latex allergy",
+        "warning_type": "Precaution",
+        "description": "A review describes tomato as one of the most prevalent allergenic vegetables. Food allergy to tomato can cause symptoms in the gut, skin and lungs, and anaphylactic shock. Tomato allergy is linked to grass-pollen and latex allergy. The data on tomato allergens are not yet sufficient.",
+        "evidence_level": "Limited Clinical Evidence",
+        "citation_required": true,
+        "citation_pmids": ["35453329"]
+      },
+      {
+        "population": "People with skin sensitivity to plants",
+        "warning_type": "Precaution",
+        "description": "Contact dermatitis from tomato plants or fruit is reported as uncommon. In a Danish patch-test series of 93 patients, 8 (9%) reacted to extracts of tomato plants. The plant allergens are unknown, and tomato fruit can also cause protein contact dermatitis.",
+        "evidence_level": "Limited Clinical Evidence",
+        "citation_required": true,
+        "citation_pmids": ["22860619"]
+      },
+      {
+        "population": "General (anyone considering eating tomato leaves or green fruit)",
+        "warning_type": "Advisory",
+        "description": "alpha-Tomatine, a bitter steroidal glycoalkaloid, is concentrated in tomato leaves and immature green fruit. The sources reviewed do not give a safe level of intake for leaves or green fruit, and this entry makes no recommendation about eating them.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": true,
+        "citation_pmids": ["37765452", "38275698"]
+      },
+      {
+        "population": "Pregnant women",
+        "warning_type": "Advisory",
+        "description": "No pregnancy-specific safety information was found in the sources reviewed for this entry, and no recommendation is made.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "population": "Infants and children",
+        "warning_type": "Advisory",
+        "description": "No safety information specific to infants or children was found in the sources reviewed for this entry, and no recommendation is made.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      }
+    ],
+    "drug_interactions": [],
+    "overdose_risk": null,
+    "regulatory_status": [],
+    "last_reviewed": "2026-10-01",
+    "claims_requiring_citation": [],
+    "flagged_issues": [
+      "Drafted from sources on 2026-10-01; not yet reviewed by a qualified human reviewer.",
+      "Kew Plants of the World Online could not be retrieved (HTTP 403), so native range and botanical description are not stated."
+    ],
+    "reviewer_notes": "last_reviewed records the date the sources were extracted, not an expert review. All PubMed items were read as abstracts only. The pregnancy and children entries are explicit statements that the sources reviewed say nothing; they exist because the validator requires pregnancy to be addressed, and they are not safety findings. No interaction information was found in the sources reviewed. A source on tomato leaf or green-fruit toxicity in humans would strengthen the glycoalkaloid advisory; none was found by the PubMed searches run. WHO monograph availability was checked in the cumulative index of Volumes 1-4 (no tomato entry); AYUSH coverage was not checked.",
+    "who_monograph_available": false,
+    "ayush_monograph_available": false
+  },
+  "provenance": {
+    "identity": [
+      {"source_id": "gbif-solanum-lycopersicum"},
+      {"source_id": "pmid-22860619", "always": true},
+      {"source_id": "pmid-12358437", "always": true},
+      {"source_id": "dimpsar-table2", "locator": "Table 2, row 70"}
+    ],
+    "traditional_use": [{"source_id": "who-v4-cumulative-index", "locator": "pp. 395-396 (no tomato monograph)"}],
+    "phytochemistry": [
+      {"source_id": "pmid-37765452", "always": true},
+      {"source_id": "pmid-38275698", "always": true},
+      {"source_id": "pmid-12358437", "always": true},
+      {"source_id": "pmid-32652029", "always": true}
+    ],
+    "evidence": [
+      {"source_id": "pmid-28129549"},
+      {"source_id": "pmid-32652029"},
+      {"source_id": "pmid-37496241"},
+      {"source_id": "who-v4-cumulative-index", "locator": "pp. 395-396 (no tomato monograph)"}
+    ],
+    "preparation": [],
+    "safety": [
+      {"source_id": "pmid-35453329"},
+      {"source_id": "pmid-22860619"},
+      {"source_id": "pmid-37765452"},
+      {"source_id": "pmid-38275698"}
+    ]
+  }
+}

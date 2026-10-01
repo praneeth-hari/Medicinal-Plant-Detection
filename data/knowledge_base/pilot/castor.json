@@ -1,0 +1,265 @@
+{
+  "plant_id": "ricinus-communis",
+  "class_label": "Castor",
+  "identity_check": {
+    "dataset_row": 12,
+    "dataset_common_name": "Castor",
+    "dataset_botanical_name": "Ricinus communis",
+    "status": "confirmed",
+    "source_ids": [
+      "dimpsar-table2",
+      "gbif-ricinus-communis"
+    ]
+  },
+  "record": {
+    "common_name": "Castor",
+    "local_names": [
+      "Castor-oil plant",
+      "Erand",
+      "Eranda"
+    ],
+    "scientific_name": "Ricinus communis",
+    "family": "Euphorbiaceae",
+    "description": "The castor-oil plant (Ricinus communis L.) varies from an annual, monoecious herb in temperate regions to a tree up to 15 m high in some tropical areas, and there are hundreds of forms that differ in size, stem and leaf colour, branching, and seed size and markings. Shoots and flower clusters are glaucous. Leaves are large, alternate, long-stalked, peltate and palmate with 5-12 lobes; the lobes are toothed (serrate or dentate) and the leaves are green or reddish. The flowers are borne in a raceme 30-60 cm high, with female flowers above male ones. The fruit is a 3-celled capsule, usually covered with soft spines, that splits into 3 parts, each holding an oval, mottled seed. WHO describes the seeds as poisonous. The WHO monograph covers only the fixed oil pressed from the seeds. The sources reviewed do not assess the leaf, which is the part the image classifier photographs, so nothing here establishes the leaf as poisonous or as safe.",
+    "native_region": "Indigenous to tropical regions of Africa, probably native to Ethiopia; now adapted and cultivated in subtropical to temperate areas.",
+    "habitat": "Cultivated, or growing wild, in most tropical and warm temperate countries.",
+    "cultivation_status": "Both",
+    "active_compounds": [
+      {
+        "compound_name": "Ricinoleic acid (as the triglyceride ricinolein)",
+        "compound_class": "Hydroxylated unsaturated C18 fatty acid",
+        "primary_activity": "Main constituent of castor oil (85-92% of its fatty acids; ricinolein 70-77% of the oil). WHO describes ricinoleate as the local irritant in the small intestine responsible for the oil's laxative effect. WHO describes the mechanism as follows: ricinoleic acid released in the small intestine increases fluid and electrolyte secretion and stimulates peristalsis, with evacuation taking place within 1-6 hours.",
+        "evidence_level": "Limited Clinical Evidence"
+      },
+      {
+        "compound_name": "Palmitic, stearic, oleic, linoleic, linolenic and eicosenoic acids",
+        "compound_class": "Other fatty acids of the oil",
+        "primary_activity": "Minor fatty acids of castor oil (each at most a few per cent). No separate activity is attributed to them in the monograph.",
+        "evidence_level": "Insufficient Evidence"
+      }
+    ],
+    "traditional_systems": [],
+    "traditional_uses_summary": "The WHO monograph on castor oil lists these uses described in traditional medicine: as an emmenagogue, to induce labour, and for burns, bronchitis, diarrhoea, itching, earache, haemorrhoids, pneumonia, rheumatism and sprains. These refer to the oil. Traditional use reflects cultural and historical practice and does not by itself establish efficacy or safety, and several of these uses carry the safety limits given in the safety section.",
+    "therapeutic_claims": [
+      {
+        "condition": "Short-term constipation and bowel evacuation before surgery (castor oil, taken by mouth)",
+        "claim_text": "WHO lists castor oil (the fixed oil pressed from the seeds) among uses described in pharmacopoeias and well-established documents: short-term treatment (3-5 days) of acute constipation when dietary measures or bulk-forming laxatives have not given adequate relief, and use as a cathartic for bowel evacuation before surgery.",
+        "evidence_level": "Traditional Use Supported",
+        "study_quality": "Unknown",
+        "source_type": "Pharmacopoeial monograph (WHO)",
+        "citation_pmids": [],
+        "citation_required": false
+      },
+      {
+        "condition": "Topical dermatoses and dermatitis (castor oil, external use)",
+        "claim_text": "WHO lists external use of castor oil for topical dermatoses and dermatitis among uses described in pharmacopoeias and well-established documents. WHO also records that castor oil can itself cause contact dermatitis and cheilitis (inflammation of the lips) in some people.",
+        "evidence_level": "Traditional Use Supported",
+        "study_quality": "Unknown",
+        "source_type": "Pharmacopoeial monograph (WHO)",
+        "citation_pmids": [],
+        "citation_required": false
+      },
+      {
+        "condition": "Induction of labour (castor oil, taken by mouth)",
+        "claim_text": "Castor oil has been widely used traditionally to start labour, but the evidence is insufficient. A Cochrane review of three trials (233 women, single doses of castor oil) reported small numbers, poor methodological quality and no data on maternal or neonatal harm, and all women who took the oil felt nauseous. WHO concludes there is insufficient evidence to support the safety and efficacy of the oil for this purpose. WHO lists the oil as contraindicated as a laxative in pregnancy before 40 weeks, and use after 40 weeks needs the supervision of a physician, midwife or other experienced professional.",
+        "evidence_level": "Insufficient Evidence",
+        "study_quality": "Low",
+        "source_type": "Cochrane systematic review; WHO monograph",
+        "citation_pmids": [
+          "23881775"
+        ],
+        "citation_required": true
+      }
+    ],
+    "evidence_summary": "WHO's monograph (Volume 4, 2009) covers castor oil only: the fixed oil obtained by cold expression from the seeds. It lists no uses supported by clinical data. Pharmacopoeial uses are short-term laxative use and external use. Evidence for labour induction is insufficient. No source reviewed supports a medicinal use of castor leaves or raw castor seeds. WHO identifies the seeds as poisonous; the sources reviewed do not assess the leaf, which is the part the plant-identification model sees.",
+    "preparation_methods": [
+      {
+        "method_name": "Cold-pressed castor oil (pharmaceutical fixed oil)",
+        "description": "WHO defines the material as the fixed oil obtained by cold expression from the seeds. Dosage forms listed are the fixed oil and capsules; it is to be kept in well-closed containers protected from light. The WHO monograph gives no home preparation from leaves, seeds or other plant parts, and the raw seeds are poisonous.",
+        "plant_part_used": "Seed (pressed to give the fixed oil)",
+        "intended_use": "Short-term oral laxative; external use on the skin",
+        "safety_note": "Raw castor seeds are poisonous; see the safety section."
+      }
+    ],
+    "dosage_info": [
+      {
+        "preparation_form": "Castor oil (fixed oil)",
+        "plant_part": "Seed (pressed oil)",
+        "route": "Oral",
+        "population": "General (contraindicated in children under 12 years, in pregnancy before 40 weeks and while breastfeeding)",
+        "dose_range_min": 1,
+        "dose_range_max": 10,
+        "dose_unit": "ml",
+        "frequency": "Single daily dose",
+        "max_duration": "3-5 days; do not take for more than 3-5 days without consulting a health care professional",
+        "is_clinical_trial_dose": false,
+        "evidence_source": "WHO monograph posology (Volume 4, p. 281), laxative use",
+        "citation_pmids": [],
+        "notes": "A WHO-listed dose range for labour induction under medical supervision is deliberately not reproduced here, because WHO states the evidence for that use is insufficient and requires professional supervision. Flagged for human review."
+      }
+    ],
+    "safety_warnings": [
+      {
+        "population": "Castor seeds (castor beans), if eaten or chewed",
+        "warning_type": "Contraindication",
+        "description": "SAFETY NOTICE: castor seeds are poisonous. WHO describes the seeds of Ricinus communis as poisonous, and poisoning after eating castor beans is documented. Ricin, a protein toxin from the castor bean plant, is the toxin in these poisonings. Symptoms can start within about 12 hours and may include nausea, vomiting, diarrhoea and abdominal pain, and in severe cases hypotension, liver failure, kidney dysfunction and death from multi-organ failure. A JAMA review states there is no antidote, vaccine or other specific therapy, and that prompt supportive care is needed. Absorption after swallowing is erratic and toxin is released when seeds are chewed. This is a poisoning hazard of the seeds (beans), not a medicinal use.",
+        "evidence_level": "Limited Clinical Evidence",
+        "citation_required": true,
+        "citation_pmids": [
+          "16278363",
+          "28987302"
+        ]
+      },
+      {
+        "population": "Castor leaf photographs: what the seed notice does and does not say",
+        "warning_type": "Advisory",
+        "description": "The seed hazard above is documented for the seeds (beans). The sources reviewed do not assess the castor leaf, so they establish the leaf neither as poisonous nor as safe. A leaf photo identified as castor is not a statement about seed toxicity or leaf toxicity. The seed hazard is also separate from castor oil, which WHO describes as the fixed oil obtained by cold expression from the seeds.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "population": "Pregnant women",
+        "warning_type": "Contraindication",
+        "description": "WHO states castor oil should not be used as a laxative during pregnancy, and that it is contraindicated as a laxative in pregnancy before 40 weeks because of potential induction of labour. Use for labour induction after 40 weeks requires the supervision of a physician, midwife or other experienced professional.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": true,
+        "citation_pmids": [
+          "23881775"
+        ]
+      },
+      {
+        "population": "Nursing mothers",
+        "warning_type": "Contraindication",
+        "description": "WHO lists castor oil as contraindicated in breastfeeding mothers: ricinoleic acid is absorbed into the bloodstream and excreted into human breast milk, and in suckling infants it has a purgative effect.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "population": "Children under 12 years",
+        "warning_type": "Contraindication",
+        "description": "WHO states castor oil should not be used as a laxative in children under 12 years.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "population": "People with biliary, intestinal or abdominal conditions, or dehydration",
+        "warning_type": "Contraindication",
+        "description": "WHO states the oil should not be used by people with biliary tract obstruction or other biliary disorders (it stimulates bile flow), appendicitis, chronic inflammatory bowel disorders, undiagnosed abdominal pain, severe dehydration with loss of salt and water, or intestinal blockage and ileus.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "population": "People with hypersensitivity or allergy to castor oil or castor beans",
+        "warning_type": "Contraindication",
+        "description": "WHO lists hypersensitivity or allergy to the oil as a contraindication. It also records allergy to castor beans, asthma in oil-industry workers, seamen and laboratory workers exposed to the beans, occupational dermatitis from handling the plant or beans, and rare allergic contact dermatitis from cosmetics containing the oil. A rash (exanthema) means the oil should be stopped and not used again.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "population": "General (all users of the oil as a laxative)",
+        "warning_type": "Monitoring Required",
+        "description": "Cathartics taken for more than a few days may worsen intestinal hypomotility; WHO advises not to take castor oil for more than 3-5 days without consulting a health care professional. Higher doses can cause stomach upset, nausea, vomiting, painful abdominal cramps and severe diarrhoea with loss of water and electrolytes; continued use or misuse can require intravenous rehydration, and excessive potassium loss may disturb heart function and cause muscle weakness. Reduce the dose or stop, and consult a health care professional, if these occur.",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      }
+    ],
+    "drug_interactions": [
+      {
+        "drug_name": "Cardiac glycosides (for example digoxin)",
+        "drug_class": "Cardiac glycosides",
+        "interaction_description": "WHO states that using castor oil together with cardiac glycosides may increase the risk of adverse events because of fluid and electrolyte losses.",
+        "interaction_mechanism": "Mechanism unknown",
+        "severity": "Not graded in source",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      },
+      {
+        "drug_name": "Antiarrhythmic drugs, diuretics, cortisol (corticosteroids), liquorice, antihistamines and fat-soluble vitamins",
+        "drug_class": "Several classes listed by WHO",
+        "interaction_description": "WHO states that using castor oil together with these may reduce their efficacy.",
+        "interaction_mechanism": "Mechanism unknown",
+        "severity": "Not graded in source",
+        "evidence_level": "Insufficient Evidence",
+        "citation_required": false,
+        "citation_pmids": []
+      }
+    ],
+    "overdose_risk": "Overdose can cause nausea, vomiting, painful abdominal cramps and severe diarrhoea with loss of water and electrolytes; consult a health care professional about replacing fluid and electrolytes. Excessive potassium loss can disturb heart function and cause muscle weakness (WHO). Eating castor seeds is a separate and more serious poisoning hazard (see the safety warnings).",
+    "regulatory_status": [],
+    "last_reviewed": "2026-10-01",
+    "claims_requiring_citation": [
+      "WHO monograph claims for castor oil have no PMID (WHO is the source)"
+    ],
+    "flagged_issues": [
+      "Drafted from sources on 2026-10-01; not yet reviewed by a qualified human reviewer.",
+      "The WHO monograph covers castor oil only. No source reviewed covers the castor leaf (the part the image classifier sees) or raw seeds, so no leaf or seed uses are stated."
+    ],
+    "reviewer_notes": "last_reviewed records the date the sources were extracted, not an expert review. WHO text was read from a third-party scan of Volume 4 because WHO's server returned 403. PubMed items were read as abstracts only. citation_required=false on WHO-sourced items means the cited source is the WHO monograph, to which no PMID applies. Decisions for the reviewer: (1) the WHO labour-induction dose range (up to 60 ml under medical supervision) was left out on purpose; (2) the 'Not graded in source' interaction severity is used because WHO does not grade severity; (3) the ricin hazard is sourced from two PubMed abstracts and should be checked against full texts or a poison-centre reference; (4) the first safety warning is a prominent seed-poison notice, worded to apply to the seeds only and to leave the leaf unassessed; please check the wording. AYUSH / Ayurvedic Pharmacopoeia coverage was not checked.",
+    "who_monograph_available": true,
+    "ayush_monograph_available": false
+  },
+  "provenance": {
+    "identity": [
+      {
+        "source_id": "who-v4-ricini",
+        "locator": "pp. 271-272"
+      },
+      {
+        "source_id": "gbif-ricinus-communis"
+      },
+      {
+        "source_id": "dimpsar-table2",
+        "locator": "Table 2, row 12"
+      }
+    ],
+    "traditional_use": [
+      {
+        "source_id": "who-v4-ricini",
+        "locator": "p. 274"
+      }
+    ],
+    "phytochemistry": [
+      {
+        "source_id": "who-v4-ricini",
+        "locator": "pp. 273-274, 277"
+      }
+    ],
+    "evidence": [
+      {
+        "source_id": "who-v4-ricini",
+        "locator": "pp. 274-278"
+      },
+      {
+        "source_id": "pmid-23881775"
+      }
+    ],
+    "preparation": [
+      {
+        "source_id": "who-v4-ricini",
+        "locator": "pp. 272, 281"
+      }
+    ],
+    "safety": [
+      {
+        "source_id": "who-v4-ricini",
+        "locator": "pp. 279-281"
+      },
+      {
+        "source_id": "pmid-23881775"
+      },
+      {
+        "source_id": "pmid-16278363"
+      },
+      {
+        "source_id": "pmid-28987302"
+      }
+    ]
+  }
+}
