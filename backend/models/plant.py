@@ -36,6 +36,11 @@ class Plant(Base):
         String(200), nullable=False, unique=True, index=True
     )
     family: Mapped[str | None] = mapped_column(String(100), nullable=True, index=True)
+    # Image-classifier folder label (data/raw/<label>, backend/data/models/class_mapping.json).
+    # NULL unless the dataset identity of that class is confirmed; see docs/kb/coverage_plan.md.
+    class_label: Mapped[str | None] = mapped_column(
+        String(100), nullable=True, unique=True, index=True
+    )
 
     # ── Legacy flat-text fields (preserved — frontend reads these) ─────────────
     description: Mapped[str | None]          = mapped_column(Text, nullable=True)
