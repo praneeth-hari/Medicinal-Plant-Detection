@@ -286,14 +286,15 @@ class PlantValidator:
     def _r07_clinical_dose_pmid(self, plant: EvidenceBasedPlant) -> list[Violation]:
         out = []
         for i, d in enumerate(plant.dosage_info):
-            if d.is_clinical_trial_dose and not d.citation_pmids:
+            if d.is_clinical_trial_dose and not (d.citation_pmids or d.source_refs):
                 out.append(Violation(
                     severity=ViolationSeverity.BLOCKING,
                     rule_id="R-07",
                     field_path=f"dosage_info[{i}].citation_pmids",
                     message=(
                         f"DosageInfo '{d.preparation_form}' for '{d.population}' is marked "
-                        "is_clinical_trial_dose=True but has no citation_pmids."
+                        "is_clinical_trial_dose=True but has no citation_pmids and no source_refs "
+                        "(an authoritative non-PubMed source such as a WHO monograph)."
                     ),
                 ))
         return out

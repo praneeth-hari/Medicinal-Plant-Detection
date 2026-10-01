@@ -165,7 +165,11 @@ class DosageInfo(BaseModel):
     max_duration:           Optional[str]   = None   # "12 weeks", "Long-term data insufficient"
     is_clinical_trial_dose: bool            = False  # Was this dose used in an RCT?
     evidence_source:        str             = "Traditional"  # "Clinical trial"|"Traditional"|"Manufacturer"
-    citation_pmids:         list[str]       = Field(default_factory=list)
+    citation_pmids:         list[str]       = Field(default_factory=list)  # primary-literature citations
+    # Registry ids (data/knowledge_base/sources.json) of authoritative sources WITHOUT a PMID that
+    # state this dose, e.g. a WHO monograph's posology. Distinct from citation_pmids: this records
+    # who states the dose, not the primary trial report.
+    source_refs:            list[str]       = Field(default_factory=list)
     notes:                  Optional[str]   = None
 
 
@@ -306,7 +310,7 @@ REVIEW_CHECKLIST: list[str] = [
     "R-04  PRECLINICAL_ONLY claims contain no human outcome language",
     "R-05  Every Contraindication warning has a PMID or citation_required=False",
     "R-06  Pregnancy safety is explicitly addressed in safety_warnings",
-    "R-07  DosageInfo entries with is_clinical_trial_dose=True have citation_pmids",
+    "R-07  DosageInfo entries with is_clinical_trial_dose=True have citation_pmids or source_refs",
     "R-08  Infant/paediatric safety is addressed in safety_warnings",
     "R-09  Drug interactions with severity Major/Contraindicated have PMIDs",
     "R-10  All citation_required items have either a PMID or citation_flag_reason",
