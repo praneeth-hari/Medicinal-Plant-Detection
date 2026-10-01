@@ -97,10 +97,10 @@ class DocumentRetriever:
         # Re-sort results based on boosted scores
         results.sort(key=lambda x: x["score"], reverse=True)
 
-        # 3. Duplicate Suppression (max 2 chunks per plant)
+        # 3. Duplicate Suppression (cap = top_k, so up to top_k chunks may come from one plant)
         final_results = []
         plant_counts = {}
-        max_chunks_per_plant = 2
+        max_chunks_per_plant = top_k
 
         for r in results:
             meta = r.get("metadata", {})
