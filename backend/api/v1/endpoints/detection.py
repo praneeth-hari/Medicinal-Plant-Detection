@@ -16,7 +16,8 @@ import logging
 from fastapi import APIRouter, Depends, Query, UploadFile, File, status
 
 from api.deps import get_current_user, get_detection_service
-from api.exceptions import BadRequestException
+from api.exceptions import BadRequestException, PayloadTooLargeException
+from config.settings import settings
 from schemas.detection import DetectionResponse
 from schemas.user import TokenData
 from services.detection_service import DetectionService
@@ -44,8 +45,8 @@ async def detect_plant(
     """Upload an image for plant detection.
 
     Reads the uploaded file bytes, validates it is an image,
-    delegates to ``DetectionService`` for inference, and returns
-    the prediction result.
+    enforces a bounded read up to MAX_UPLOAD_SIZE_MB, delegates
+    to ``DetectionService`` for inference, and returns the prediction result.
 
     Args:
         image: Uploaded image file (JPEG, PNG, WebP, etc.).
@@ -56,28 +57,39 @@ async def detect_plant(
         ``DetectionResponse`` with prediction details.
 
     Raises:
-        BadRequestException: If the file is not a valid image type.
+        BadRequestException: If the file is not a valid image type or is empty.
+        PayloadTooLargeException: If the file exceeds MAX_UPLOAD_SIZE_MB.
     """
-    # Validate file type
-    content_type = image.content_type or ""
-    if content_type not in _ALLOWED_TYPES:
-        raise BadRequestException(
-            f"Invalid image type '{content_type}'. "
-            f"Allowed: {', '.join(sorted(_ALLOWED_TYPES))}"
+    try:
+        # Validate file type
+        content_type = image.content_type or ""
+        if content_type not in _ALLOWED_TYPES:
+            raise BadRequestException(
+                f"Invalid image type '{content_type}'. "
+                f"Allowed: {', '.join(sorted(_ALLOWED_TYPES))}"
+            )
+
+        # Enforce bounded read: read at most max_bytes + 1
+        max_bytes = settings.MAX_UPLOAD_SIZE_MB * 1024 * 1024
+        image_bytes = await image.read(max_bytes + 1)
+
+        if len(image_bytes) == 0:
+            raise BadRequestException("Uploaded file is empty")
+
+        if len(image_bytes) > max_bytes:
+            raise PayloadTooLargeException(
+                f"Image exceeds maximum allowed size of {settings.MAX_UPLOAD_SIZE_MB}MB"
+            )
+
+        # Run detection
+        detection = await service.detect_plant(
+            image_bytes=image_bytes,
+            filename=image.filename or "upload.jpg",
+            user_id=current_user.user_id,
         )
-
-    # Read image bytes
-    image_bytes = await image.read()
-    if len(image_bytes) == 0:
-        raise BadRequestException("Uploaded file is empty")
-
-    # Run detection
-    detection = await service.detect_plant(
-        image_bytes=image_bytes,
-        filename=image.filename or "upload.jpg",
-        user_id=current_user.user_id,
-    )
-    return service.build_response(detection)
+        return service.build_response(detection)
+    finally:
+        await image.close()
 
 
 @router.get(
