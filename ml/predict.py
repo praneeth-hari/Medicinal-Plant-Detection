@@ -85,8 +85,24 @@ def map_class_name(name: str) -> str:
     # Default: replace underscores with spaces and title-case
     return clean_name.replace("_", " ").title()
 
+def generate_inference_crops(img: Image.Image, size: int = 224) -> list[Image.Image]:
+    """Generate multi-scale crops to capture both macro leaf arrangement and micro leaf venation."""
+    from PIL import ImageOps
+    w, h = img.size
+    crops = [
+        img.resize((size, size), Image.Resampling.BILINEAR),
+        ImageOps.fit(img, (size, size), centering=(0.5, 0.5)),
+    ]
+    # For non-square or high-res images, add regional leaf cluster zooms
+    if max(w, h) >= 300:
+        crops.append(ImageOps.fit(img, (size, size), centering=(0.25, 0.5)))
+        crops.append(ImageOps.fit(img, (size, size), centering=(0.75, 0.5)))
+        crops.append(ImageOps.fit(img, (size, size), centering=(0.5, 0.25)))
+    return crops
+
+
 def predict(image_path: str, top_k: int = 5) -> dict:
-    """Run inference on a single image.
+    """Run inference on a single image using multi-crop ensembling.
 
     Args:
         image_path: Path to the input image file.
@@ -105,21 +121,21 @@ def predict(image_path: str, top_k: int = 5) -> dict:
     image = Image.open(image_path).convert("RGB")
     
     preprocess = transforms.Compose([
-        transforms.Resize((224, 224)),
         transforms.ToTensor(),
         transforms.Normalize(mean=IMAGENET_MEAN, std=IMAGENET_STD)
     ])
     
-    input_tensor = preprocess(image).unsqueeze(0)  # Add batch dimension
+    crops = generate_inference_crops(image, size=224)
+    batch_tensors = torch.stack([preprocess(c) for c in crops])
     
     # Use the device from load_inference_model (model already on device)
     device = _device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    input_tensor = input_tensor.to(device)
+    batch_tensors = batch_tensors.to(device)
     
     with torch.no_grad():
-        outputs = model(input_tensor)
-        # Apply Softmax to get probabilities
-        probabilities = torch.softmax(outputs, dim=1)[0]
+        outputs = model(batch_tensors)
+        # Average the softmax probabilities across all multi-scale crops
+        probabilities = torch.softmax(outputs, dim=1).mean(dim=0)
         
     # Get top predictions
     confidences, indices = torch.topk(probabilities, k=min(top_k, len(class_names)))

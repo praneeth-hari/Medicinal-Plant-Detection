@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from api.v1.endpoints import chat, detection, plants, health, control_tower, system_info, cmdb
+from api.v1.endpoints import chat, detection, plants, health, control_tower, system_info, cmdb, papers
 
 api_v1_router = APIRouter()
 
@@ -18,6 +18,13 @@ api_v1_router = APIRouter()
 api_v1_router.include_router(
     health.router,
     tags=["Health"],
+)
+
+# Feature endpoints
+api_v1_router.include_router(
+    papers.router,
+    prefix="/papers",
+    tags=["Research Papers"],
 )
 
 # Feature endpoints
