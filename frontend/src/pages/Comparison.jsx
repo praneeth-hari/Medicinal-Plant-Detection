@@ -319,8 +319,13 @@ export function Comparison() {
             </div>
           </Card>
           
-          <div className="flex items-center gap-1.5 text-[10px] text-surface-500 dark:text-surface-400 px-2 font-semibold">
-            <Info className="w-3.5 h-3.5 text-primary-500 dark:text-primary-400" /> Rows highlighted with green gradients indicate distinct plant attributes.
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-surface-500 dark:text-surface-400 px-2 font-semibold">
+            <span className="flex items-center gap-1.5">
+              <Info className="w-3.5 h-3.5 text-primary-500 dark:text-primary-400" /> Rows highlighted with green gradients indicate distinct plant attributes.
+            </span>
+            <span className="flex items-center gap-1 lg:hidden">
+              <ArrowLeftRight className="w-3 h-3 flex-shrink-0" /> Swipe the table to compare both species.
+            </span>
           </div>
         </motion.div>
       )}
