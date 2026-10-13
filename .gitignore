@@ -70,7 +70,8 @@ data/embeddings/
 data/processed/
 data/models/
 backend/data/embeddings/
-backend/data/models/
+backend/data/models/*
+!backend/data/models/class_mapping.json
 backend/data/uploads/
 *.hdf5
 
