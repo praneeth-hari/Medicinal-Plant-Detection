@@ -73,6 +73,9 @@ backend/data/embeddings/
 backend/data/models/*
 !backend/data/models/class_mapping.json
 backend/data/uploads/
+# Runtime-generated telemetry — not source data
+backend/data/control_tower_audit_logs.json
+backend/data/control_tower_metrics.json
 *.hdf5
 
 # ----- Uploaded Images -----
