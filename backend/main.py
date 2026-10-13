@@ -122,6 +122,9 @@ register_exception_handlers(app)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.CORS_ORIGINS,
+    # Vite moves to the next free port (3001, 3002, ...) when 3000 is taken, so
+    # accept any localhost port rather than a fixed list.
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

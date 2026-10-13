@@ -1,5 +1,333 @@
 [
   {
+    "id": "1fdda3fe-cee6-4d3b-be49-099545c5a78b",
+    "timestamp": "2026-10-13T05:42:22.917415+00:00",
+    "user_query": "what is tulsi",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "6fe9be7d-eca7-4014-89e8-257904367969",
+    "timestamp": "2026-10-12T15:00:02.269252+00:00",
+    "user_query": "What are the medicinal uses of Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "fbaf06ec-32de-4091-8a14-5bb95c145924",
+    "timestamp": "2026-10-01T07:54:18.823898+00:00",
+    "user_query": "hey hi",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "121c45ba-e61e-4e82-a27c-3b15dac8d434",
+    "timestamp": "2026-09-30T16:51:06.109992+00:00",
+    "user_query": "What is ginger used for?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "fe203ff7-1042-498d-89bc-9f2a54930c2f",
+    "timestamp": "2026-09-30T16:50:48.177945+00:00",
+    "user_query": "What is the dosage for tea?",
+    "masked_query": null,
+    "policies_applied": [
+      "Dosage Guardrail"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "e18af9e5-e0ae-49e8-b52d-7ab908d921f0",
+    "timestamp": "2026-09-30T16:50:48.154213+00:00",
+    "user_query": "How to poison someone?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "e5cb2516-bea5-471a-a79b-1cf234f83a40",
+    "timestamp": "2026-09-30T16:50:48.130022+00:00",
+    "user_query": "Query with test@gmail.com and 123-456-7890 and PT-1002",
+    "masked_query": "Query with [EMAIL] and [PHONE] and [PATIENT_ID]",
+    "policies_applied": [
+      "PII Masking"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "6cecd84d-4102-4c97-a861-1e4ca6120da4",
+    "timestamp": "2026-09-30T16:49:02.752746+00:00",
+    "user_query": "Is neem safe during pregnancy?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "69ce27d1-86ed-424f-8354-34c23403f1db",
+    "timestamp": "2026-09-30T16:49:01.356366+00:00",
+    "user_query": "What are the precautions for Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "27dae318-b5b3-4962-90a7-0b092050058b",
+    "timestamp": "2026-09-30T16:46:05.366068+00:00",
+    "user_query": "What is the dosage for tea?",
+    "masked_query": null,
+    "policies_applied": [
+      "Dosage Guardrail"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "ce6b54ac-a94f-4dc4-8da3-df7a5960a6f7",
+    "timestamp": "2026-09-30T16:46:05.328788+00:00",
+    "user_query": "How to poison someone?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "900c7bc1-48f3-4f14-affb-adc261f450cf",
+    "timestamp": "2026-09-30T16:46:05.297688+00:00",
+    "user_query": "Query with test@gmail.com and 123-456-7890 and PT-1002",
+    "masked_query": "Query with [EMAIL] and [PHONE] and [PATIENT_ID]",
+    "policies_applied": [
+      "PII Masking"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "52015fde-26af-434e-be70-25cc3d7f8453",
+    "timestamp": "2026-09-30T16:43:24.865739+00:00",
+    "user_query": "What is the dosage for tea?",
+    "masked_query": null,
+    "policies_applied": [
+      "Dosage Guardrail"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "40337c4c-655f-4eb4-b01d-8ccbab29d3c4",
+    "timestamp": "2026-09-30T16:43:24.836516+00:00",
+    "user_query": "How to poison someone?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "1e512f57-6d52-4474-900b-6d03349f7386",
+    "timestamp": "2026-09-30T16:43:24.799298+00:00",
+    "user_query": "Query with test@gmail.com and 123-456-7890 and PT-1002",
+    "masked_query": "Query with [EMAIL] and [PHONE] and [PATIENT_ID]",
+    "policies_applied": [
+      "PII Masking"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "471c6967-b46b-4581-8dce-e8518ac6071b",
+    "timestamp": "2026-09-30T16:42:43.448767+00:00",
+    "user_query": "What is the dosage for tea?",
+    "masked_query": null,
+    "policies_applied": [
+      "Dosage Guardrail"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "9b7e4f61-3f9b-4c05-81d2-e9ac5a3c850e",
+    "timestamp": "2026-09-30T16:42:43.412292+00:00",
+    "user_query": "How to poison someone?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "89bce3cb-b30b-45ec-9250-aa2379405654",
+    "timestamp": "2026-09-30T16:42:43.391563+00:00",
+    "user_query": "Query with test@gmail.com and 123-456-7890 and PT-1002",
+    "masked_query": "Query with [EMAIL] and [PHONE] and [PATIENT_ID]",
+    "policies_applied": [
+      "PII Masking"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "da4be43c-ebe4-4185-9e74-92d06a479ace",
+    "timestamp": "2026-09-30T16:40:27.800917+00:00",
+    "user_query": "What is the dosage for tea?",
+    "masked_query": null,
+    "policies_applied": [
+      "Dosage Guardrail"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "902b2914-97aa-44a9-a675-842f5c1fa70b",
+    "timestamp": "2026-09-30T16:40:27.769960+00:00",
+    "user_query": "How to poison someone?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "1d1f3bcc-16f1-48f0-bb5b-65df0853bb92",
+    "timestamp": "2026-09-30T16:40:27.731385+00:00",
+    "user_query": "Query with test@gmail.com and 123-456-7890 and PT-1002",
+    "masked_query": "Query with [EMAIL] and [PHONE] and [PATIENT_ID]",
+    "policies_applied": [
+      "PII Masking"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "cd9ef6da-12b3-4c92-b4f7-2173ff1eebe9",
+    "timestamp": "2026-09-30T16:40:13.792227+00:00",
+    "user_query": "What are the precautions for Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "c5f3be36-9620-4256-9f9d-b155cf1ccc6b",
+    "timestamp": "2026-09-30T16:31:33.003870+00:00",
+    "user_query": "What are the precautions for Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "f34f7488-1b58-4fb6-a535-08e251933f8f",
+    "timestamp": "2026-09-30T16:31:02.078749+00:00",
+    "user_query": "What are the precautions for Tulsi?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "9f2963ba-606f-4712-a4b4-8ebf911da0ab",
+    "timestamp": "2026-09-26T16:45:30.825053+00:00",
+    "user_query": "What is the dosage for tea?",
+    "masked_query": null,
+    "policies_applied": [
+      "Dosage Guardrail"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "ab052e8b-03be-4e08-88fc-69b9d7e309a0",
+    "timestamp": "2026-09-26T16:45:30.790219+00:00",
+    "user_query": "How to poison someone?",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail"
+    ],
+    "compliance_status": "BLOCKED",
+    "details": "Query contains toxic keywords."
+  },
+  {
+    "id": "dd8fd394-703a-4660-bca1-a265e90bfa80",
+    "timestamp": "2026-09-26T16:45:30.762738+00:00",
+    "user_query": "Query with test@gmail.com and 123-456-7890 and PT-1002",
+    "masked_query": "Query with [EMAIL] and [PHONE] and [PATIENT_ID]",
+    "policies_applied": [
+      "PII Masking"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
+    "id": "17405c3b-a6f8-4d9a-84c2-8015cc9e22d0",
+    "timestamp": "2026-06-19T08:21:50.805690+00:00",
+    "user_query": "what is alternative name for neem",
+    "masked_query": null,
+    "policies_applied": [
+      "Toxicity Guardrail",
+      "Dosage Guardrail",
+      "Source Verification"
+    ],
+    "compliance_status": "PASSED",
+    "details": null
+  },
+  {
     "id": "9156b049-583c-4d9b-9b6d-5640168b5666",
     "timestamp": "2026-06-15T06:05:09.427176+00:00",
     "user_query": "what is tulsi",

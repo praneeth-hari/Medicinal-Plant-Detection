@@ -10,6 +10,7 @@ import Loader from '../components/common/Loader';
 import EmptyState from '../components/common/EmptyState';
 import useToast from '../hooks/useToast';
 import axios from 'axios';
+import client from '../api/client';
 
 const SEARCH_HISTORY_KEY = 'mediplant_search_history';
 const FETCH_SIZE = 80;
@@ -341,59 +342,77 @@ export function ResearchPapers() {
     setIntentLabels(labels);
 
     try {
-      // Step 1: Fetch up to FETCH_SIZE PMIDs
-      const searchUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(pubmedQuery)}&retmode=json&retmax=${FETCH_SIZE}&retstart=0&sort=relevance`;
-      const searchRes = await axios.get(searchUrl);
-      const esearchResult = searchRes.data?.esearchresult || {};
-      const idList = esearchResult.idlist || [];
-      setTotalCount(parseInt(esearchResult.count || '0', 10));
+      let allPapers = [];
 
-      if (idList.length === 0) {
-        setPapers([]);
-        setLoading(false);
-        return;
+      // Primary strategy: Fetch via backend proxy (avoids CORS, adblockers, and browser DOMParser errors)
+      try {
+        const backendRes = await client.get(`/papers/search?q=${encodeURIComponent(pubmedQuery)}&limit=${FETCH_SIZE}`);
+        if (backendRes.data?.papers && backendRes.data.papers.length > 0) {
+          allPapers = backendRes.data.papers;
+          setTotalCount(backendRes.data.total_count || allPapers.length);
+        } else if (backendRes.data?.total_count === 0) {
+          setTotalCount(0);
+          setPapers([]);
+          setLoading(false);
+          return;
+        }
+      } catch (backendErr) {
+        console.warn('Backend PubMed proxy unavailable, attempting direct NCBI fallback:', backendErr);
       }
 
-      // Step 2: Fetch metadata + abstracts in parallel
-      const idsParam = idList.join(',');
-      const [summaryRes, fetchRes] = await Promise.all([
-        axios.get(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${idsParam}&retmode=json`),
-        axios.get(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${idsParam}&rettype=abstract&retmode=xml`),
-      ]);
+      // Secondary fallback: Direct NCBI fetch if backend returned no papers
+      if (allPapers.length === 0) {
+        const toolParams = '&tool=MediPlantAI&email=info@mediplant.ai';
+        const searchUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(pubmedQuery)}&retmode=json&retmax=${FETCH_SIZE}&retstart=0&sort=relevance${toolParams}`;
+        const searchRes = await axios.get(searchUrl);
+        const esearchResult = searchRes.data?.esearchresult || {};
+        const idList = esearchResult.idlist || [];
+        setTotalCount(parseInt(esearchResult.count || '0', 10));
 
-      const resultObj = summaryRes.data?.result || {};
-
-      // Parse abstracts from XML
-      const xmlDoc = new DOMParser().parseFromString(fetchRes.data, 'text/xml');
-      const abstractMap = {};
-      xmlDoc.querySelectorAll('PubmedArticle').forEach((article) => {
-        const pmid = article.querySelector('PMID')?.textContent;
-        const texts = article.querySelectorAll('AbstractText');
-        if (pmid && texts.length > 0) {
-          abstractMap[pmid] = Array.from(texts).map((el) => el.textContent).join(' ');
+        if (idList.length === 0) {
+          setPapers([]);
+          setLoading(false);
+          return;
         }
-      });
 
-      // Step 3: Build paper objects
-      const allPapers = idList.map((id) => {
-        const item = resultObj[id] || {};
-        const authorNames = item.authors ? item.authors.map((a) => a.name).join(', ') : 'Unknown Authors';
-        let doi = '';
-        if (item.articleids) {
-          const doiObj = item.articleids.find((aid) => aid.idtype === 'doi');
-          if (doiObj) doi = doiObj.value;
-        }
-        return {
-          id,
-          title: item.title || 'Untitled Publication',
-          authors: authorNames,
-          journal: item.source || 'Unknown Journal',
-          pubDate: item.pubdate || 'N/A',
-          doi,
-          url: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
-          abstract: abstractMap[id] || 'Abstract not available.',
-        };
-      });
+        const idsParam = idList.join(',');
+        const [summaryRes, fetchRes] = await Promise.all([
+          axios.get(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${idsParam}&retmode=json${toolParams}`),
+          axios.get(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${idsParam}&rettype=abstract&retmode=xml${toolParams}`),
+        ]);
+
+        const resultObj = summaryRes.data?.result || {};
+        const xmlText = typeof fetchRes.data === 'string' ? fetchRes.data : new XMLSerializer().serializeToString(fetchRes.data);
+        const xmlDoc = new DOMParser().parseFromString(xmlText, 'text/xml');
+        const abstractMap = {};
+        xmlDoc.querySelectorAll('PubmedArticle').forEach((article) => {
+          const pmid = article.querySelector('PMID')?.textContent;
+          const texts = article.querySelectorAll('AbstractText');
+          if (pmid && texts.length > 0) {
+            abstractMap[pmid] = Array.from(texts).map((el) => el.textContent).join(' ');
+          }
+        });
+
+        allPapers = idList.map((id) => {
+          const item = resultObj[id] || {};
+          const authorNames = item.authors ? item.authors.map((a) => a.name).join(', ') : 'Unknown Authors';
+          let doi = '';
+          if (item.articleids) {
+            const doiObj = item.articleids.find((aid) => aid.idtype === 'doi');
+            if (doiObj) doi = doiObj.value;
+          }
+          return {
+            id,
+            title: item.title || 'Untitled Publication',
+            authors: authorNames,
+            journal: item.source || 'Unknown Journal',
+            pubDate: item.pubdate || 'N/A',
+            doi,
+            url: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
+            abstract: abstractMap[id] || 'Abstract not available.',
+          };
+        });
+      }
 
       // Step 4: Score, filter irrelevant, sort by evidence quality
       const scored = allPapers

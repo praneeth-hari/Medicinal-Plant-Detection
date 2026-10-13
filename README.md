@@ -11,53 +11,115 @@ A full-stack application that combines **deep learning-based plant detection** w
 | **Frontend** | React, Tailwind CSS, Vite                           |
 | **Backend**  | FastAPI, Python, SQLAlchemy, Alembic                |
 | **ML**       | PyTorch (MobileNetV3-Small), torchvision, Pillow    |
-| **RAG**      | FAISS, sentence-transformers, Ollama (qwen2.5:3b)   |
+| **RAG**      | FAISS, sentence-transformers, Ollama (`qwen2.5:3b`) |
 | **Database** | SQLite                                              |
-
------------- | --------------------------------------- |
-| **Frontend** | React, TypeScript, Tailwind CSS, Vite   |
-| **Backend**  | FastAPI, Python, SQLAlchemy, Alembic    |
-| **ML**       | PyTorch, torchvision, Pillow            |
-| **RAG**      | LangChain, ChromaDB, OpenAI Embeddings |
-| **Database** | PostgreSQL / SQLite (dev)               |
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Python 3.11+
-- Node.js 18+
-- [Ollama](https://ollama.com) with the model pulled: `ollama pull qwen2.5:3b`
+- **Python**: 3.11+
+- **Node.js**: 18+ & npm
+- **[Ollama](https://ollama.com)** (for local RAG inference)
 
-### Installation
+---
+
+### Step 1: Installation & Setup
 
 ```bash
 # Clone the repository
 git clone https://github.com/your-username/Medicinal-Plant-RAG.git
 cd Medicinal-Plant-RAG
-
-# Install all dependencies
-make install
-
-# Set up environment variables
-cp backend/.env.example backend/.env
-# Edit backend/.env with your configuration
 ```
 
-### Development
+#### Windows (PowerShell)
+```powershell
+# 1. Create and activate Python virtual environment
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+
+# 2. Install backend & ML dependencies
+pip install -r backend/requirements.txt
+pip install -r ml/requirements.txt
+
+# 3. Install frontend dependencies
+cd frontend
+npm install
+cd ..
+```
+
+#### Linux / macOS / Makefile
+```bash
+make install
+```
+
+---
+
+### Step 2: Environment Variables
+
+Verify or copy the environment configuration files:
 
 ```bash
-# Run backend dev server
-make dev-backend
+# Backend configuration
+cp backend/.env.example backend/.env
 
-# Run frontend dev server
-make dev-frontend
-
-# Run both concurrently
-make dev
+# Frontend configuration
+cp frontend/.env.example frontend/.env
 ```
+
+---
+
+### Step 3: Run the Application
+
+#### 1. Start Ollama *(for RAG Chatbot)*
+In a terminal, ensure Ollama is running and has the model pulled:
+```bash
+# Start Ollama service (if not already running in background)
+ollama serve
+
+# Pull the required LLM model (one-time setup)
+ollama pull qwen2.5:3b
+```
+
+#### 2. Start Backend API Server (FastAPI)
+Open a terminal in the project root:
+- **Windows (PowerShell):**
+  ```powershell
+  cd backend
+  ..\.venv\Scripts\uvicorn main:app --reload --host 127.0.0.1 --port 8000
+  ```
+- **Linux / macOS:**
+  ```bash
+  cd backend
+  uvicorn main:app --reload --host 127.0.0.1 --port 8000
+  ```
+- **Or using Make:** `make dev-backend`
+
+> 🔗 **Backend API:** [http://127.0.0.1:8000](http://127.0.0.1:8000)  
+> 📖 **Interactive API Docs (Swagger UI):** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+
+#### 3. Start Frontend UI (React + Vite)
+Open a **separate** terminal window in the project root:
+```bash
+cd frontend
+npm run dev
+```
+- **Or using Make:** `make dev-frontend`
+
+> 🌐 **Frontend Web App:** [http://localhost:5173](http://localhost:5173)
+
+---
+
+### 🌐 Ports & Services Summary
+
+| Service | Address | Description |
+| :--- | :--- | :--- |
+| **Frontend UI** | [http://localhost:5173](http://localhost:5173) | React web application |
+| **Backend API** | [http://127.0.0.1:8000](http://127.0.0.1:8000) | FastAPI REST service |
+| **API Documentation** | [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) | Interactive Swagger UI for testing endpoints |
+| **Ollama Service** | `http://localhost:11434` | Local LLM engine (`qwen2.5:3b`) |
 
 ---
 
