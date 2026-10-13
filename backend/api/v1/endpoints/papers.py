@@ -6,6 +6,7 @@ clinical trials, pharmacology reviews, and toxicological safety profiles.
 """
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import time
@@ -125,7 +126,7 @@ async def search_papers(
             return entry["data"]
 
     try:
-        data = _fetch_from_ncbi(q, limit=limit)
+        data = await asyncio.to_thread(_fetch_from_ncbi, q, limit=limit)
         _CACHE[cache_key] = {"timestamp": now, "data": data}
         return data
     except Exception as exc:
