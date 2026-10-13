@@ -12,6 +12,7 @@ Exception Hierarchy::
     ├── UnauthorizedException   (401)
     ├── ForbiddenException      (403)
     ├── BadRequestException     (400)
+    ├── PayloadTooLargeException (413)
     └── ServiceUnavailableException (503)
 """
 from __future__ import annotations
@@ -120,6 +121,17 @@ class BadRequestException(AppException):
             message=message,
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=detail or {"code": "BAD_REQUEST"},
+        )
+
+
+class PayloadTooLargeException(AppException):
+    """Uploaded payload exceeds maximum allowed size (413)."""
+
+    def __init__(self, message: str = "Payload too large", detail: Any = None) -> None:
+        super().__init__(
+            message=message,
+            status_code=getattr(status, "HTTP_413_CONTENT_TOO_LARGE", 413),
+            detail=detail or {"code": "PAYLOAD_TOO_LARGE"},
         )
 
 
