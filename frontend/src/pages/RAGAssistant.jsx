@@ -236,9 +236,9 @@ export function RAGAssistant() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 h-[calc(100vh-10rem)] relative z-10 w-full">
+    <div className="flex flex-col lg:flex-row gap-6 h-auto lg:h-[calc(100vh-10rem)] relative z-10 w-full">
       {/* Session selection panel */}
-      <div className="w-full lg:w-64 flex-shrink-0 flex flex-col gap-3 h-full">
+      <div className="w-full lg:w-64 flex-shrink-0 flex flex-col gap-3 h-auto lg:h-full">
         <Button
           onClick={handleNewConversation}
           variant="primary"
@@ -247,7 +247,7 @@ export function RAGAssistant() {
           <Plus className="w-4 h-4" /> New Conversation
         </Button>
 
-        <Card className="flex-1 overflow-y-auto glass border border-surface-200 dark:border-white/10 p-3 flex flex-col min-h-[150px] lg:min-h-0 rounded-2xl shadow-md">
+        <Card className="flex-1 overflow-y-auto glass border border-surface-200 dark:border-white/10 p-3 flex flex-col max-h-40 lg:max-h-none min-h-[120px] lg:min-h-0 rounded-2xl shadow-md">
           <div className="text-[10px] font-bold text-surface-500 dark:text-surface-400 uppercase tracking-wider px-2 py-1.5 mb-2 border-b border-surface-200 dark:border-white/5">
             Conversation Logs
           </div>
@@ -282,7 +282,7 @@ export function RAGAssistant() {
       </div>
 
       {/* Main chat window */}
-      <Card className="flex-1 flex flex-col glass border border-surface-200 dark:border-white/10 p-0 overflow-hidden relative h-full rounded-2xl shadow-lg">
+      <Card className="flex-1 flex flex-col glass border border-surface-200 dark:border-white/10 p-0 overflow-hidden relative max-lg:min-h-[480px] max-lg:h-[70vh] max-lg:h-[70dvh] lg:h-full rounded-2xl shadow-lg">
         {/* Connection health check bar */}
         <div className="px-6 py-4 border-b border-surface-200 dark:border-white/10 flex items-center justify-between bg-black/[0.02] dark:bg-black/25 z-10 flex-shrink-0">
           <div className="flex items-center gap-3">
