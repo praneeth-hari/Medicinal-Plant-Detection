@@ -1,0 +1,95 @@
+{
+  "neem": {
+    "plant_name": "Neem",
+    "scientific_name": "Azadirachta indica",
+    "plant_id": 2,
+    "confidence": 0.8698530197143555,
+    "top_predictions": [
+      {
+        "name": "Neem",
+        "confidence": 0.8698530197143555
+      },
+      {
+        "name": "Curry Leaves",
+        "confidence": 0.04663151502609253
+      },
+      {
+        "name": "Tecoma",
+        "confidence": 0.009380552917718887
+      },
+      {
+        "name": "Chilly",
+        "confidence": 0.006512247025966644
+      },
+      {
+        "name": "Sampige",
+        "confidence": 0.006274390500038862
+      }
+    ],
+    "model_version": "mobilenetv3-v1.0.0",
+    "is_precomputed": true,
+    "note": "Generated locally with MobileNetV3 model on validation sample asset"
+  },
+  "giloy": {
+    "plant_name": "Giloy",
+    "scientific_name": "Tinospora cordifolia",
+    "plant_id": 16,
+    "confidence": 0.8346522450447083,
+    "top_predictions": [
+      {
+        "name": "Giloy",
+        "confidence": 0.8346522450447083
+      },
+      {
+        "name": "Gasagase",
+        "confidence": 0.0723145604133606
+      },
+      {
+        "name": "Citron Lime (Herelikai)",
+        "confidence": 0.012891103513538837
+      },
+      {
+        "name": "Doddpathre",
+        "confidence": 0.010655896738171577
+      },
+      {
+        "name": "Henna",
+        "confidence": 0.00932611059397459
+      }
+    ],
+    "model_version": "mobilenetv3-v1.0.0",
+    "is_precomputed": true,
+    "note": "Generated locally with MobileNetV3 model on validation sample asset"
+  },
+  "aloe_vera": {
+    "plant_name": "Aloe Vera",
+    "scientific_name": "Aloe barbadensis miller",
+    "plant_id": 4,
+    "confidence": 0.9921486973762512,
+    "top_predictions": [
+      {
+        "name": "Aloe Vera",
+        "confidence": 0.9921486973762512
+      },
+      {
+        "name": "Tulsi",
+        "confidence": 0.0015472611412405968
+      },
+      {
+        "name": "Mint",
+        "confidence": 0.001395593280903995
+      },
+      {
+        "name": "Marigold",
+        "confidence": 0.0006476041744463146
+      },
+      {
+        "name": "Curry Leaves",
+        "confidence": 0.0005481125554069877
+      }
+    ],
+    "model_version": "mobilenetv3-v1.0.0",
+    "is_precomputed": true,
+    "note": "Generated locally with MobileNetV3 model on validation sample asset"
+  }
+}
