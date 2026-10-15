@@ -35,6 +35,7 @@ export function PlantDetection() {
 
   // Webcam state
   const [inputMode, setInputMode]       = useState('upload'); // 'upload' | 'webcam'
+  const [sampleLoading, setSampleLoading] = useState(''); // sample name currently being fetched
   const [camActive, setCamActive]       = useState(false);
   const [camError, setCamError]         = useState('');
 
@@ -199,16 +200,38 @@ export function PlantDetection() {
     }, 'image/jpeg', 0.92);
   };
 
+  // Load a bundled sample image from /public/samples/, set preview, then immediately run detection
+  const loadSample = async (name) => {
+    if (sampleLoading) return;
+    setSampleLoading(name);
+    try {
+      const res = await fetch(`/samples/${name}.jpg`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const blob = await res.blob();
+      const file = new File([blob], `${name}.jpg`, { type: 'image/jpeg' });
+      switchMode('upload');
+      handleFileChange(file);
+      // Pass file directly — selectedFile state may not yet be committed
+      await handleUploadSubmit(file);
+    } catch (err) {
+      addToast(`Could not load sample image "${name}".`, 'error');
+    } finally {
+      setSampleLoading('');
+    }
+  };
+
   // Cleanup camera on unmount
   useEffect(() => () => stopCamera(), []);
 
-  const handleUploadSubmit = async () => {
-    if (!selectedFile) return;
+  // fileOverride: used by loadSample to pass the File directly before selectedFile state commits
+  const handleUploadSubmit = async (fileOverride) => {
+    const file = fileOverride || selectedFile;
+    if (!file) return;
 
     setIsDetecting(true);
     setUploadError('');
     try {
-      const response = await detectPlant(selectedFile);
+      const response = await detectPlant(file);
       setDetectionResult(response.data);
       addToast('Image analyzed successfully!', 'success');
       loadHistory();
@@ -308,6 +331,42 @@ export function PlantDetection() {
                 </h4>
                 <p className="text-[10px] text-surface-500 dark:text-surface-400 max-w-[180px] mx-auto mt-1 leading-relaxed">
                   Or click to browse. Supports JPG, PNG up to 5MB.
+                </p>
+              </div>
+            )}
+
+            {/* Sample images — shown only in upload mode before a file is chosen */}
+            {inputMode === 'upload' && !selectedFile && (
+              <div className="mt-4">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 mb-2">Try a Sample</p>
+                <div className="grid grid-cols-3 gap-2">
+                  {[{ name: 'neem', label: 'Neem' }, { name: 'giloy', label: 'Giloy' }, { name: 'aloe_vera', label: 'Aloe Vera' }].map(({ name, label }) => (
+                    <button
+                      key={name}
+                      onClick={() => loadSample(name)}
+                      disabled={!!sampleLoading}
+                      className="relative group rounded-xl overflow-hidden border border-surface-200 dark:border-white/10 hover:border-primary-500/60 transition-all duration-200 aspect-square bg-black/5 dark:bg-black/30 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      title={`Click to detect: ${label}`}
+                    >
+                      <img
+                        src={`/samples/${name}.jpg`}
+                        alt={`${label} leaf sample`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                      {sampleLoading === name ? (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                          <Loader className="w-4 h-4 text-white" />
+                        </div>
+                      ) : null}
+                      <span className="absolute bottom-1 left-0 right-0 text-center text-[9px] font-bold text-white tracking-wide">
+                        {label}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-[9px] text-surface-400 dark:text-surface-500 mt-1.5 text-right">
+                  <a href="/samples/ATTRIBUTIONS.md" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary-500 transition-colors">Image credits (CC BY 4.0)</a>
                 </p>
               </div>
             )}
