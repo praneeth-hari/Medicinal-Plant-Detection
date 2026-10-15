@@ -15,6 +15,7 @@ import {
   Camera,
   CameraOff,
   Circle,
+  Info,
 } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
@@ -25,6 +26,7 @@ import useToast from '../hooks/useToast';
 import { detectPlant, getDetectionHistory } from '../api/detection';
 import config from '../config/config';
 import { getPlants } from '../api/plants';
+import samplePredictions from '../data/samplePredictions.json';
 
 export function PlantDetection() {
   const { addToast } = useToast();
@@ -83,6 +85,11 @@ export function PlantDetection() {
 
   // Fetch detection history
   const loadHistory = useCallback(async () => {
+    if (config.DEMO_MODE) {
+      setHistoryList([]);
+      setHistoryLoading(false);
+      return;
+    }
     setHistoryLoading(true);
     setHistoryError('');
     try {
@@ -211,8 +218,19 @@ export function PlantDetection() {
       const file = new File([blob], `${name}.jpg`, { type: 'image/jpeg' });
       switchMode('upload');
       handleFileChange(file);
-      // Pass file directly — selectedFile state may not yet be committed
-      await handleUploadSubmit(file);
+
+      if (config.DEMO_MODE) {
+        // In demo mode: load genuine precomputed model output immediately without calling backend
+        const saved = samplePredictions[name];
+        if (saved) {
+          setDetectionResult(saved);
+        } else {
+          setUploadError(`Precomputed result not found for "${name}".`);
+        }
+      } else {
+        // Pass file directly — selectedFile state may not yet be committed
+        await handleUploadSubmit(file);
+      }
     } catch (err) {
       addToast(`Could not load sample image "${name}".`, 'error');
     } finally {
@@ -227,6 +245,13 @@ export function PlantDetection() {
   const handleUploadSubmit = async (fileOverride) => {
     const file = fileOverride || selectedFile;
     if (!file) return;
+
+    if (config.DEMO_MODE) {
+      const msg = 'Live leaf classification requires the local FastAPI backend server. Try a sample leaf above to view precomputed demo results.';
+      setUploadError(msg);
+      addToast('Backend server required for live image analysis.', 'info');
+      return;
+    }
 
     setIsDetecting(true);
     setUploadError('');
@@ -255,7 +280,7 @@ export function PlantDetection() {
 
   const getCatalogLink = (plantName) => {
     if (!plantName) return null;
-    return catalogMap[plantName.toLowerCase()] || null;
+    return catalogMap[plantName.toLowerCase()] || detectionResult?.plant_id || null;
   };
 
   const openDetails = (detection) => {
@@ -502,6 +527,15 @@ export function PlantDetection() {
             ) : detectionResult ? (
               <div className="space-y-6 flex-1 flex flex-col justify-between">
                 <div className="space-y-4">
+                  {detectionResult.is_precomputed && (
+                    <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-700 dark:text-amber-400 text-[11px] font-semibold flex items-start gap-2">
+                      <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-amber-600 dark:text-amber-400" />
+                      <span>
+                        Precomputed demo result — generated locally with MobileNetV3; not live inference.
+                      </span>
+                    </div>
+                  )}
+
                   <div className="flex justify-between items-start border-b border-surface-200 dark:border-white/5 pb-4">
                     <div>
                       <span className="text-[10px] font-bold uppercase text-primary-600 dark:text-primary-400 tracking-wider">Top Match</span>

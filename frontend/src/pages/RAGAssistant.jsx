@@ -11,7 +11,8 @@ import {
   ChevronDown,
   ChevronUp,
   ExternalLink,
-  Bot
+  Bot,
+  Info,
 } from 'lucide-react';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
@@ -19,6 +20,7 @@ import Loader from '../components/common/Loader';
 import useToast from '../hooks/useToast';
 import { sendMessage, getSessions, getSessionMessages } from '../api/chat';
 import { getPlants } from '../api/plants';
+import config from '../config/config';
 
 export function RAGAssistant() {
   const { addToast } = useToast();
@@ -62,6 +64,11 @@ export function RAGAssistant() {
 
   // Fetch all chat sessions
   const loadSessions = useCallback(async (selectId = null) => {
+    if (config.DEMO_MODE) {
+      setSessions([]);
+      setSessionsLoading(false);
+      return;
+    }
     setSessionsLoading(true);
     try {
       const data = await getSessions();
@@ -142,6 +149,21 @@ export function RAGAssistant() {
       created_at: new Date().toISOString()
     };
     setMessages((prev) => [...prev, tempUserMsg]);
+
+    if (config.DEMO_MODE) {
+      addToast('Live RAG requires the local backend server.', 'info');
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          role: 'assistant',
+          content: 'ℹ️ **Static Showcase Mode:** Live conversational RAG requires the locally running FastAPI backend, Ollama (`qwen2.5:3b`), and the initialized FAISS vector database. Refer to the repository documentation to run the complete pipeline locally.',
+          created_at: new Date().toISOString()
+        }
+      ]);
+      setIsSending(false);
+      return;
+    }
 
     try {
       const response = await sendMessage(activeSessionId, userQuery);
@@ -296,10 +318,26 @@ export function RAGAssistant() {
               <p className="text-[9px] text-surface-500 dark:text-surface-400 font-semibold">Contextual references loaded dynamically</p>
             </div>
           </div>
-          <span className="inline-flex items-center gap-1 text-[9px] bg-primary-500/10 border border-primary-500/25 text-primary-600 dark:text-primary-400 px-2 py-0.5 rounded-full font-bold">
-            <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-ping" /> Online
-          </span>
+          {config.DEMO_MODE ? (
+            <span className="inline-flex items-center gap-1 text-[9px] bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 px-2 py-0.5 rounded-full font-bold">
+              <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" /> Demo Mode
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1 text-[9px] bg-primary-500/10 border border-primary-500/25 text-primary-600 dark:text-primary-400 px-2 py-0.5 rounded-full font-bold">
+              <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-ping" /> Online
+            </span>
+          )}
         </div>
+
+        {/* Compact informational banner in demo mode */}
+        {config.DEMO_MODE && (
+          <div className="mx-6 mt-3 px-3.5 py-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-800 dark:text-amber-300 text-xs flex items-start gap-2.5 flex-shrink-0">
+            <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-amber-600 dark:text-amber-400" />
+            <p className="text-[11px] leading-relaxed">
+              <strong className="font-semibold">Static Showcase Mode:</strong> Live RAG responses require the locally running FastAPI backend, Ollama (<code className="font-mono text-[10px]">qwen2.5:3b</code>), and initialized FAISS index. Run the project locally for live assistant conversations.
+            </p>
+          </div>
+        )}
 
         {/* Message Feed Area */}
         <div className="flex-1 p-6 space-y-6 overflow-y-auto bg-gradient-to-b from-white/[0.01] to-transparent">
