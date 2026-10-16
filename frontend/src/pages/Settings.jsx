@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, Cpu, Scan } from 'lucide-react';
+import { Cpu, Scan } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
-import useTheme from '../hooks/useTheme';
 import useToast from '../hooks/useToast';
 
 const CHAT_TEMP_KEY        = 'mediplant_chat_temp';
@@ -14,7 +13,6 @@ const DETECT_THRESHOLD_KEY = 'mediplant_detect_threshold';
 const DETECT_MAX_KEY       = 'mediplant_detect_max';
 
 export function Settings() {
-  const { setTheme, isDark } = useTheme();
   const { addToast } = useToast();
 
   const [activeTab, setActiveTab] = useState('ai');
@@ -59,7 +57,6 @@ export function Settings() {
   const tabs = [
     { id: 'ai',        label: 'AI & RAG',   icon: Cpu  },
     { id: 'detection', label: 'Detection',  icon: Scan },
-    { id: 'theme',     label: 'Theme',      icon: Sun  },
   ];
 
   return (
@@ -178,42 +175,6 @@ export function Settings() {
                     <Button type="submit" variant="primary" className="rounded-xl px-6 shadow-glow">Save</Button>
                   </div>
                 </form>
-              )}
-
-              {/* ── Theme ── */}
-              {activeTab === 'theme' && (
-                <div className="space-y-5">
-                  <h3 className="text-sm font-extrabold text-surface-900 dark:text-white pb-3 border-b border-surface-200 dark:border-white/5 flex items-center gap-2">
-                    <Sun className="w-4 h-4 text-primary-450" /> Visual Styling
-                  </h3>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400">Application Mode</label>
-                    <div className="grid grid-cols-2 gap-3 max-w-sm">
-                      <button
-                        type="button"
-                        onClick={() => setTheme('light')}
-                        className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl border text-xs font-extrabold transition-all ${
-                          !isDark
-                            ? 'bg-primary-500/15 border-primary-500/35 text-primary-700 dark:text-white shadow-glow-sm'
-                            : 'border-surface-200 bg-surface-50 text-surface-600 hover:bg-surface-100 dark:border-white/10 dark:bg-white/5 dark:text-surface-300 dark:hover:bg-white/10'
-                        }`}
-                      >
-                        <Sun className="w-4 h-4 text-amber-500" /> Light Mode
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setTheme('dark')}
-                        className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl border text-xs font-extrabold transition-all ${
-                          isDark
-                            ? 'bg-primary-500/15 border-primary-500/35 text-primary-700 dark:text-white shadow-glow-sm'
-                            : 'border-white/10 bg-white/5 text-surface-300 hover:bg-white/10'
-                        }`}
-                      >
-                        <Moon className="w-4 h-4 text-primary-400" /> Dark Mode
-                      </button>
-                    </div>
-                  </div>
-                </div>
               )}
             </motion.div>
           </AnimatePresence>
