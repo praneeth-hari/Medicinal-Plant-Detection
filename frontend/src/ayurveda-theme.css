@@ -234,15 +234,22 @@ a[class*="bg-primary"]:hover {
 
 .dark .text-surface-300  { color: #D4A86A !important; }
 .dark .text-surface-400  { color: #B08050 !important; }
+.dark .text-surface-500  { color: #C49A5A !important; }
+.dark .text-surface-600  { color: #D4B896 !important; }
+.dark .text-surface-700  { color: #E8DFC8 !important; }
 .dark .text-surface-900  { color: #FAF0DC !important; }
 
 /* Surface background tints */
 .bg-surface-100  { background-color: #F5EFE4 !important; }
 .bg-surface-200  { background-color: #EDE4D4 !important; }
 
+.dark .bg-surface-100 { background-color: #1A0F05 !important; }
+.dark .bg-surface-200 { background-color: #2E1D0E !important; }
+
 /* Surface border lines */
 .border-surface-100  { border-color: #E8DFC8 !important; }
 .border-surface-200  { border-color: #D4B896 !important; }
+.dark .border-surface-100 { border-color: rgba(193, 127, 58, 0.16) !important; }
 .dark .border-surface-200 { border-color: #5A3D22 !important; }
 
 /* ─── 8. Page / Layout backgrounds ──────────────────────────── */
@@ -255,7 +262,8 @@ main,
 }
 
 .dark main,
-.dark .min-h-screen {
+.dark .min-h-screen,
+.dark [class*="bg-background"] {
   background-color: #231508 !important;
 }
 
@@ -263,9 +271,29 @@ main,
 
 /* Card base */
 .plant-card,
-[class*="rounded-2xl"].overflow-hidden.cursor-pointer {
+[class*="rounded-2xl"].overflow-hidden.cursor-pointer,
+[class*="rounded-2xl"].glass.border,
+form.glass,
+.glass form {
   background-color: #FAF6EE !important;
   border-color: #D4B896 !important;
+}
+
+.dark .plant-card,
+.dark [class*="rounded-2xl"].overflow-hidden.cursor-pointer,
+.dark [class*="rounded-2xl"].glass.border,
+.dark form.glass,
+.dark .glass form,
+.dark [class*="rounded-2xl"].glass-solid,
+.dark [class*="rounded-3xl"].glass-solid {
+  background-color: rgba(36, 22, 12, 0.90) !important;
+  border-color: rgba(193, 127, 58, 0.28) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+.dark .plant-card:hover,
+.dark [class*="rounded-2xl"].overflow-hidden.cursor-pointer:hover {
+  border-color: rgba(212, 147, 74, 0.50) !important;
 }
 
 /* Family taxonomy pill / tag */
@@ -276,12 +304,24 @@ main,
   color:            #8B3D1A !important;
 }
 
+.dark [class*="bg-primary-500\/20"],
+.dark [class*="border-primary-500\/30"] {
+  background-color: rgba(212, 147, 74, 0.18) !important;
+  border-color:     rgba(212, 147, 74, 0.35) !important;
+  color:            #FAF0DC !important;
+}
+
 /* ─── 10. Status / Badge Colours ──────────────────────────────── */
 
-/* Status dot pulse — botanical green */
-[class*="bg-primary-500"].rounded-full,
-span.rounded-full[class*="bg-primary"] {
+/* Status dot pulse — botanical green (targets ONLY the status pulse dot) */
+.animate-pulse.rounded-full,
+span.w-2.h-2.rounded-full {
   background-color: #4A7C3F !important;
+}
+
+.dark .animate-pulse.rounded-full,
+.dark span.w-2.h-2.rounded-full {
+  background-color: #6BAE5E !important;
 }
 
 /* Emerald / accent overrides → botanical green */
@@ -299,6 +339,20 @@ span.rounded-full[class*="bg-primary"] {
   border-color: rgba(193, 127, 58, 0.22) !important;
 }
 
+.dark .rounded-3xl.glass {
+  background: linear-gradient(135deg, rgba(42, 26, 15, 0.94) 0%, rgba(24, 14, 8, 0.97) 100%) !important;
+  border-color: rgba(193, 127, 58, 0.35) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark .rounded-3xl.glass h1 {
+  color: #FAF0DC !important;
+}
+
+.dark .rounded-3xl.glass p {
+  color: #D4B896 !important;
+}
+
 /* Hero aurora blob — warm ochre */
 .bg-primary-500\/10 {
   background-color: rgba(193, 127, 58, 0.08) !important;
@@ -307,17 +361,50 @@ span.rounded-full[class*="bg-primary"] {
   background-color: rgba(193, 127, 58, 0.12) !important;
 }
 
-/* AI Health Portal badge */
+.dark .bg-primary-500\/10,
+.dark .bg-primary-500\/15 {
+  background-color: rgba(212, 147, 74, 0.12) !important;
+}
+
+/* AI Health Portal badge — high-contrast, crystal clear in both modes */
+.ai-health-badge,
 [class*="bg-primary-500\/10"][class*="border-primary-500\/25"] {
-  background-color: rgba(193, 127, 58, 0.10) !important;
-  border-color:     rgba(193, 127, 58, 0.28) !important;
-  color:            #A8522A !important;
+  background-color: rgba(193, 127, 58, 0.12) !important;
+  border-color:     rgba(193, 127, 58, 0.35) !important;
+  color:            #8B3D1A !important;
+}
+
+.dark .ai-health-badge,
+.dark [class*="bg-primary-500\/10"][class*="border-primary-500\/25"] {
+  background-color: rgba(212, 147, 74, 0.18) !important;
+  border-color:     rgba(212, 147, 74, 0.40) !important;
+  color:            #F5E6C8 !important;
 }
 
 /* Welcome name gradient text */
-[class*="from-primary-600"][class*="via-primary-500"],
-[class*="from-primary-400"][class*="via-accent-300"] {
+[class*="from-primary-600"][class*="via-primary-500"] {
   background-image: linear-gradient(to right, #C17F3A, #A8522A, #8B3D1A) !important;
+}
+
+.dark [class*="from-primary-600"][class*="via-primary-500"],
+.dark [class*="from-primary-400"][class*="via-accent-300"] {
+  background-image: linear-gradient(to right, #FAF0DC, #D4934A, #C17F3A) !important;
+}
+
+/* Secondary Button in Hero ("Consult RAG Bot") in dark mode */
+.dark .rounded-3xl.glass button[class*="border-surface-200"],
+.dark .rounded-3xl.glass button[class*="bg-white\/40"],
+.dark button[class*="border-surface-200"] {
+  background-color: rgba(212, 147, 74, 0.12) !important;
+  border-color:     rgba(212, 147, 74, 0.35) !important;
+  color:            #FAF0DC !important;
+}
+
+.dark .rounded-3xl.glass button[class*="border-surface-200"]:hover,
+.dark .rounded-3xl.glass button[class*="bg-white\/40"]:hover,
+.dark button[class*="border-surface-200"]:hover {
+  background-color: rgba(212, 147, 74, 0.20) !important;
+  border-color:     rgba(212, 147, 74, 0.50) !important;
 }
 
 /* ─── 12. Stat Cards ─────────────────────────────────────────── */
@@ -329,9 +416,29 @@ span.rounded-full[class*="bg-primary"] {
   border-color:     rgba(193, 127, 58, 0.22) !important;
 }
 
+.dark [class*="bg-primary-500\/10"][class*="border-primary-500\/20"],
+.dark [class*="bg-emerald-500\/10"][class*="border-emerald-500\/20"] {
+  background-color: rgba(212, 147, 74, 0.16) !important;
+  border-color:     rgba(212, 147, 74, 0.32) !important;
+  color:            #F5E6C8 !important;
+}
+
 /* Stat card hover border glow */
 [class*="hover:border-primary-500\/35"]:hover {
   border-color: rgba(193, 127, 58, 0.40) !important;
+}
+
+.dark [class*="hover:border-primary-500\/35"]:hover {
+  border-color: rgba(212, 147, 74, 0.50) !important;
+}
+
+/* Stat card numbers & labels in dark mode */
+.dark [class*="rounded-2xl"].overflow-hidden h3 {
+  color: #FAF0DC !important;
+}
+
+.dark [class*="rounded-2xl"].overflow-hidden p {
+  color: #C49A5A !important;
 }
 
 /* ─── 13. System Monitor ─────────────────────────────────────── */
@@ -342,10 +449,29 @@ span.rounded-full[class*="bg-primary"] {
   color: #4A7C3F !important;
 }
 
+.dark [class*="text-primary-600"][class*="font-mono"],
+.dark [class*="text-primary-400"][class*="font-mono"] {
+  color: #6BAE5E !important;
+}
+
 /* Dividers inside system monitor card */
-.border-b.border-surface-100,
-.dark .border-b.border-white\/5 {
+.border-b.border-surface-100 {
   border-color: #E8DFC8 !important;
+}
+
+.dark .border-b.border-surface-100,
+.dark .border-b.border-white\/5,
+.dark .border-t.border-surface-200,
+.dark .border-t.border-white\/5 {
+  border-color: rgba(193, 127, 58, 0.18) !important;
+}
+
+.dark [class*="rounded-2xl"].glass.border h4 {
+  color: #C49A5A !important;
+}
+
+.dark [class*="rounded-2xl"].glass.border span {
+  color: #FAF0DC !important;
 }
 
 /* ─── 14. Top Navigation Bar ─────────────────────────────────── */

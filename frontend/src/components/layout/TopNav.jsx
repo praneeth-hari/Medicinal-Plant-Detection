@@ -7,13 +7,10 @@
  */
 import { Menu } from 'lucide-react';
 import { useSidebar } from '../../hooks/useSidebar';
-import { useTheme } from '../../hooks/useTheme';
 import { useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 export function TopNav() {
   const { openSidebar } = useSidebar();
-  const { isDark, toggleTheme } = useTheme();
   const location = useLocation();
 
   // Helper to construct a breadcrumb title from the path
@@ -48,31 +45,6 @@ export function TopNav() {
         <h2 className="text-sm font-semibold tracking-tight text-surface-850 dark:text-surface-200 hidden sm:block">
           {getPageTitle()}
         </h2>
-      </div>
-
-      <div className="flex items-center gap-2">
-        {/* Animated Theme Toggle */}
-        <button
-          onClick={toggleTheme}
-          className="relative flex items-center p-1 rounded-full bg-black/5 dark:bg-black/40 border border-surface-200 dark:border-white/10 select-none cursor-pointer w-28 h-9"
-          aria-label="Toggle theme"
-        >
-          <div className={`flex items-center justify-center gap-1 w-1/2 text-[10px] font-bold z-10 transition-colors duration-300 ${isDark ? 'text-surface-400' : 'text-primary-650'}`}>
-            ☀️ Light
-          </div>
-          <div className={`flex items-center justify-center gap-1 w-1/2 text-[10px] font-bold z-10 transition-colors duration-300 ${isDark ? 'text-primary-450' : 'text-surface-500 dark:text-surface-400'}`}>
-            🌙 Dark
-          </div>
-          <motion.div
-            layout
-            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-            className="absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full bg-white dark:bg-primary-500/20 border border-surface-200 dark:border-primary-500/35 shadow-sm"
-            style={{
-              left: isDark ? '50%' : '4px'
-            }}
-          />
-        </button>
-
       </div>
     </header>
   );

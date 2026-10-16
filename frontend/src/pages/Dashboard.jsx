@@ -138,7 +138,7 @@ export function Dashboard() {
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary-500/10 dark:bg-primary-500/15 blur-[80px] rounded-full pointer-events-none" />
           
           <div className="relative z-10 max-w-3xl space-y-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-primary-500/10 border border-primary-500/25 text-primary-600 dark:text-primary-400">
+            <span className="ai-health-badge inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-primary-500/10 border border-primary-500/25 text-primary-600 dark:text-primary-400">
               <Activity className="w-3.5 h-3.5 animate-pulse" /> AI Health Portal
             </span>
             <h1 className="text-3xl md:text-5xl font-black text-surface-900 dark:text-white tracking-tight leading-tight">
