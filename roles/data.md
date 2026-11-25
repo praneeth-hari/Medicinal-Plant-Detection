@@ -100,7 +100,7 @@ Use Great Expectations, Pandera, Soda or dbt tests. A failed critical check stop
 
 ## 10. If the project is on Google Cloud
 
-Google publishes agent skills for BigQuery, Airflow/Cloud Composer, dbt and other data services (see `INSTALL.md`). If those are installed, prefer them for service-specific commands, and keep this file for general rules. Pick only the few you need.
+Google publishes agent skills for BigQuery, Airflow/Cloud Composer, dbt and other data services. If those are installed, prefer them for service-specific commands, and keep this file for general rules. Pick only the few you need.
 
 ## Output checklist for a data task
 

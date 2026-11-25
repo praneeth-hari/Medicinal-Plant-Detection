@@ -6,7 +6,7 @@ Read this for LLM chat interfaces, metrics dashboards, demos (Streamlit, Gradio,
 
 1. If the project already has a design system, component library, or style guide: **use it and stop here for visual choices.** Match existing tokens, components and patterns. Consistency beats novelty.
 2. If it is a quick internal demo: use the framework defaults (Streamlit, Gradio, shadcn/ui) with minimal changes. Don't over-design.
-3. If it is new or branded and design quality matters: use Part B and the extra skills listed in `INSTALL.md`.
+3. If it is new or branded and design quality matters: use Part B.
 
 The user's brief always wins over the style suggestions below.
 
@@ -120,7 +120,7 @@ Try: very long words and names, 10,000-character messages, empty and one-item li
 - Check performance basics: bundle size, image sizes, lazy loading, no blocking requests.
 - Verify in a real browser before saying it works: run the app, take a screenshot at desktop and mobile widths, and use the app once with the keyboard only.
 
-## Extra skills (optional, see `INSTALL.md`)
+## Extra skills (optional)
 - Emil Kowalski's skills (apple-design for motion, break-ui for stress testing, mobile-native for mobile feel)
 - `frontend-design` (creative direction for distinctive UI)
 - Addy Osmani's `frontend-ui-engineering`

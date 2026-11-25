@@ -124,7 +124,7 @@ DORA: deployment frequency, lead time for changes, change failure rate, time to 
 - Separate accounts/projects for dev, staging and prod; least-privilege roles; no long-lived keys where workload identity exists.
 - GPUs are the biggest cost. Use spot/preemptible instances for training with checkpoints; shut down idle instances; set budgets and alerts; right-size before scaling out.
 - Tag resources with owner and project. Review monthly cost by tag.
-- Cloud-neutral by default; when on Google Cloud, see the Google skills in `INSTALL.md`.
+- Cloud-neutral by default.
 
 ### Scripts and scheduling
 - Scripts take arguments, print what they will do, support `--dry-run` for anything destructive, and exit non-zero on failure.

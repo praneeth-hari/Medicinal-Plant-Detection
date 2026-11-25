@@ -99,4 +99,3 @@ If the project already has a design system or style guide, **follow it first**. 
 - Main folders:
 - Anything the agent must never touch:
 
-Install commands for the external skill packs and optional tools are in `INSTALL.md`.
